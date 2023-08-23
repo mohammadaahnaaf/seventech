@@ -1,6 +1,5 @@
-import { Inter } from 'next/font/google'
-import { Footers } from '@seventech/shared'
 import { Maine } from '@seventech/client'
+import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 

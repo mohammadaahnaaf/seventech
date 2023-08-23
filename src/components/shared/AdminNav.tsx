@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
-import { axiosAPI } from '..'
+import { axiosAPI } from '../utils'
 
 
 const navigation = [
