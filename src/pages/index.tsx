@@ -1,12 +1,14 @@
-import { Maine } from '@seventech/client'
+import { Maine, ProductDetails } from '@seventech/client'
+import { CartProvider } from '@seventech/hooks'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div>
+    <CartProvider>
       <Maine />
-    </div>
+      {/* <ProductDetails /> */}
+    </CartProvider>
   )
 }
