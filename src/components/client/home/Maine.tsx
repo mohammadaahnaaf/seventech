@@ -30,17 +30,18 @@ export function Maine() {
     }
     return view ? (
         <>
-            <Layout setSearchTerm={setSearchTerm}>
-                <Banner />
-                <div className='pb-4 min-h-screen bg-white'>
-                    {home?.map((item: any, index: number) => (
-                        <Shop key={index} items={item.products.slice(0, 12)} title={item.tagline} />
-                    ))}
-                </div>
-            </Layout>
-            {home.length === 0 && (
+            {home.length === 0 ? (
                 <Layout setSearchTerm={setSearchTerm}>
                     <div className='h-screen w-full bg-white' />
+                </Layout>
+            ) : (
+                <Layout setSearchTerm={setSearchTerm}>
+                    <Banner />
+                    <div className='pb-4 min-h-screen bg-white'>
+                        {home?.map((item: any, index: number) => (
+                            <Shop key={index} items={item.products.slice(0, 12)} title={item.tagline} />
+                        ))}
+                    </div>
                 </Layout>
             )}
         </>
