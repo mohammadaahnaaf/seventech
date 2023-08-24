@@ -13,9 +13,9 @@ type Props = {
 export function SearchBar(props: Props) {
 
     const { setSearchTerm, searchButton } = props
-
     const router = useRouter()
 
+    // redirect to category on search 
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setSearchTerm('')

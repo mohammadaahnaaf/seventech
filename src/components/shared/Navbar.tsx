@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 import { useCart } from 'react-use-cart';
-import { axiosAPI } from '..';
+import { axiosAPI, isServer } from '..';
 import Image from 'next/image';
 
 function classNames(...classes: string[]) {
@@ -24,7 +24,7 @@ export const Navbar = (props: Props) => {
 
   const [useri, setUseri] = React.useState(false);
   const [amAdmin, setAmAdmin] = React.useState(false);
-
+  const [view, setView] = React.useState(false);
 
   // logout function 
   async function handleLogout(e: { preventDefault: () => void }) {
@@ -37,8 +37,15 @@ export const Navbar = (props: Props) => {
     router.push('/login')
   }
 
-  return (
-    <header className='flex justify-between py-2 items-center max-w-7xl mx-auto w-full'>
+  React.useEffect(() => {
+    setView(true)
+  }, [])
+
+  if (isServer()) {
+    return null
+  }
+  return view ? (
+    <div className='flex justify-between py-2 items-center max-w-7xl mx-auto w-full'>
       <div className="hidden md:block h-8">
         <Link href='/' className='h-20 w-full'>
           <Image src="/logo.png" alt="Home" width={80} height={40} />
@@ -147,6 +154,6 @@ export const Navbar = (props: Props) => {
           </Menu>
         </div>
       </div>
-    </header>
-  )
+    </div>
+  ) : null
 }
