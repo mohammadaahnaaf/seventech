@@ -47,7 +47,7 @@ export function SearchBar(props: Props) {
                             id="search"
                             name="search"
                             onChange={handleSearch}
-                            className="block p-3 pl-10 w-full placeholder-gray-200 placeholder-opacity-70 outline-none focus:border-0 focus:ring-0 !focus:outline-none border-0 ring-0 bg-gray-600 focus:bg-opacity-20 hover:bg-opacity-20 rounded-full bg-opacity-40 text-red-600 shadow-sm sm:text-sm"
+                            className="block p-3 pl-10 w-full placeholder-gray-200 placeholder-opacity-70 outline-none focus:border-0 focus:ring-0 !focus:outline-none border-0 ring-0 bg-gray-600 focus:bg-opacity-20 hover:bg-opacity-20 rounded-full bg-opacity-40 text-black shadow-sm sm:text-sm"
                             placeholder="Find here..."
                             required
                         />

@@ -1,12 +1,13 @@
-import { useCart } from '@seventech/hooks';
+import { isServer } from '@seventech/utils';
 import React from 'react'
+import { useCart } from 'react-use-cart';
 
 type Props = {}
 
 export const ProductDetails = (props: Props) => {
 
-    const { cartDispatch, cartState } = useCart();
-    const uniqueItemsCount = cartState.items.length;
+    const [view, setView] = React.useState(false)
+    const { addItem, emptyCart, totalUniqueItems } = useCart();
 
     const handleAddToCart = () => {
 
@@ -18,14 +19,24 @@ export const ProductDetails = (props: Props) => {
             quantity: 1,
             price: 9.99,
         };
+        addItem(newItem)
 
-        // Dispatch the 'ADD_ITEM' action to add the item to the cart
-        cartDispatch({ type: 'ADD_ITEM', payload: newItem });
     };
-    return (
-        <div className='h-40'>ProductDetails
-            <h2>{uniqueItemsCount}</h2>
+
+    React.useEffect(() => {
+        setView(true)
+    }, [])
+
+    if (isServer()) {
+        return null
+    }
+
+    return view ? (
+        <div className='h-40 grid justify-start'>
+            ProductDetails
+            <h2>{totalUniqueItems}</h2>
             <button type='button' onClick={handleAddToCart}>Add</button>
+            <button type='button' onClick={emptyCart}>clear cart</button>
         </div>
-    )
+    ) : null
 }

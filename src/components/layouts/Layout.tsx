@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminNav, Footers } from '@seventech/shared'
+import { AdminNav, Footers, Navbar } from '@seventech/shared'
 
 type Props = {
     children: any;
@@ -8,11 +8,11 @@ type Props = {
 export function Layout(props: Props) {
     const { children, setSearchTerm } = props
 
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState<boolean>(false)
 
     return (
         <>
-            <AdminNav />
+            <Navbar setOpen={setOpen} setSearchTerm={setSearchTerm} />
             <div>
                 {children}
             </div>

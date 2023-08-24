@@ -100,7 +100,7 @@ export const AdminNav = (props: Props) => {
 
     return (
         <div className="min-h-full">
-            <Disclosure as="nav" className="bg-black">
+            <Disclosure as="nav" className="bg-black bg-opacity-10">
                 {({ open }) => (
                     <>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

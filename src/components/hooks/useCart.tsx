@@ -1,11 +1,10 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import { useRouter } from 'next/router';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 // Define types
 interface CartItem {
   id: string;
   name: string;
-  category: string;
-  image: string;
   price: number;
   quantity: number;
 }
@@ -15,6 +14,7 @@ interface CartState {
 }
 
 type CartAction =
+  | { type: 'LOAD_CART'; payload: CartState }
   | { type: 'ADD_ITEM'; payload: CartItem }
   | { type: 'REMOVE_ITEM'; payload: { id: string } }
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
@@ -36,8 +36,14 @@ const initialCartState: CartState = {
 // Define cart reducer function
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
+
+    case 'LOAD_CART':
+      return {
+        ...state,
+        items: action.payload.items || [],
+      };
+
     case 'ADD_ITEM':
-      // Check if the item is already in the cart
       const existingItem = state.items.find(item => item.id === action.payload.id);
       if (existingItem) {
         return {
@@ -89,11 +95,28 @@ export const useCart = (): CartContextType => {
 
 // CartProvider component that wraps your app
 interface CartProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+
   const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
+  const router = useRouter()
+
+  // Load cart data from local storage when the component mounts
+  useEffect(() => {
+    let storedCart = localStorage.getItem('cart');
+    console.log("a: " + storedCart)
+    if (storedCart) {
+      cartDispatch({ type: 'LOAD_CART', payload: JSON.parse(storedCart) });
+    }
+  }, [router]);
+
+  // Save cart data to local storage whenever the cart state changes
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartState));
+    console.log("b: " + cartState.items[0]?.id)
+  }, [cartState]);
 
   return (
     <CartContext.Provider value={{ cartState, cartDispatch }}>
