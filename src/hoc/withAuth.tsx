@@ -32,12 +32,14 @@ export const withAuth = (Component: React.ComponentType<Props>) => {
 };
 
 const Loading = () => {
-  return "Loading"
+  return (
+    <div className='h-screen w-full bg-white' />
+  )
 }
 
-export const withMeAuth = (Component: any, pageProps: any) => {
+export const withMeAuth = (Component: React.ComponentType<Props>) => {
 
-  const AuthMeComponent: React.FC<Props> = ({ pageProps }) => {
+  const AuthMeComponent: React.FC<Props> =({ pageProps })  => {
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 

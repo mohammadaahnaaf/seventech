@@ -1,11 +1,15 @@
+import { withMeAuth } from '@seventech-root/hoc'
+import { Profile } from '@seventech/client/auth/Profile'
 import React from 'react'
 
 type Props = {}
 
 const ProfilePage = (props: Props) => {
     return (
-        <div>ProfilePage</div>
+        <div>
+            <Profile />
+        </div>
     )
 }
 
-export default ProfilePage
+export default withMeAuth(ProfilePage)

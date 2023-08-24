@@ -137,7 +137,6 @@ export function Checkouts(props: Props) {
         return null
     }
     return view ? (
-
         <>
             {error && <ErrorText error={error} />}
             <div className='max-w-7xl min-h-[78vh] mx-auto py-4 grid grid-cols-3 justify-center gap-5'>

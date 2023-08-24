@@ -1,3 +1,5 @@
 export * from './axios-api'
 export * from './axios-root'
 export * from './isServer'
+export * from './formate-date'
+export * from './class-names'

@@ -1,10 +1,13 @@
+import { ProductDetail } from '@seventech/client'
 import React from 'react'
 
 type Props = {}
 
 const ProductDetailsPage = (props: Props) => {
     return (
-        <div>ProductDetailsPage</div>
+        <div>
+            <ProductDetail />
+        </div>
     )
 }
 

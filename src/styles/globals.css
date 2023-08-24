@@ -6,3 +6,15 @@ body {
   color: black;
   background: white
 }
+
+/* Price Range */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  @apply bg-blue-600;
+
+  /* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}
