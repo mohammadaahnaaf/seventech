@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className='flex gap-2 align-bottom justify-center text-lg bg-gray-200 py-2'>
       <div className='flex text-sm gap-2 justify-center'>
-        <h1 className='text-red-600'>
+        <h1 className='text-blue-600'>
           Copyright © SevenTech 2022.
         </h1>
       </div>
@@ -29,7 +29,7 @@ export function Footers() {
           </div>
           <div className="hidden md:grid items-center">
             <Link href="/" className="grid gap-2 items-center justify-items-center">
-              <Image height={100} width={150}  src="/logo.png" alt="Logo" />
+              <Image height={100} width={150} src="/logo.png" alt="Logo" />
               <span className="self-center text-lg font-medium whitespace-nowrap text-blue-600 hover:text-red-600">SevenTech Engineering Ltd.</span>
 
             </Link>
@@ -90,13 +90,19 @@ export function Footers() {
                 <li className="mb-2">
                   <Link href="https://www.facebook.com/rdragonbd/" className="flex items-center hover:text-red-600">
 
-                    <svg
+                    {/* <svg
                       className="h-4 w-4 mr-2"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24">
                       <path
                         d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                    </svg> */}
+
+                    <svg version="1.1" height="24" width="20" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2"
+                      viewBox="0 0 256 256" >
+                      <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                      <g><g><path fill="currentColor" d="M147.7,88.7V65.3c0-10.6,2.3-15.9,18.7-15.9H187V10h-34.4c-42.1,0-56,19.3-56,52.4v26.2H69V128h27.6v118h51V128h34.7l4.7-39.3H147.7z M173.6,118.2h-25.3h-10.5v9.5v108.5h-31.4V127.7v-9.5h-9.2H78.8V98.5h18.5h9.2V88.3V62.4c0-15.1,3.3-25.3,9.5-31.8c6.9-7.4,19.1-10.8,36.6-10.8h24.5v19.7h-10.8c-7.4,0-16.9,0.7-22.8,7.2c-5,5.5-5.8,12.4-5.8,18.5v23.1v10.2h10.5h27.6L173.6,118.2z" /></g></g>
                     </svg>
 
                     <span> Facebook </span>
@@ -105,15 +111,21 @@ export function Footers() {
                 </li>
                 <li className="mb-2">
                   <Link href="https://twitter.com/redragonusa" className="hover:text-red-600 flex items-center">
-                    <svg
+                    {/* <svg
                       className="h-4 w-4 mr-2"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24">
                       <path
                         d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    </svg> */}
+                    <svg viewBox="0 0 1200 1227" height="20" width="20" fill="currentColor" className="hover:text-red-600 flex items-center mr-2"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"
+                        fill="currentColor" />
                     </svg>
-                    <span>Twitter</span>
+                    <span> Twitter </span>
 
                   </Link>
                 </li>
@@ -121,7 +133,7 @@ export function Footers() {
                   <Link href="https://www.instagram.com/redragon_usa" className="hover:text-red-600 flex items-center">
 
                     <svg
-                      className="h-4 w-4 mr-2"
+                      className="h-5 w-5 mr-2"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24">

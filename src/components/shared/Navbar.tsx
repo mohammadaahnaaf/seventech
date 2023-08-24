@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { SearchBar } from '.'
-import { Menu, Transition } from '@headlessui/react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 import { useCart } from 'react-use-cart';
@@ -52,7 +52,7 @@ export const Navbar = (props: Props) => {
         </Link>
       </div>
       {/* Search Bar  */}
-      <div className='hidden md:block w-full lg:w-1/3 justify-center'>
+      <div className='hidden md:block w-full lg:w-1/3 justify-center rounded-full bg-gray-200'>
         <SearchBar setSearchTerm={setSearchTerm} searchButton={false} />
       </div>
 
@@ -156,4 +156,166 @@ export const Navbar = (props: Props) => {
       </div>
     </div>
   ) : null
+}
+
+
+export function BasicNavbar() {
+
+  const basicNavigation = [
+    {
+      name: 'Home',
+      href: '/',
+      state: true
+    },
+    {
+      name: 'Your Profile',
+      href: '/profile',
+      state: true
+    },
+  ]
+  const { pathname } = useRouter();
+  const router = useRouter();
+  const navigation = [
+    {
+      name: 'Home', href: '/',
+      icon:
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+          className='h-5 w-5 mr-1'>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+    },
+    {
+      name: 'Cart',
+      href: '/cart',
+      icon:
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+          className='h-5 w-5 mr-1'>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+        </svg>
+    },
+  ]
+  return (
+    <div className="min-h-full">
+      <Disclosure as="nav" className="relative bg-black">
+        {({ open }) => (
+          <>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center justify-between h-16">
+              
+                <div className="flex items-center">
+                  <div className="hidden md:flex items-center h-16">
+                    <button onClick={() => router.push('/')}>
+                      <Image src="/logo.png" alt="Home" layout="fixed" width={80} height={40} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="hidden md:block">
+                  <div className="flex items-center">
+
+                    {/* Login and Signup Button shall show when user != isLoggedIn */}
+                    <div className='flex justify-between gap-4'>
+                      <Link href='/signin'
+                        className='bg-black text-sm hover:bg-white hover:text-black ring-white text-white ring-2 w-20 text-center py-1 px-3'>
+                        Signup
+                      </Link>
+                      <Link href='/login' className='bg-black hover:bg-white hover:text-black text-sm text-center ring-white text-white w-20 ring-2 py-1 px-3'>
+                        Login
+                      </Link>
+                    </div>
+
+                    {/* Profile dropdown */}
+                    <Menu as="div" className="hidden ml-3 relative">
+                      <div>
+                        <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-xl">
+                          <span className="sr-only">Open user menu</span>
+                          {/* <UserCircleIcon className='h-8 w-8 text-black hover:text-gray-200' /> */}
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gradient-to-r from-black to-red-900 ring-1 ring-black ring-opacity-20 focus:outline-none">
+                          {basicNavigation.map((item) => (
+                            <Menu.Item key={item.name}>
+                              {({ active }) => (
+                                <Link href={item.href}
+                                    className={classNames(
+                                      active ? 'bg-black' : '',
+                                      'block px-4 py-2 text-sm text-gray-100 hover:text-white hover:bg-black'
+                                    )}
+                                  >
+                                    {item.name}
+                          
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          ))}
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+
+                  </div>
+                </div>
+
+                <div className="-mr-2 flex md:hidden">
+
+                  {/* Mobile menu button */}
+                  <Disclosure.Button className=" inline-flex items-center justify-center p-2 rounded-md text-black focus:ring-2 focus:ring-black">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                        className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                        className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                      </svg>
+                    )}
+                  </Disclosure.Button>
+
+                </div>
+              </div>
+            </div>
+
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Disclosure.Panel className="md:hidden relative rounded-b-lg bg-gradient-to-b border-t-2 border-black from-black to-red-900">
+                <div className="px-2 w-full pt-2 pb-3 space-y-1 sm:px-3">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      onClick={() => router.push(`/${item.href}`)}
+                      className={classNames(
+                        pathname === item.href ? 'text-white bg-red-800' : '',
+                        'flex px-3 w-full text-gray-200 py-2 rounded-md text-base font-medium'
+                      )}
+                    // aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.icon} {item.name}
+                    </Disclosure.Button>
+                  ))}
+                </div>
+              </Disclosure.Panel>
+            </Transition>
+          </>
+        )}
+      </Disclosure>
+    </div >
+  )
 }

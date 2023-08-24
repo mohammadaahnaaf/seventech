@@ -27,15 +27,15 @@ export function ProductCards(props: Props) {
     }
 
     return (
-        <div className="group ring-black ring-2 hover:scale-90 duration-300 bg-white relative">
-            <div className="absolute z-40 grid items-center justify-items-center top-0 right-0 p-1 text-white hover:bg-red-600 bg-black">
+        <div className="group ring-gray-400 ring-2 hover:scale-95 duration-300 bg-white relative">
+            <div className="absolute z-40 grid items-center justify-items-center top-0 right-0 p-1 text-white hover:bg-gray-600 bg-gray-400">
                 <button
                     type='button'
                     disabled={!product.inStock || product.quantity === 0}
                     onClick={() => addItem(cartProduct)}
                     className={classNames(
                         !product.inStock ? "cursor-not-allowed" : "",
-                        "hover:text-red-600"
+                        "hover:text-gray-50"
                     )}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
@@ -50,7 +50,6 @@ export function ProductCards(props: Props) {
                     <div key={index} className="min-h-80 bg-white aspect-w-1 aspect-h-1 w-full overflow-hidden group-hover:opacity-75 lg:aspect-none lg:h-80">
 
                         <Image
-                            // layout='fill'
                             height={512}
                             width={512}
                             src={item}
@@ -60,7 +59,7 @@ export function ProductCards(props: Props) {
                     </div>
                 ))}
             </div>
-            <div className="grid w-full p-2 border-t-2 border-red-600">
+            <div className="grid w-full p-2 border-t-2 border-gray-400">
                 <div className='h-20 hidden md:grid content-between'>
                     <Link href={`/product/${product?._id}`} className="w-full font-normal text-sm text-black">
                         <span aria-hidden="true" className="absolute inset-0" />
@@ -71,7 +70,7 @@ export function ProductCards(props: Props) {
                     </p>
                 </div>
                 <div className='h-20 grid md:hidden content-between'>
-                    <Link href={`/product/${product?._id}`} className="text-xs w-full font-normal text-gray-200">
+                    <Link href={`/product/${product?._id}`} className="text-xs w-full font-normal text-black">
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product?.name}
                     </Link>
@@ -82,7 +81,7 @@ export function ProductCards(props: Props) {
                             onClick={() => addItem(cartProduct)}
                             className={classNames(
                                 !product.inStock ? "cursor-not-allowed" : "",
-                                "hover:text-red-600 text-white block 2xl:hidden"
+                                "hover:text-gray-600 text-black block 2xl:hidden"
                             )}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
@@ -92,7 +91,7 @@ export function ProductCards(props: Props) {
                         </button>
 
                         <p className="mt-1 w-full flex justify-end items-center text-end text-xs gap-2 text-green-500">
-                            <span className='text-red-500 line-through'> ৳ {product.regularPrice}</span> ৳ {product.offerPrice || product.onlinePrice}
+                            <span className='text-gray-500 line-through'> ৳ {product.regularPrice}</span> ৳ {product.offerPrice || product.onlinePrice}
                         </p>
                     </div>
                 </div>
