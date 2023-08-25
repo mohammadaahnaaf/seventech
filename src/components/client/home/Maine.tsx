@@ -3,6 +3,7 @@ import React from 'react'
 import { Banner } from './Banner';
 import { axiosRoot, isServer } from '@seventech/utils';
 import { Shop } from './Shop';
+import { NewCatBar } from '../category/CategoryBar';
 
 export function Maine() {
 
@@ -36,6 +37,7 @@ export function Maine() {
                 </Layout>
             ) : (
                 <Layout setSearchTerm={setSearchTerm}>
+                    <NewCatBar />
                     <Banner />
                     <div className='pb-4 min-h-screen bg-white'>
                         {home?.map((item: any, index: number) => (
