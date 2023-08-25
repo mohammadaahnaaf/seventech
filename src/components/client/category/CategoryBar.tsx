@@ -203,10 +203,9 @@ export function CategoryBar(props: Props) {
                                                                         <div className="row-start-1 grid grid-cols-3 gap-y-5 gap-x-5 text-sm">
 
                                                                             <div>
-                                                                                <Link href={`/category/${category.name}`}>
-                                                                                    <a className="font-medium text-lg text-gray-100">
-                                                                                        {category.name}
-                                                                                    </a>
+                                                                                <Link href={`/category/${category.name}`}
+                                                                                    className="font-medium text-lg text-gray-100">
+                                                                                    {category.name}
                                                                                 </Link>
                                                                                 <ul
                                                                                     role="list"
@@ -284,9 +283,9 @@ export function NewCatBar() {
 
     return (
         <div className="relative grid z-50">
-            <header 
-            // className="bg-gray-400"
-            className="bg-[#005DAB]"
+            <header
+                // className="bg-gray-400"
+                className="bg-[#005DAB]"
             >
                 <div className="max-w-7xl flex items-center justify-between w-full mx-auto px-4 sm:px-6 xl:px-8">
                     <button
