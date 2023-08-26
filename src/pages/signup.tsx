@@ -1,10 +1,13 @@
+import { Signup } from '@seventech/client/auth/Signup'
 import React from 'react'
 
 type Props = {}
 
 const SignupPage = (props: Props) => {
     return (
-        <div>SignupPage</div>
+        <div>
+            <Signup />
+        </div>
     )
 }
 

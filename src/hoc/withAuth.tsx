@@ -1,5 +1,6 @@
+// import { AdminLayout } from '@seventech/layouts';
 import { axiosAPI } from '@seventech/utils';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 interface Props {
@@ -9,23 +10,32 @@ interface Props {
 export const withAuth = (Component: React.ComponentType<Props>) => {
 
   const AuthComponent: React.FC<Props> = ({ pageProps }) => {
+    const router = useRouter()
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [isAdmins, setIsAdmins] = useState<boolean>(false);
 
     useEffect(() => {
-      if (!isLoggedIn) {
+      if (!isAdmins) {
         axiosAPI
           .get('/auth/get-me')
-          .then((res: { data: { isAdmin: boolean } }) => {
-            setIsLoggedIn(!!res.data.isAdmin);
+          .then((res: any) => {
+            let topG = !!res.data.isAdmin
+            setIsLoggedIn(!!res.data.email);
+            setIsAdmins(!!res.data.isAdmin);
+            setTimeout(() => {
+              if (!topG) {
+                Router.push('/login')
+              }
+            }, 200)
           })
           .catch((error: any) => {
             console.log(error);
             Router.push('/login');
           });
       }
-    }, [isLoggedIn]);
+    }, [isAdmins, router]);
 
-    return isLoggedIn ? <Component {...pageProps} /> : <Loading />;
+    return isAdmins ? <Component {...pageProps} /> : <Loading2 />;
   };
 
   return AuthComponent;
@@ -36,12 +46,18 @@ const Loading = () => {
     <div className='h-screen w-full bg-white' />
   )
 }
+const Loading2 = () => {
+  return (
+    <div className='h-full w-full bg-white' />
+  )
+}
 
 export const withMeAuth = (Component: React.ComponentType<Props>) => {
 
-  const AuthMeComponent: React.FC<Props> =({ pageProps })  => {
+  const AuthMeComponent: React.FC<Props> = ({ pageProps }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const router = useRouter()
 
     useEffect(() => {
       if (!isLoggedIn) {
@@ -56,7 +72,7 @@ export const withMeAuth = (Component: React.ComponentType<Props>) => {
             Router.push('/login')
           });
       }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, router]);
 
     return isLoggedIn ? <Component {...pageProps} /> : <Loading />
   }

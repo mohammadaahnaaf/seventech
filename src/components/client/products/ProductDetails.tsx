@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useCart } from 'react-use-cart'
 import { Dialog, Transition } from '@headlessui/react'
 import { ErrorText, SuccessText } from '@seventech/shared'
-import { axiosAPI, axiosRoot, classNames, fDateTime } from '@seventech/utils'
+import { axiosAPI, axiosRoot, classNames, fDateTime, isServer } from '@seventech/utils'
 import { Layout } from '@seventech/layouts'
 import { Relatedcard } from './Related'
 
@@ -24,6 +24,7 @@ export function Details() {
     const [success, setSuccess] = useState('')
     const [view, setView] = useState(1)
     const [openImage, setOpenImage] = useState(false)
+    const [ok, setOk] = useState(false)
     const [viewImage, setViewImage] = useState()
     const [isUser, setIsUser] = useState(false)
     const [relatedProductsId, setRelatedProductsId] = useState([])
@@ -178,7 +179,14 @@ export function Details() {
         </Transition>
     )
 
-    return product?.name ? (
+    React.useEffect(() => {
+        setOk(true)
+    }, [])
+
+    if (isServer()) {
+        return null
+    }
+    return ok ? (
         <>
             {overview}
             <div className='md:p-8 grid w-full md:max-w-7xl mx-auto gap-4'>
@@ -187,13 +195,13 @@ export function Details() {
                     {/* Images  */}
                     <div className='col-span-5 lg:col-span-2'>
 
-                        <div className='grid gap-4 py-4 items-center content-between'>
+                        <div className='grid gap-4 items-center content-between'>
                             {images?.slice(view - 1, view).map((item, index) => (
-                                <div className='relative hover:scale-105 duration-300 cursor-pointer flex items-center mx-auto' key={index}>
+                                <div className='relative ring-2 ring-gray-200 hover:ring-0 h-[50vh] w-full hover:scale-105 rounded-md duration-300 cursor-pointer flex items-center mx-auto' key={index}>
                                     <Image
-                                        // layout='fill'
-                                        height={512}
-                                        width={512}
+                                        fill
+                                        // height={512}
+                                        // width={512}
                                         src={item}
                                         alt='product-images'
                                         className="mx-auto w-full h-full rounded-md"
@@ -203,12 +211,11 @@ export function Details() {
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
-
                                         </button>
                                     </div>
                                 </div>
                             ))}
-                            <div className='flex gap-4 items-center justify-between'>
+                            <div className='grid grid-cols-4 gap-4 items-center justify-between'>
                                 {images?.map((item, index) => (
                                     <button key={index} type='button' className='ring-2 justify-center hover:scale-95 duration-300 hover:ring-black items-center flex ring-gray-200 rounded-sm w-full' onClick={() => setView(index + 1)}>
                                         <Image
@@ -225,9 +232,9 @@ export function Details() {
                     </div>
 
                     {/* Side info  */}
-                    <div className='p-4 col-span-5 lg:col-span-3'>
-                        <div className='grid items-center h-full'>
-                            <h1 className='text-md lg:text-xl font-semibold text-left'>{product.name}</h1>
+                    <div className='col-span-5 lg:col-span-3'>
+                        <div className='grid items-start h-full'>
+                            <h1 className='text-md lg:text-xl font-semibold text-left'>{product?.name}</h1>
 
                             {/* side info table */}
                             <div className="relative">
@@ -239,7 +246,7 @@ export function Details() {
                                                 Regular Price:
                                             </th>
                                             <td className=" py-2">
-                                                ৳ {product.regularPrice}
+                                                ৳ {product?.regularPrice}
                                             </td>
                                         </tr>
                                         <tr className="border-gray-100 border-b">
@@ -247,16 +254,16 @@ export function Details() {
                                                 Product Price:
                                             </th>
                                             <td className=" py-2">
-                                                ৳ {product.onlinePrice}
+                                                ৳ {product?.onlinePrice}
                                             </td>
                                         </tr>
-                                        {product.offerPrice && (
+                                        {product?.offerPrice && (
                                             <tr className="border-gray-100 border-b">
                                                 <th scope="row" className="w-1/2 lg:w-1/4 font-medium text-gray-900 whitespace-nowrap">
                                                     Offer Price:
                                                 </th>
                                                 <td className=" py-2">
-                                                    ৳ {product.offerPrice}
+                                                    ৳ {product?.offerPrice}
                                                 </td>
                                             </tr>
                                         )}
@@ -274,7 +281,7 @@ export function Details() {
                                                 Brand:
                                             </th>
                                             <td className=" py-2">
-                                                {product.imageAlt || 'Unknown'}
+                                                {product?.imageAlt || 'Unknown'}
                                             </td>
                                         </tr>
                                         <tr className="border-gray-100 border-b">
@@ -288,15 +295,15 @@ export function Details() {
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                                         key={rating}
                                                         className={classNames(
-                                                            product.averageRating > rating ? 'text-[#005DAB]' : 'text-gray-200',
+                                                            product?.averageRating > rating ? 'text-[#005DAB]' : 'text-gray-200',
                                                             'h-5 w-5 flex-shrink-0'
                                                         )}>
                                                         <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
                                                     </svg>
 
                                                 ))}
-                                                <span className='px-2 hidden lg:block'> {product.reviewCount}
-                                                    {product.reviewCount === 1 ? " Review" : " Reviews"}
+                                                <span className='px-2 hidden lg:block'> {product?.reviewCount}
+                                                    {product?.reviewCount === 1 ? " Review" : " Reviews"}
                                                 </span>
                                                 <button type='button' className='hidden hover:text-[#005DAB] lg:block' onClick={handleScroll}>
                                                     | Write A Review
@@ -309,9 +316,9 @@ export function Details() {
 
                             {/* short description  */}
                             <div className='grid items-center content-between h-full'>
-                                <div className='grid gap-2 mt-4'>
+                                <div className='grid gap-2'>
                                     <h2 className='text-md font-semibold'>Short Description:</h2>
-                                    <p className='text-md'>{product.shortDescription || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at ipsum et dui efficitur euismod non vitae ipsum. Aliquam erat volutpat. Sed eu lacinia lorem. Cras lobortis nisl nisl, in vulputate nibh ullamcorper feugiat. Nunc malesuada condimentum luctus. Nulla tellus mi, porttitor eu tempus vitae, viverra vitae dui. Maecenas vulputate eros ante, et venenatis tortor consequat quis. Nullam vehicula non leo et congue. In vel nisl ligula."}</p>
+                                    <p className='text-md'>{product?.shortDescription || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at ipsum et dui efficitur euismod non vitae ipsum. Aliquam erat volutpat. Sed eu lacinia lorem. Cras lobortis nisl nisl, in vulputate nibh ullamcorper feugiat. Nunc malesuada condimentum luctus. Nulla tellus mi, porttitor eu tempus vitae, viverra vitae dui. Maecenas vulputate eros ante, et venenatis tortor consequat quis. Nullam vehicula non leo et congue. In vel nisl ligula."}</p>
                                 </div>
 
                                 {/* Add to cart button  */}
@@ -334,10 +341,10 @@ export function Details() {
                                     <div>
                                         <button
                                             type="button"
-                                            disabled={!product.inStock}
+                                            disabled={!product?.inStock}
                                             onClick={() => addItem(cartProduct, qty)}
                                             className={classNames(
-                                                !product.inStock ? "cursor-not-allowed" : "",
+                                                !product?.inStock ? "cursor-not-allowed" : "",
                                                 "flex items-center justify-center w-full px-8 py-3 mt-6 text-base font-medium bg-[#005DAB] hover:bg-black text-white")}
                                         >
                                             Add to Cart
@@ -416,7 +423,7 @@ export function Details() {
                             <>
                                 <div className='md:p-5'>
                                     {/* <h2 className='text-xl mb-3 font-medium'>More Informations</h2> */}
-                                    {product.details?.map((detail: any, index: number) => (
+                                    {product?.details?.map((detail: any, index: number) => (
                                         <div className='my-2' key={index}>
                                             <h2 className='pl-10 text-md font-bold text-gray-700'>{detail.title}</h2>
                                             <p className='py-1 px-16 text-sm font-normal text-gray-600'> {detail.description}</p>
@@ -463,7 +470,7 @@ export function Details() {
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                                         key={rating}
                                                         className={classNames(
-                                                            product.averageRating > rating ? 'text-[#005DAB]' : 'text-gray-300',
+                                                            product?.averageRating > rating ? 'text-[#005DAB]' : 'text-gray-300',
                                                             'h-8 w-8 flex-shrink-0'
                                                         )}>
                                                         <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
@@ -472,12 +479,12 @@ export function Details() {
                                                 ))}
                                             </div>
                                             <h2 className='px-2 py-1 text-gray-600'>{product?.reviewCount || '0'}
-                                                <span>{product.reviewCount === 1 ? " Review" : " Reviews"}</span>
+                                                <span>{product?.reviewCount === 1 ? " Review" : " Reviews"}</span>
                                             </h2>
                                         </div>
                                     </div>
                                     <div className='px-2 grid gap-3'>
-                                        {product.reviews?.map((review: any, index: number) => {
+                                        {product?.reviews?.map((review: any, index: number) => {
                                             return (
                                                 <div key={index} className='border-b md:mx-5 border-gray-200 items-center pb-2 grid justify-between col-span-1 gap-3 md:flex'>
                                                     <div className='grid w-1/4 gap-0'>
@@ -503,12 +510,9 @@ export function Details() {
                                     </div>
 
                                     {/* white a review  */}
-                                    {success &&
-                                        <SuccessText success={success} />
+                                    {success && <SuccessText success={success} />
                                     }
-                                    {error && 
-                                    <ErrorText error={error} />
-                                    }
+                                    {error && <ErrorText error={error} />}
 
                                     <form onSubmit={handleSubmit}>
                                         <div className='px-2 md:px-5'>
@@ -563,7 +567,7 @@ export function Details() {
                             <div className='w-full bg-gradient-to-r from-black to-white ' />
                         </div>
                         <div className='grid grid-cols-12 w-full gap-2 rounded-b-md py-3'>
-                            {relatedProductsId?.slice(0, 6).map((item, index) =>
+                            {relatedProductsId?.slice(0, 6).map((item: any, index: number) =>
                                 <div key={index} className='col-span-12 lg:col-span-6'>
                                     <Relatedcard item={item} />
                                 </div>
@@ -573,10 +577,7 @@ export function Details() {
                 )}
             </div>
         </>
-    ) : (
-        // <Loading bg='white' />
-        null
-    )
+    ) : null
 }
 
 export function ProductDetail() {

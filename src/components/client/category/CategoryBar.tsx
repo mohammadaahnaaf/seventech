@@ -282,7 +282,7 @@ export function NewCatBar() {
     const sortedSubCategories = subCategories?.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
 
     return (
-        <div className="relative grid z-50">
+        <div className="relative grid z-10">
             <header
                 // className="bg-gray-400"
                 className="bg-[#005DAB]"

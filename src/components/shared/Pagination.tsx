@@ -29,7 +29,7 @@ export function Pagenation(props:Props) {
         <div className='gap-4 items-center p-2 flex justify-end'>
             <div className="hidden md:block">
                 <label className='mx-2 text-sm' htmlFor='pageSize'>Page Size:</label>
-                <select value={pageSize} onChange={(e) => setPageSize(e.target.value)} className='text-sm rounded-lg outline-none ring-1 ring-red-600 border-none focus:ring-red-600 focus:ring-2 focus:border-none py-1' name='pageSize' id='pageSize'>
+                <select value={pageSize} onChange={(e) => setPageSize(e.target.value)} className='text-sm rounded-lg outline-none ring-1 ring-sky-600 border-none focus:ring-sky-600 focus:ring-2 focus:border-none py-1' name='pageSize' id='pageSize'>
                     <option value={8}>8</option>
                     <option value={10}>10</option>
                     <option value={15}>15</option>
@@ -42,7 +42,7 @@ export function Pagenation(props:Props) {
                 <p className='text-sm'>Pages:</p>
                 <ul className="inline-flex items-center -space-x-px">
                     <li>
-                        <button type='button' onClick={handleDecrement} className="block py-2 px-3 ml-0 leading-tight text-red-600 bg-white rounded-l-md border border-red-300 hover:bg-red-600 hover:text-white ">
+                        <button type='button' onClick={handleDecrement} className="block py-2 px-3 ml-0 leading-tight text-sky-600 bg-white rounded-l-md border border-sky-300 hover:bg-sky-600 hover:text-white ">
                             <span className="sr-only">Previous</span>
                             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
                         </button>
@@ -52,8 +52,8 @@ export function Pagenation(props:Props) {
                             <li key={pages}>
                                 <button onClick={() => setPage(pages)} type='button'
                                     className={classNames(
-                                        pages === page ? 'bg-red-600 text-white' : 'text-red-600 bg-white',
-                                        "py-2 px-3 leading-tight border border-red-300 hover:bg-red-500 hover:text-white"
+                                        pages === page ? 'bg-sky-600 text-white' : 'text-sky-600 bg-white',
+                                        "py-2 px-3 leading-tight border border-sky-300 hover:bg-sky-500 hover:text-white"
                                     )}>
                                     {pages + 1}</button>
                             </li> : null
@@ -62,14 +62,14 @@ export function Pagenation(props:Props) {
                         <li>
                             <button onClick={() => setPage(page)} type='button'
                                 className={classNames(
-                                    page > 4 ? 'bg-red-600 text-white' : 'text-red-600 bg-white',
-                                    "py-2 px-3 leading-tight border border-red-300 hover:bg-red-500 hover:text-white"
+                                    page > 4 ? 'bg-sky-600 text-white' : 'text-sky-600 bg-white',
+                                    "py-2 px-3 leading-tight border border-sky-300 hover:bg-sky-500 hover:text-white"
                                 )}>
                                 {page + 1}</button>
                         </li>
                     )}
                     <li>
-                        <button type='button' onClick={handleIncrement} className="block py-2 px-3 leading-tight text-red-600 bg-white rounded-r-md border border-red-300 hover:bg-red-600 hover:text-white">
+                        <button type='button' onClick={handleIncrement} className="block py-2 px-3 leading-tight text-sky-600 bg-white rounded-r-md border border-sky-300 hover:bg-sky-600 hover:text-white">
                             <span className="sr-only">Next</span>
                             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
                         </button>
@@ -114,7 +114,7 @@ export function NextPage(props: Props) {
         <div className='gap-4 items-center mt-6 bg-gray-300 p-2 flex justify-end'>
             <div className="hidden">
                 <label className='mx-2 text-sm' htmlFor='pageSize'>Page Size:</label>
-                <select value={pageSize} onChange={(e) => setPageSize(e.target.value)} className='text-sm bg-transparent rounded-lg outline-none ring-1 ring-red-600 border-none focus:ring-red-600 focus:ring-2 focus:border-none py-1' name='pageSize' id='pageSize'>
+                <select value={pageSize} onChange={(e) => setPageSize(e.target.value)} className='text-sm bg-transparent rounded-lg outline-none ring-1 ring-sky-600 border-none focus:ring-sky-600 focus:ring-2 focus:border-none py-1' name='pageSize' id='pageSize'>
                     <option value={10}>10</option>
                     <option value={15}>15</option>
                     <option value={20}>20</option>

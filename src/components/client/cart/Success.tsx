@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCart } from 'react-use-cart';
 import Router from 'next/router'
+import { fDnTnow, useUniqueId } from '@seventech/utils';
 
 type Props = {
     order: any
@@ -20,7 +21,12 @@ export function Success(props: Props) {
     }
 
     let currentTime = new Date();
-    const orderId = `#ST${currentTime.getTime()}`;
+    const long = `${currentTime}`;
+
+    // const createdAt = '2023-08-13T06:28:03.492Z';
+    const digify = useUniqueId();
+    // const orderId = digify(long);
+    const orderId = fDnTnow();
 
     return (
         <div className='min-h-screen py-6 bg-white'>
