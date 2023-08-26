@@ -63,7 +63,6 @@ export function Footers() {
               </ul>
             </div>
 
-
             <div>
               <h2 className="mb-3 text-sm font-semibold uppercase text-black">About</h2>
               <ul className="text-black">

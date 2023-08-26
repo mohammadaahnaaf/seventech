@@ -1,38 +1,9 @@
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import { axiosRoot, classNames } from "@seventech/utils";
-// import { XIcon } from "@heroicons/react/outline";
-// import { ChevronDoubleRightIcon } from "@heroicons/react/solid";
-// import axiosRoot from "@seventech/utils/axios-root";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-// const topbarItems = [
-//     {
-//         id: 0,
-//         name: 'Mouse',
-//         link: '/category/mouse',
-//         logo: <svg className="h-16 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-//             <path fill="var(--ci-primary-color, currentColor)" d="M448,80a24.027,24.027,0,0,0,24-24V16H440V48H264a24.027,24.027,0,0,0-24,24v40H208.625A88.725,88.725,0,0,0,120,200.625V360.571C120,435.247,180.753,496,255.429,496h1.142C331.247,496,392,435.247,392,360.571V200.625A88.725,88.725,0,0,0,303.375,112H272V80ZM152,200.625A56.689,56.689,0,0,1,208.625,144H240v88H152ZM360,360.571A103.545,103.545,0,0,1,256.571,464h-1.142A103.545,103.545,0,0,1,152,360.571V264H360ZM303.375,144A56.689,56.689,0,0,1,360,200.625V232H272V144Z" className="h-8 w-10" />
-//         </svg>
-//     },
-//     {
-//         id: 1,
-//         name: 'Keyboard',
-//         link: '/category/keyboard',
-//         logo: <svg className="h-16 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-//             <path fill="var(--ci-primary-color, currentColor)" d="M448,80a24.027,24.027,0,0,0,24-24V16H440V48H264a24.027,24.027,0,0,0-24,24v40H208.625A88.725,88.725,0,0,0,120,200.625V360.571C120,435.247,180.753,496,255.429,496h1.142C331.247,496,392,435.247,392,360.571V200.625A88.725,88.725,0,0,0,303.375,112H272V80ZM152,200.625A56.689,56.689,0,0,1,208.625,144H240v88H152ZM360,360.571A103.545,103.545,0,0,1,256.571,464h-1.142A103.545,103.545,0,0,1,152,360.571V264H360ZM303.375,144A56.689,56.689,0,0,1,360,200.625V232H272V144Z" className="h-8 w-10" />
-//         </svg>
-//     },
-//     {
-//         id: 2,
-//         name: 'Headset',
-//         link: '/category/headset',
-//         logo: <svg className="h-16 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-//             <path fill="var(--ci-primary-color, currentColor)" d="M448,80a24.027,24.027,0,0,0,24-24V16H440V48H264a24.027,24.027,0,0,0-24,24v40H208.625A88.725,88.725,0,0,0,120,200.625V360.571C120,435.247,180.753,496,255.429,496h1.142C331.247,496,392,435.247,392,360.571V200.625A88.725,88.725,0,0,0,303.375,112H272V80ZM152,200.625A56.689,56.689,0,0,1,208.625,144H240v88H152ZM360,360.571A103.545,103.545,0,0,1,256.571,464h-1.142A103.545,103.545,0,0,1,152,360.571V264H360ZM303.375,144A56.689,56.689,0,0,1,360,200.625V232H272V144Z" className="h-8 w-10" />
-//         </svg>
-//     },
-// ]
 
 type Props = {
     open: boolean;
@@ -43,6 +14,7 @@ export function CategoryBar(props: Props) {
     const { open, setOpen } = props
     const router = useRouter()
     const [categories, setCategories] = React.useState<any[]>([])
+    const [bu, setBu] = React.useState('')
 
     // Get Data
     React.useEffect(() => {
@@ -55,7 +27,7 @@ export function CategoryBar(props: Props) {
 
     return (
 
-        <div className="bg-gradient-to-t from-pink-800 to-black">
+        <div>
             {/* Mobile menu */}
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -81,11 +53,11 @@ export function CategoryBar(props: Props) {
                             leaveFrom="translate-x-0"
                             leaveTo="-translate-x-full"
                         >
-                            <Dialog.Panel className="relative z-40 max-w-full w-full bg-black ring-gray-300 ring-2 shadow-xl pb-12 flex flex-col overflow-y-auto">
+                            <Dialog.Panel className="relative z-40 max-w-full w-full bg-white ring-gray-300 ring-2 shadow-xl pb-12 flex flex-col overflow-y-auto">
                                 <div className="px-4 pt-5 pb-2 flex">
                                     <button
                                         type="button"
-                                        className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-100"
+                                        className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-600"
                                         onClick={() => setOpen(false)}
                                     >
                                         <span className="sr-only">Close menu</span>
@@ -95,14 +67,14 @@ export function CategoryBar(props: Props) {
 
                                 {/* Links */}
                                 <Tab.Group as="div" className="mt-2">
-                                    <div className="border-y-2 border-red-600">
+                                    <div className="border-y-2 border-sky-600">
                                         <Tab.List className="grid p-4">
                                             {categories?.map((category: any, index: number) => (
                                                 <Tab
                                                     key={index}
                                                     className={({ selected }) =>
                                                         classNames(
-                                                            selected ? 'bg-red-600 text-white' : 'text-red-600 border-transparent',
+                                                            selected ? 'bg-sky-600 text-white' : 'text-black border-transparent',
                                                             'flex-1 text-left whitespace-nowrap rounded-md p-2 text-base font-medium'
                                                         )
                                                     }
@@ -122,7 +94,7 @@ export function CategoryBar(props: Props) {
                                                         className="mt-2 px-4 flex flex-col space-y-6"
                                                     >
                                                         <li className="flow-root">
-                                                            <button type="button" onClick={() => router.push(`/category/${category.name}`)} className="-m-3 p-2 block text-md font-semibold text-red-600">
+                                                            <button type="button" onClick={() => router.push(`/category/${category.name}`)} className="-m-3 p-2 block text-md font-semibold text-black">
                                                                 {index + 1}. {category.name}
                                                             </button>
                                                         </li>
@@ -149,8 +121,7 @@ export function CategoryBar(props: Props) {
             </Transition.Root>
 
             {/* PC menu view  */}
-            <header className="relative max-h-10 lg:block hidden bg-black bg-opacity-10">
-
+            <header className="relative max-h-10 lg:block hidden bg-gray-500">
                 <div area-position='fixed' aria-label="Top" className="max-w-7xl max-h-10 mx-auto px-4 sm:px-6 xl:px-8">
                     <div>
                         <div className="h-10 flex items-center">
@@ -167,16 +138,19 @@ export function CategoryBar(props: Props) {
 
                             <Popover.Group className="hidden lg:ml-0 xl:block lg:self-stretch">
                                 <div className="h-10 flex w-full gap-8">
-                                    {categories.slice(0, 10).map((category, index) => (
+                                    {categories?.slice(0, 10).map((category: any, index: number) => (
                                         <Popover key={index} className="flex">
                                             {({ open }) => (
                                                 <>
                                                     <div className="relative flex">
                                                         <Popover.Button
+                                                            onMouseEnter={e => {
+                                                                setTimeout(() => { setBu(category.name) }, 200)
+                                                            }}
                                                             className={classNames(
-                                                                open
-                                                                    ? 'border-red-700 text-white border-b-white border-b-4'
-                                                                    : 'border-transparent text-red-600 hover:border-white border-b-4 hover:text-white',
+                                                                bu === category.name
+                                                                    ? 'border-b-sky-500 text-white border-b-4'
+                                                                    : 'border-transparent text-white hover:border-white border-b-4',
                                                                 'relative z-10 flex items-center focus:outline-none focus:border-b-4 transition-colors ease-out duration-200 text-sm font-semibold -mb-px pt-px'
                                                             )}
                                                         >
@@ -194,26 +168,26 @@ export function CategoryBar(props: Props) {
                                                         leaveTo="opacity-0"
                                                     >
                                                         <Popover.Panel className="absolute top-full inset-x-0 text-sm text-gray-500">
-                                                            <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
+                                                            <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="false" />
 
-                                                            <div className="relative h-[55vh] border-b-2 border-red-600 bg-gradient-to-b from-black via-red-900 to-black z-40">
-                                                                <div className="max-w-7xl mx-auto px-8">
-                                                                    <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-8">
+                                                            <div className="relative min-h-[55vh] bg-white">
+                                                                <div className="max-w-7xl mx-auto w-full">
+                                                                    <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-4">
 
                                                                         <div className="row-start-1 grid grid-cols-3 gap-y-5 gap-x-5 text-sm">
 
                                                                             <div>
                                                                                 <Link href={`/category/${category.name}`}
-                                                                                    className="font-medium text-lg text-gray-100">
+                                                                                    className="font-medium text-lg text-black">
                                                                                     {category.name}
                                                                                 </Link>
                                                                                 <ul
                                                                                     role="list"
-                                                                                    className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                                                                    className="mt-4 gap-4 sm:mt-4 sm:space-y-4"
                                                                                 >
-                                                                                    {category.subCategories.map((item: any, index: number) => (
+                                                                                    {category?.subCategories?.map((item: any, index: number) => (
                                                                                         <li key={item.name} className="flex">
-                                                                                            <button type="button" onClick={() => router.push(`/category/${item.name}`)} className="text-md text-white hover:text-gray-200">
+                                                                                            <button type="button" onClick={() => router.push(`/category/${item.name}`)} className="text-md text-black hover:text-sky-500">
                                                                                                 {index + 1}. {item.name}
                                                                                             </button>
                                                                                         </li>

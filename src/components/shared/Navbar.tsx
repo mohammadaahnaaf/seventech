@@ -225,7 +225,7 @@ export function BasicNavbar() {
   ]
   return (
     <div className="min-h-full">
-      <Disclosure as="nav" className="relative bg-black">
+      <Disclosure as="nav" className="relative bg-black bg-opacity-30 backdrop-blur-sm">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -245,10 +245,10 @@ export function BasicNavbar() {
                     {/* Login and Signup Button shall show when user != isLoggedIn */}
                     <div className='flex justify-between gap-4'>
                       <Link href='/signin'
-                        className='bg-black text-sm hover:bg-white hover:text-black ring-white text-white ring-2 w-20 text-center py-1 px-3'>
+                        className='bg-sky-500 text-sm hover:bg-white hover:text-black hover:ring-sky-500 ring-white text-white ring-0 w-20 text-center py-1 px-3'>
                         Signup
                       </Link>
-                      <Link href='/login' className='bg-black hover:bg-white hover:text-black text-sm text-center ring-white text-white w-20 ring-2 py-1 px-3'>
+                      <Link href='/login' className='bg-white hover:bg-sky-500 hover:text-white text-sm text-center ring-white text-black w-20 ring-0 py-1 px-3'>
                         Login
                       </Link>
                     </div>

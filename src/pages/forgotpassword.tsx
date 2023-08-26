@@ -1,11 +1,14 @@
+import { Forgot } from '@seventech/client'
 import React from 'react'
 
 type Props = {}
 
 const ForgotPassPage = (props: Props) => {
   return (
-    <div>ForgotPassPage</div>
+    <div>
+      <Forgot />
+    </div>
   )
 }
 
-export default ForgotPassPage
+export default ForgotPassPage;
