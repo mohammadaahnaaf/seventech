@@ -71,7 +71,7 @@ export function Signup() {
                             <input
                                 type="text"
                                 autoComplete="off"
-                                className="peer block min-h-[auto] w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                 id="fullName"
                                 name="fullName"
                                 placeholder="Your name"
@@ -79,7 +79,7 @@ export function Signup() {
                             />
                             <label
                                 htmlFor="fullName"
-                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-gray-600 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-transparent transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
                             >Full name
                             </label>
                         </div>
@@ -88,7 +88,7 @@ export function Signup() {
                             <input
                                 type="text"
                                 autoComplete="off"
-                                className="peer block min-h-[auto] w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                 id="email"
                                 name="email"
                                 placeholder="Email address"
@@ -96,7 +96,7 @@ export function Signup() {
                             />
                             <label
                                 htmlFor="email"
-                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-gray-600 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-transparent transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
                             >Email address
                             </label>
                         </div>
@@ -105,14 +105,14 @@ export function Signup() {
                                 type="tel"
                                 required
                                 autoComplete="off"
-                                className="peer block min-h-[auto] w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                 id="phone"
                                 name="phone"
                                 placeholder="Phone number"
                             />
                             <label
                                 htmlFor="phone"
-                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-gray-600 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-transparent transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
                             >Phone number
                             </label>
                         </div>
@@ -121,7 +121,7 @@ export function Signup() {
                             <input
                                 type={showPass}
                                 autoComplete="off"
-                                className="peer block min-h-[auto] w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                 id="password"
                                 name="password"
                                 placeholder="Password"
@@ -129,7 +129,7 @@ export function Signup() {
                             />
                             <label
                                 htmlFor="password"
-                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-gray-600 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-transparent transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
                             >Password
                             </label>
 
@@ -156,7 +156,7 @@ export function Signup() {
                             <input
                                 type={showPass}
                                 autoComplete="off"
-                                className="peer block min-h-[auto] w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                 id="confirm-password"
                                 name="confirm-password"
                                 placeholder="Confirm password"
@@ -164,7 +164,7 @@ export function Signup() {
                             />
                             <label
                                 htmlFor="confirm-password"
-                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-gray-600 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
+                                className="pointer-events-none absolute peer-focus:bg-white px-2 left-3 top-0 mt-1 max-w-[90%] origin-[0_0] truncate leading-[2.15] text-transparent transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
                             >Confirm password
                             </label>
 
