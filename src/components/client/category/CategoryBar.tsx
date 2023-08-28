@@ -25,8 +25,21 @@ export function CategoryBar(props: Props) {
         getCategory()
     }, [router, open]);
 
+    const bars = [
+        {
+            name: "Products",
+            match: 'all',
+        },
+        {
+            name: "Brands",
+            match: "Brands",
+        },
+        {
+            name: "Offers",
+            match: "Offers",
+        },
+    ]
     return (
-
         <div>
             {/* Mobile menu */}
             <Transition.Root show={open} as={Fragment}>
@@ -121,34 +134,29 @@ export function CategoryBar(props: Props) {
             </Transition.Root>
 
             {/* PC menu view  */}
-            <header className="relative max-h-10 lg:block hidden bg-gray-500">
-                <div area-position='fixed' aria-label="Top" className="max-w-7xl max-h-10 mx-auto px-4 sm:px-6 xl:px-8">
+            <header className="relative max-h-10 md:block hidden bg-gray-500">
+                <div area-position='fixed' aria-label="Top" className="max-w-7xl px-4 lg:px-0 max-h-10 mx-auto">
                     <div>
                         <div className="h-10 flex items-center">
-                            <button
+                            {/* <button
                                 type="button"
                                 className="px-2 ml-3 py-1 flex items-center ring-0 bg-black ring-gray-200 text-red-600 xl:hidden"
                                 onClick={() => setOpen(true)}
                             >
                                 <span className="sr-only">Open menu</span>
-                                {/* <MenuIcon className="h-6 w-6" aria-hidden="true" /> */}
-                                {/* <ChevronDoubleRightIcon className="h-6 w-6 mr-1" aria-hidden="true" /> */}
                                 <span>Categories</span>
-                            </button>
+                            </button> */}
 
-                            <Popover.Group className="hidden lg:ml-0 xl:block lg:self-stretch">
+                            <Popover.Group className="hidden lg:ml-0 md:block lg:self-stretch">
                                 <div className="h-10 flex w-full gap-8">
-                                    {categories?.slice(0, 10).map((category: any, index: number) => (
+                                    {bars.map((category: any, index: number) => (
                                         <Popover key={index} className="flex">
                                             {({ open }) => (
                                                 <>
                                                     <div className="relative flex">
                                                         <Popover.Button
-                                                            onMouseEnter={e => {
-                                                                setTimeout(() => { setBu(category.name) }, 200)
-                                                            }}
                                                             className={classNames(
-                                                                bu === category.name
+                                                                open
                                                                     ? 'border-b-sky-500 text-white border-b-4'
                                                                     : 'border-transparent text-white hover:border-white border-b-4',
                                                                 'relative z-10 flex items-center focus:outline-none focus:border-b-4 transition-colors ease-out duration-200 text-sm font-semibold -mb-px pt-px'
@@ -167,33 +175,43 @@ export function CategoryBar(props: Props) {
                                                         leaveFrom="opacity-100"
                                                         leaveTo="opacity-0"
                                                     >
-                                                        <Popover.Panel className="absolute top-full inset-x-0 text-sm text-gray-500">
-                                                            <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="false" />
+                                                        <Popover.Panel className="absolute top-full z-40 bg-white backdrop-blur-lg bg-opacity-80 border-b border-black inset-x-0 text-sm text-gray-500">
+                                                            {/* <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" /> */}
 
-                                                            <div className="relative min-h-[55vh] bg-white">
-                                                                <div className="max-w-7xl mx-auto w-full">
-                                                                    <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-4">
-
-                                                                        <div className="row-start-1 grid grid-cols-3 gap-y-5 gap-x-5 text-sm">
-
-                                                                            <div>
-                                                                                <Link href={`/category/${category.name}`}
-                                                                                    className="font-medium text-lg text-black">
-                                                                                    {category.name}
-                                                                                </Link>
-                                                                                <ul
-                                                                                    role="list"
-                                                                                    className="mt-4 gap-4 sm:mt-4 sm:space-y-4"
-                                                                                >
-                                                                                    {category?.subCategories?.map((item: any, index: number) => (
-                                                                                        <li key={item.name} className="flex">
-                                                                                            <button type="button" onClick={() => router.push(`/category/${item.name}`)} className="text-md text-black hover:text-sky-500">
-                                                                                                {index + 1}. {item.name}
+                                                            <div className="relative min-h-[55vh] max-w-7xl mx-auto grid">
+                                                                <div className="w-full">
+                                                                    <div className="grid py-4">
+                                                                        <div className="justify-start grid gap-5 text-sm w-full">
+                                                                            <Link href={`/category/${category.name}`}
+                                                                                className="font-medium text-lg text-black">
+                                                                                {category.name}
+                                                                            </Link>
+                                                                            <ul
+                                                                                role="list"
+                                                                                className="mt-2 gap-4 grid w-full"
+                                                                            >
+                                                                                {categories?.map((x: any, index: number) => {
+                                                                                    return x.name !== category.name ? (
+                                                                                        <li key={index} className="flex w-full">
+                                                                                            <button type="button" onClick={() => router.push(`/category/${x.name}`)} className="text-md w-full font-semibold text-black flex hover:text-sky-500">
+                                                                                                {index + 1}. {x.name}
                                                                                             </button>
                                                                                         </li>
-                                                                                    ))}
-                                                                                </ul>
-                                                                            </div>
+                                                                                    ) : (
+                                                                                        <>
+                                                                                            {x.subCategories.map((item: any, index: number) => {
+                                                                                                return x.name === category.match ? (
+                                                                                                    <li key={index} className="flex w-full">
+                                                                                                        <Link href={`/category/${item.name}`} className="text-md w-full font-semibold text-black flex hover:text-sky-500">
+                                                                                                            {index + 1}. {item.name}
+                                                                                                        </Link>
+                                                                                                    </li>
+                                                                                                ) : null
+                                                                                            })}
+                                                                                        </>
+                                                                                    )
+                                                                                })}
+                                                                            </ul>
                                                                         </div>
                                                                     </div>
                                                                 </div>

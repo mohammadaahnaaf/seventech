@@ -1,5 +1,6 @@
 import React from 'react'
-import { AdminNav, Footers, Navbar, NewNavBar } from '@seventech/shared'
+import { Footers, NewNavBar } from '@seventech/shared'
+import { CategoryBar } from '@seventech/client';
 
 type Props = {
     children: any;
@@ -13,7 +14,8 @@ export function Layout(props: Props) {
     return (
         <>
             {/* <Navbar setOpen={setOpen} setSearchTerm={setSearchTerm} /> */}
-            <NewNavBar setSearchTerm={setSearchTerm} />
+            <NewNavBar setSearchTerm={setSearchTerm} setOpen={setOpen} />
+            <CategoryBar open={open} setOpen={setOpen} />
             <div>
                 {children}
             </div>

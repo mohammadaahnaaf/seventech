@@ -139,11 +139,10 @@ export function Checkouts(props: Props) {
     return view ? (
         <>
             {error && <ErrorText error={error} />}
-            <div className='max-w-7xl min-h-[78vh] mx-auto py-4 grid grid-cols-3 justify-center gap-5'>
+            <div className='max-w-7xl relative lg:h-[72vh] mx-auto px-4 lg:px-0 py-5 grid grid-cols-3 justify-center gap-5'>
 
-                <div className="shadow col-span-3 lg:col-span-2 h-full w-full ring-0 lg:ring-2 ring-gray-300">
-                    <form onSubmit={handleSubmit}>
-
+                <div className="shadow order-2 lg:order-1 col-span-3 lg:col-span-2 h-full w-full ring-0 lg:ring-2 ring-gray-300">
+                    <form className='grid content-between h-full' onSubmit={handleSubmit}>
                         {/* Account and delevary details */}
                         <div className="lg:p-4">
                             <div className="grid grid-cols-6 gap-2 lg:gap-6">
@@ -159,7 +158,7 @@ export function Checkouts(props: Props) {
                                         id="name"
                                         defaultValue={me.fullName || ''}
                                         autoComplete="given-name"
-                                        className="mt-1 bg-black p-2 bg-opacity-20 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
@@ -174,7 +173,7 @@ export function Checkouts(props: Props) {
                                         required
                                         defaultValue={me.phoneNumber || ''}
                                         autoComplete="phone"
-                                        className="mt-1 bg-black p-2 bg-opacity-20 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
 
@@ -188,7 +187,7 @@ export function Checkouts(props: Props) {
                                         // value={city || ''}
                                         defaultValue={me.city}
                                         onChange={(e) => handleCity(e)}
-                                        className="mt-1 bg-black bg-opacity-20 p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     >
                                         {cities?.map((city: any, index: number) => (
                                             <option key={index} value={city.name}>{city.name}</option>
@@ -206,7 +205,7 @@ export function Checkouts(props: Props) {
                                         defaultValue={me.zone || ''}
                                         value={zone || ''}
                                         onChange={(e) => setZone(e.target.value)}
-                                        className="mt-1 bg-black bg-opacity-20 p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     >
                                         {zones.map((item, index) => (
                                             <option key={index} value={item}>{item}</option>
@@ -221,7 +220,7 @@ export function Checkouts(props: Props) {
                                     <select
                                         id="payment"
                                         name="payment"
-                                        className="mt-1 bg-black bg-opacity-20 p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     >
                                         <option value='cash-on-delivery'>Cash on Delivery</option>
                                         <option value='online'>BKash</option>
@@ -237,7 +236,7 @@ export function Checkouts(props: Props) {
                                         name="address"
                                         defaultValue={me.address || ''}
                                         rows={3}
-                                        className="bg-black bg-opacity-20 p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                         placeholder="Address"
                                     />
                                 </div>
@@ -255,56 +254,57 @@ export function Checkouts(props: Props) {
                 </div>
 
                 {/* Cart Products details */}
-                <div className='w-full shadow ring-gray-300 ring-2 overflow-y-auto'>
-                    <div className="h-auto py-3 px-2">
-                        <div className="mt-8">
-                            <div className="flow-root">
-                                <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                    {items?.map((product: any, index: number) => (
-                                        <li key={index} className="flex py-6">
-                                            <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                <div className='relative h-24 w-24 '>
-                                                    <Image
-                                                        src={product.imageSrc}
-                                                        alt={product.id}
-                                                        fill
-                                                        className="h-full w-full object-cover object-center"
-                                                    />
+                <div className='w-full overflow-y-scroll order-1 lg:order-2 shadow col-span-3 lg:col-span-1 ring-gray-300 lg:ring-2 '>
+                    <div className="h-auto px-2">
+                        <h1 className='text-center text-2xl font-semibold py-2'>Cart Products</h1>
+
+                        <div className="flow-root">
+                            <ul role="list" className=" divide-y divide-gray-200">
+                                {items?.map((product: any, index: number) => (
+                                    <li key={index} className="flex py-6">
+                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                            <div className='relative h-24 w-24 '>
+                                                <Image
+                                                    src={product.imageSrc}
+                                                    alt={product.id}
+                                                    fill
+                                                    className="h-full w-full object-cover object-center"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="ml-4 flex flex-1 flex-col">
+                                            <div>
+                                                <div className="flex justify-between text-base font-medium hover:text-gray-600 text-black">
+                                                    <button type='button' onClick={() => router.push(`/product/${product.id}`)}>
+                                                        <h3 className='text-left'> {product.name} </h3>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="font-medium h-10 hover:bg-opacity-100 bg-opacity-10 hover:text-white text-[red] w-8 m-1 bg-[red] rounded-md py-0.5 px-1"
+                                                        onClick={() => handleRemove(product.id)}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                                                            className="h-6 w-6">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                                        </svg>
+
+                                                    </button>
                                                 </div>
                                             </div>
+                                            <div className="flex items-end flex-1 justify-between">
+                                                <p className="text-black text-md">Qty: {product.quantity}</p>
+                                                <p className="mx-2 text-md text-vlack">৳{product.price}</p>
 
-                                            <div className="ml-4 flex flex-1 flex-col">
-                                                <div>
-                                                    <div className="flex justify-between text-base font-medium hover:text-gray-600 text-black">
-                                                        <button type='button' onClick={() => router.push(`/product/${product.id}`)}>
-                                                            <h3 className='text-left'> {product.name} </h3>
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            className="font-medium h-10 bg-opacity-10 w-8 m-1 bg-black p-1"
-                                                            onClick={() => handleRemove(product.id)}
-                                                        >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
-                                                                className="h-6 w-6 text-black hover:text-[red]">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                                            </svg>
-
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-end flex-1 justify-between">
-                                                    <p className="text-black text-sm">Qty: {product.quantity}</p>
-                                                    <p className="mx-2 text-md text-green-700">৳{product.price}</p>
-
-                                                </div>
                                             </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
+
                     </div>
-                    <div className="border-t py-1 border-black p-4">
+                    <div className="border-t border-gray-300 p-2">
                         <div className="flex py-1 justify-between text-base font-medium text-black">
                             <p>Subtotal :</p>
                             <p className='text-green-700'>৳ {cartTotal}</p>
@@ -314,7 +314,7 @@ export function Checkouts(props: Props) {
                             <p className='text-green-700'>৳ {shipment}</p>
                         </div>
 
-                        <div className="flex mt-2 border-black border-t py-1 justify-between text-base font-medium text-black">
+                        <div className="flex mt-2 border-gray-400 border-t py-1 justify-between text-base font-medium text-black">
                             <p>Total :</p>
                             <p className='text-green-700'>৳ {total}</p>
                         </div>

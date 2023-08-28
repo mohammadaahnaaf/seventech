@@ -1,7 +1,8 @@
 import { Category } from './Category'
 import React from 'react'
-import { Footers, Navbar } from '@seventech/shared'
+// import { Footers, Navbar } from '@seventech/shared'
 import { isServer } from '@seventech/utils'
+import { Layout } from '@seventech/layouts'
 
 
 export function CategoryDetails() {
@@ -18,12 +19,10 @@ export function CategoryDetails() {
         return null
     }
     return view ? (
-        <>
-            <Navbar setOpen={setOpen} setSearchTerm={setSearchTerm} />
+        <Layout setSearchTerm={setSearchTerm}>
             <div className='border-t-2 border-red-600'>
                 <Category term={searchTerm} />
             </div>
-            <Footers />
-        </>
+        </Layout>
     ) : null
 }

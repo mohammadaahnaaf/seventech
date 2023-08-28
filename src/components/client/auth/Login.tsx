@@ -62,7 +62,7 @@ export function Logins() {
 
     return (
         <div className="grid grid-cols-3 h-[100vh] w-full">
-            <div className='col-span-1 h-full w-full content-center bg-white p-6'>
+            <div className='col-span-3 lg:col-span-2 xl:col-span-1 h-full w-full content-center bg-white p-6'>
                 <form onSubmit={handleSubmit} className='grid gap-4 h-full content-center'>
 
                     <h1 className='text-center text-3xl pb-4 font-semibold'>Login Here</h1>
@@ -74,7 +74,7 @@ export function Logins() {
                         </span>
                     </h1>
 
-                    <div className="relative" data-te-input-wrapper-init>
+                    <div className="relative">
                         <input
                             type="text"
                             autoComplete="off"
@@ -89,7 +89,7 @@ export function Logins() {
                         </label>
                     </div>
 
-                    <div className="relative" data-te-input-wrapper-init>
+                    <div className="relative">
                         <input
                             type={showPass}
                             autoComplete="off"

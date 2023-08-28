@@ -24,7 +24,7 @@ export function Shop(props: Props) {
             <div className='max-w-7xl ring-2 ring-gray-400 w-full flex items-center px-5 justify-between hover:cursor-pointer duration-300 mx-auto py-2 md:py-8 hover:bg-opacity-90 bg-gray-300'>
                 <h2 className="text-sm sm:text-md md:text-xl font-medium tracking-tight text-black">{title}</h2>
                 <Link href={`/category/${slug?.category}`}
-                    className='bg-white ring-2 ring-white hover:text-black hover:ring-gray-400 text-white bg-opacity-20 px-4 py-1 md:py-1 text-xs sm:text-sm md:text-md font-medium'>
+                    className='bg-white ring-2 ring-gray-400 hover:text-black text-gray-600 hover:bg-gray-200 hover:ring-white px-4 py-1 md:py-1 text-xs sm:text-sm md:text-md font-medium'>
                     Explore more
                 </Link>
             </div>

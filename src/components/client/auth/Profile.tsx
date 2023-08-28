@@ -173,77 +173,83 @@ export function Setting() {
                                     </div>
                                 </div>
 
-                                <div className="col-span-6">
-                                    <label htmlFor="fullName" className="blocktext-sm font-medium text-black">
+                                <div className="relative col-span-6">
+                                    <label htmlFor="fullName"
+                                        className="block text-sm font-medium text-black pb-1"                                    >
                                         Your name
                                     </label>
                                     <input
                                         type="text"
                                         name="fullName"
                                         id="fullName"
+                                        placeholder='Your name'
                                         value={me.fullName || ''}
                                         onChange={(event) => handleChange(event)}
-                                        className="mt-1 p-2 focus:ring-black bg-white text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
 
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="email" className="block text-sm font-medium text-black">
+                                <div className="col-span-6 sm:col-span-3 relative">
+                                    <label htmlFor="email" className="block text-sm font-medium text-black pb-1">
                                         Email address
                                     </label>
                                     <input
                                         type="email"
                                         name="email"
                                         id="email"
+                                        placeholder='Your email'
                                         value={me.email || ''}
                                         onChange={(event) => handleChange(event)}
-                                        className="mt-1 bg-white p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-black">
+                                <div className="col-span-6 sm:col-span-3 relative">
+                                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-black pb-1">
                                         Phone number
                                     </label>
                                     <input
                                         type="number"
                                         name="phoneNumber"
                                         id="phoneNumber"
+                                        placeholder='Phone number'
                                         value={me.phoneNumber || ''}
                                         onChange={(event) => handleChange(event)}
-                                        className="mt-1 bg-white p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
 
-                                <div className="col-span-6 sm:col-span-6 lg:col-span-3">
-                                    <label htmlFor="city" className="block text-sm font-medium text-black">
+                                <div className="col-span-6 relative sm:col-span-6 lg:col-span-3">
+                                    <label htmlFor="city" className="block text-sm font-medium text-black pb-1">
                                         City
                                     </label>
                                     <input
                                         type="text"
                                         name="city"
                                         id="city"
+                                        placeholder='Your city'
                                         value={me.city || ''}
                                         onChange={(event) => handleChange(event)}
-                                        className="mt-1 bg-white p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
 
-                                <div className="col-span-6 sm:col-span-6 lg:col-span-3">
-                                    <label htmlFor="zone" className="block text-sm font-medium text-black">
+                                <div className="col-span-6 sm:col-span-6 lg:col-span-3 relative">
+                                    <label htmlFor="zone" className="block text-sm font-medium text-black pb-1">
                                         Zone
                                     </label>
                                     <input
                                         type="text"
                                         name="zone"
                                         id="zone"
+                                        placeholder='zone / area'
                                         value={me.zone || ''}
                                         onChange={(event) => handleChange(event)}
-                                        className="mt-1 bg-white p-2 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                        className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                     />
                                 </div>
 
-                                <div className="col-span-6">
-                                    <label htmlFor="about" className="block text-sm font-medium text-black">
+                                <div className="col-span-6 relative">
+                                    <label htmlFor="about" className="block text-sm font-medium text-black pb-1">
                                         Address
                                     </label>
                                     <div className="mt-1">
@@ -254,7 +260,7 @@ export function Setting() {
                                             placeholder="Write details of your address"
                                             value={me.address || ''}
                                             onChange={(event) => handleChange(event)}
-                                            className="mt-1 bg-white p-2 placeholder-gray-400 focus:ring-black text-black ring-white border-white focus:border-black block w-full shadow-sm sm:text-sm"
+                                            className="peer block min-h-[auto] placeholder:text-gray-500 w-full rounded focus:outline-none border-2 border-gray-400 focus:border-gray-600 bg-transparent px-3 py-1.5 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                                         />
                                     </div>
                                 </div>
@@ -265,15 +271,15 @@ export function Setting() {
                             <button
                                 type="button"
                                 onClick={openModal}
-                                className="inline-flex bg-red-600 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium text-white hover:bg-white hover:text-red-600 hover:ring-red-600 focus:outline-none ring-2 ring-red-600"
+                                className="inline-flex w-30 bg-red-600 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium text-white hover:bg-white hover:text-red-600 hover:ring-red-600 focus:outline-none ring-2 ring-red-600"
                             >
                                 Delete Profile
                             </button>
                             <button
                                 type="submit"
-                                className="inline-flex bg-black justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium hover:text-black text-white hover:bg-white ring-black focus:outline-none ring-2 hover:ring-black"
+                                className="inline-flex w-30 bg-sky-500 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium hover:bg-black text-black hover:text-white hover:ring-black ring-2 ring-sky-500 focus:outline-none"
                             >
-                                Save
+                                Save Changes
                             </button>
                         </div>
                     </div>
@@ -285,7 +291,7 @@ export function Setting() {
 }
 
 export function Profile() {
-    
+
     const [searchTerm, setSearchTerm] = React.useState('')
 
     return (
