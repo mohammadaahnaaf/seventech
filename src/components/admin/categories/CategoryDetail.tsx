@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { ErrorText, SuccessText } from '@seventech/shared';
 import { axiosAPI, axiosRoot } from '@seventech/utils';
 import { AdminLayout } from '@seventech/layouts';
+import { Switch } from '@headlessui/react';
 
 function Detail() {
 
@@ -28,6 +29,7 @@ function Detail() {
   const [error, setError] = React.useState<string>('')
   const [success, setSuccess] = React.useState<string>('')
   const [featured, setFeatured] = React.useState<boolean>(false)
+  const [active, setActive] = React.useState<boolean>(false)
   const [indexing, setIndexing] = React.useState<number>(0)
 
   //Get Data
@@ -36,6 +38,7 @@ function Detail() {
       const res = await axiosRoot.get(`/categories/${itemId}`);
       setCategory(res.data)
       setFeatured(res.data.isFeatured)
+      // setActive(res.data.show)
       setIndexing(res.data.index)
       setFormValues(res.data.subCategories)
     }
@@ -56,6 +59,7 @@ function Detail() {
         name: category.name,
         tagline: data.get('tagline'),
         isFeatured: featured,
+        // show: active,
         index: +indexing
       }
       await axiosAPI.put(`/categories/${itemId}`, reqData)
@@ -123,13 +127,27 @@ function Detail() {
   return (
 
     <div className='p-5 min-h-screen bg-white rounded-lg m-3'>
-      
+
       {success && (<SuccessText success={success} />)}
       {error && (<ErrorText error={error} />)}
-      
+
       <form onSubmit={handleSubmit}>
-        <h1 className='text-center py-3 mb-5 rounded-lg bg-gray-200 text-2xl'>Edit Category</h1>
-        <div className="grid gap-2 max-w-4xl mx-auto bg-gray-100 shadow rounded-lg ring-2 ring-gray-300 mb-6">
+        <div className='relative py-3 flex items-center justify-center mb-5 text-center bg-gray-200 rounded-lg'>
+          <Switch
+            checked={active}
+            onChange={setActive}
+            className={`${active ? 'bg-green-400' : 'bg-red-600'}
+                     absolute right-2 inline-flex h-[28px] w-[64px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+          >
+            <span className="sr-only">Avtive</span>
+            <span
+              aria-hidden="true"
+              className={`${active ? 'translate-x-7' : 'translate-x-0'}
+                        pointer-events-none z-10 inline-block h-[24px] w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+            />
+          </Switch>
+          <h1 className='text-2xl text-center bg-gray-200'>Edit Category</h1>
+        </div>        <div className="grid gap-2 max-w-4xl mx-auto bg-gray-100 shadow rounded-lg ring-2 ring-gray-300 mb-6">
           {featured && (
             <>
               <div className='w-full px-4 pt-2'>

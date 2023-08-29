@@ -131,6 +131,7 @@ export function Category(props: Props) {
     }
 
     const sortedCategories = categories.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
+    const sortedSubCats = (x: any[]) => x.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
 
     return (
         <div>
@@ -176,7 +177,7 @@ export function Category(props: Props) {
                                 <div className="border-t-2 border-red-600">
                                     <h3 className="sr-only">Categories</h3>
                                     <ul role="list" className="px-4 text-md grid gap-2 py-3 font-semibold text-red-600">
-                                        {sortedCategories.map((category: any, index: number) => (
+                                        {sortedCategories?.map((category: any, index: number) => (
                                             <li key={index}>
                                                 <button type='button' onClick={() => handleTo(category.name)}>
                                                     {`${index + 1}. `}{category.name}
@@ -335,7 +336,7 @@ export function Category(props: Props) {
 
                             {/* All Categories */}
                             <ul role="list" className="space-y-4 border-b border-gray-600 pb-6 text-md font-medium">
-                                {categories?.map((category: any, index: number) => (
+                                {sortedCategories?.map((category: any, index: number) => (
                                     <li key={index}>
                                         <Disclosure>
                                             {({ open }) => (
@@ -351,7 +352,7 @@ export function Category(props: Props) {
 
                                                     </Disclosure.Button>
                                                     <Disclosure.Panel className="p-2 gap-2 grid text-md text-gray-700">
-                                                        {category?.subCategories?.map((sub: any, index: number) => (
+                                                        {sortedSubCats(category?.subCategories).map((sub: any, index: number) => (
                                                             <button key={index} className='flex w-full items-center hover:text-green-600' type='button' onClick={() => setSearchSubCats(sub.name)}>{index + 1}. {sub.name}</button>
                                                         ))}
                                                     </Disclosure.Panel>

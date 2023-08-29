@@ -124,8 +124,9 @@ export function Logins() {
                     </div>
 
                     <button type='submit' className="py-2 rounded-md hover:text-white hover:bg-black bg-sky-500">Login</button>
-
-                    <Link href='/forgotpassword' className='text-right text-sm hover:text-sky-500'>Forget password?</Link>
+                    <div className='flex justify-end'>
+                        <Link href='/forgotpassword' className='text-right w-auto text-md hover:text-sky-500'>Forget password?</Link>
+                    </div>
                 </form>
             </div>
         </div >

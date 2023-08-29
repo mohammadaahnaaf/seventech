@@ -4,10 +4,12 @@ import { ErrorText } from '@seventech/shared';
 import { useRouter } from 'next/router';
 import { axiosAPI } from '@seventech/utils';
 import { AdminLayout } from '@seventech/layouts';
+import { Switch } from '@headlessui/react';
 
 function Add() {
 
   const [formValues, setFormValues] = React.useState([{ id: uuidv4(), names: "" }])
+  const [active, setActive] = React.useState(false)
   const [error, setError] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(false)
   const [indexing, setIndexing] = React.useState(0)
@@ -26,6 +28,7 @@ function Add() {
         name: data.get('categoryName'),
         tagline: data.get('tagline'),
         isFeatured: featured,
+        // show: active,
         index: +indexing,
         subCategories: formValues.map(value => (
           {
@@ -91,7 +94,24 @@ function Add() {
           </div>
         )}
         <form onSubmit={handleSubmit}>
-          <h1 className='text-center py-3 mb-5 rounded-lg bg-gray-200 text-2xl'>Add Category</h1>
+        
+          <div className='relative py-3 flex items-center justify-center mb-5 text-center bg-gray-200 rounded-lg'>
+            <Switch
+              checked={active}
+              onChange={setActive}
+              className={`${active ? 'bg-green-400' : 'bg-red-600'}
+                     absolute right-2 inline-flex h-[28px] w-[64px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+            >
+              <span className="sr-only">Avtive</span>
+              <span
+                aria-hidden="true"
+                className={`${active ? 'translate-x-7' : 'translate-x-0'}
+                        pointer-events-none z-10 inline-block h-[24px] w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+              />
+            </Switch>
+            <h1 className='text-2xl text-center bg-gray-200'>Add Category</h1>
+          </div>
+          
           <div className="grid gap-2 max-w-4xl mx-auto bg-gray-100 shadow rounded-lg ring-2 ring-gray-300 mb-6">
             {featured && (
               <>

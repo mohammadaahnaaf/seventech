@@ -14,7 +14,6 @@ export function CategoryBar(props: Props) {
     const { open, setOpen } = props
     const router = useRouter()
     const [categories, setCategories] = React.useState<any[]>([])
-    const [bu, setBu] = React.useState('')
 
     // Get Data
     React.useEffect(() => {
@@ -25,20 +24,8 @@ export function CategoryBar(props: Props) {
         getCategory()
     }, [router, open]);
 
-    const bars = [
-        {
-            name: "Products",
-            match: 'all',
-        },
-        {
-            name: "Brands",
-            match: "Brands",
-        },
-        {
-            name: "Offers",
-            match: "Offers",
-        },
-    ]
+    const sortedCats = (x: any[]) => x.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
+
     return (
         <div>
             {/* Mobile menu */}
@@ -82,7 +69,7 @@ export function CategoryBar(props: Props) {
                                 <Tab.Group as="div" className="mt-2">
                                     <div className="border-y-2 border-sky-600">
                                         <Tab.List className="grid p-4">
-                                            {categories?.map((category: any, index: number) => (
+                                            {sortedCats(categories).map((category: any, index: number) => (
                                                 <Tab
                                                     key={index}
                                                     className={({ selected }) =>
@@ -98,7 +85,7 @@ export function CategoryBar(props: Props) {
                                         </Tab.List>
                                     </div>
                                     <Tab.Panels as={Fragment}>
-                                        {categories.map((category: any, index: number) => (
+                                        {sortedCats(categories).map((category: any, index: number) => (
                                             <Tab.Panel key={index} className="py-5 px-4 -z-50 space-y-5">
 
                                                 <div>
@@ -111,7 +98,7 @@ export function CategoryBar(props: Props) {
                                                                 {index + 1}. {category.name}
                                                             </button>
                                                         </li>
-                                                        {category?.subCategories?.map((item: any, index: number) => (
+                                                        {sortedCats(category?.subCategories).map((item: any, index: number) => (
                                                             <li key={index} className="flow-root px-4">
                                                                 <button type="button" onClick={() => router.push(`/category/${item.name}`)} className="-m-3 p-2 block text-gray-200">
                                                                     {index + 1}. {item.name}
@@ -149,79 +136,67 @@ export function CategoryBar(props: Props) {
 
                             <Popover.Group className="hidden lg:ml-0 md:block lg:self-stretch">
                                 <div className="h-10 flex w-full gap-8">
-                                    {bars.map((category: any, index: number) => (
-                                        <Popover key={index} className="flex">
-                                            {({ open }) => (
-                                                <>
-                                                    <div className="relative flex">
-                                                        <Popover.Button
-                                                            className={classNames(
-                                                                open
-                                                                    ? 'border-b-sky-500 text-white border-b-4'
-                                                                    : 'border-transparent text-white hover:border-white border-b-4',
-                                                                'relative z-10 flex items-center focus:outline-none focus:border-b-4 transition-colors ease-out duration-200 text-sm font-semibold -mb-px pt-px'
-                                                            )}
+                                    {sortedCats(categories).map((category: any, index: number) => {
+                                        return !category.show ? (
+                                            <Popover key={index} className="flex">
+                                                {({ open }) => (
+                                                    <>
+                                                        <div className="relative flex">
+                                                            <Popover.Button
+                                                                className={classNames(
+                                                                    open
+                                                                        ? 'border-b-sky-500 text-white border-b-4'
+                                                                        : 'border-transparent text-white hover:border-white border-b-4',
+                                                                    'relative z-10 flex items-center focus:outline-none focus:border-b-4 transition-colors ease-out duration-200 text-sm font-semibold -mb-px pt-px'
+                                                                )}
+                                                            >
+                                                                {category.name}
+                                                            </Popover.Button>
+                                                        </div>
+
+                                                        <Transition
+                                                            as={Fragment}
+                                                            enter="transition ease-out duration-200"
+                                                            enterFrom="opacity-0"
+                                                            enterTo="opacity-100"
+                                                            leave="transition ease-in duration-150"
+                                                            leaveFrom="opacity-100"
+                                                            leaveTo="opacity-0"
                                                         >
-                                                            {category.name}
-                                                        </Popover.Button>
-                                                    </div>
+                                                            <Popover.Panel className="absolute top-full z-40 bg-white backdrop-blur-lg bg-opacity-80 border-b border-black inset-x-0 text-sm text-gray-500">
+                                                                {/* <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" /> */}
 
-                                                    <Transition
-                                                        as={Fragment}
-                                                        enter="transition ease-out duration-200"
-                                                        enterFrom="opacity-0"
-                                                        enterTo="opacity-100"
-                                                        leave="transition ease-in duration-150"
-                                                        leaveFrom="opacity-100"
-                                                        leaveTo="opacity-0"
-                                                    >
-                                                        <Popover.Panel className="absolute top-full z-40 bg-white backdrop-blur-lg bg-opacity-80 border-b border-black inset-x-0 text-sm text-gray-500">
-                                                            {/* <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" /> */}
-
-                                                            <div className="relative min-h-[55vh] max-w-7xl mx-auto grid">
-                                                                <div className="w-full">
-                                                                    <div className="grid py-4">
-                                                                        <div className="justify-start grid gap-5 text-sm w-full">
-                                                                            <Link href={`/category/${category.name}`}
-                                                                                className="font-medium text-lg text-black">
-                                                                                {category.name}
-                                                                            </Link>
-                                                                            <ul
-                                                                                role="list"
-                                                                                className="mt-2 gap-4 grid w-full"
-                                                                            >
-                                                                                {categories?.map((x: any, index: number) => {
-                                                                                    return x.name !== category.name ? (
+                                                                <div className="relative min-h-[55vh] max-w-7xl mx-auto grid">
+                                                                    <div className="w-full">
+                                                                        <div className="grid py-4">
+                                                                            <div className="justify-start grid gap-5 text-sm w-full">
+                                                                                <Link href={`/category/${category.name}`}
+                                                                                    className="font-medium text-lg text-black">
+                                                                                    {category.name}
+                                                                                </Link>
+                                                                                <ul
+                                                                                    role="list"
+                                                                                    className="mt-2 gap-4 grid w-full"
+                                                                                >
+                                                                                    {sortedCats(category?.subCategories).map((x: any, index: number) => (
                                                                                         <li key={index} className="flex w-full">
                                                                                             <button type="button" onClick={() => router.push(`/category/${x.name}`)} className="text-md w-full font-semibold text-black flex hover:text-sky-500">
                                                                                                 {index + 1}. {x.name}
                                                                                             </button>
                                                                                         </li>
-                                                                                    ) : (
-                                                                                        <>
-                                                                                            {x.subCategories.map((item: any, index: number) => {
-                                                                                                return x.name === category.match ? (
-                                                                                                    <li key={index} className="flex w-full">
-                                                                                                        <Link href={`/category/${item.name}`} className="text-md w-full font-semibold text-black flex hover:text-sky-500">
-                                                                                                            {index + 1}. {item.name}
-                                                                                                        </Link>
-                                                                                                    </li>
-                                                                                                ) : null
-                                                                                            })}
-                                                                                        </>
-                                                                                    )
-                                                                                })}
-                                                                            </ul>
+                                                                                    ))}
+                                                                                </ul>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </Popover.Panel>
-                                                    </Transition>
-                                                </>
-                                            )}
-                                        </Popover>
-                                    ))}
+                                                            </Popover.Panel>
+                                                        </Transition>
+                                                    </>
+                                                )}
+                                            </Popover>
+                                        ) : null
+                                    })}
 
                                 </div>
                             </Popover.Group>
