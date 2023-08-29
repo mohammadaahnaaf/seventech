@@ -1,14 +1,20 @@
 import { Login } from '@seventech/client/auth/Login'
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
 
 const LoginPage = (props: Props) => {
   return (
-    <div>
-        <Login />
-    </div>
+    <>
+      <Head>
+        <title>SevenTech | Login</title>
+        <meta name="seventech" content="Login" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Login />
+    </>
   )
 }
 
-export default LoginPage
+export default LoginPage;

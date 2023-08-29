@@ -1,14 +1,20 @@
 import { Signup } from '@seventech/client/auth/Signup'
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
 
 const SignupPage = (props: Props) => {
     return (
-        <div>
+        <>
+            <Head>
+                <title>SevenTech | Signup</title>
+                <meta name="seventech" content="Signup page" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Signup />
-        </div>
+        </>
     )
 }
 
-export default SignupPage
+export default SignupPage;

@@ -1,6 +1,7 @@
 export * from './AdminNav'
 export * from './Footer'
 export * from './Navbar'
+export * from './Error'
 export * from './Pagination'
 export * from './SearchBar'
 export * from './SuccessText'

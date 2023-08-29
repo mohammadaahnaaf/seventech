@@ -1,20 +1,20 @@
-import { Forgot } from '@seventech/client'
+import { Privacy } from '@seventech/client'
 import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
 
-const ForgotPassPage = (props: Props) => {
+const PrivacyPage = (props: Props) => {
   return (
     <>
-       <Head>
-        <title>SevenTech | Forgwt Password</title>
+      <Head>
+        <title>SevenTech | Privacy Policy</title>
         <meta name="seventech" content="About Us page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Forgot />
+      <Privacy />
     </>
   )
 }
 
-export default ForgotPassPage;
+export default PrivacyPage

@@ -1,14 +1,20 @@
 import { CategoryDetails } from '@seventech/client'
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
 
 const CategoryDetailsPage = (props: Props) => {
   return (
-    <div>
+    <>
+       <Head>
+        <title>SevenTech | Products</title>
+        <meta name="seventech" content="All Products page" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <CategoryDetails />
-    </div>
+    </>
   )
 }
 
-export default CategoryDetailsPage
+export default CategoryDetailsPage;
