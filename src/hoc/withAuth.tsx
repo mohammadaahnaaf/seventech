@@ -1,4 +1,5 @@
 // import { AdminLayout } from '@seventech/layouts';
+import { AdminLayout, Layout } from '@seventech/layouts';
 import { axiosAPI } from '@seventech/utils';
 import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -43,12 +44,16 @@ export const withAuth = (Component: React.ComponentType<Props>) => {
 
 const Loading = () => {
   return (
-    <div className='h-screen w-full bg-white' />
+    <Layout setSearchTerm>
+      <div className='h-screen w-full bg-white' />
+    </Layout>
   )
 }
 const Loading2 = () => {
   return (
-    <div className='h-full w-full bg-white' />
+    <AdminLayout>
+      <div className='h-full w-full bg-white' />
+    </AdminLayout>
   )
 }
 
@@ -64,7 +69,7 @@ export const withMeAuth = (Component: React.ComponentType<Props>) => {
 
         axiosAPI
           .get('/auth/get-me')
-          .then((res: { data: { email: any; }; }) => {
+          .then((res: any) => {
             setIsLoggedIn(!!res.data.email);
           })
           .catch((error: any) => {

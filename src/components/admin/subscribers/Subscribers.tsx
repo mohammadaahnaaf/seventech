@@ -46,19 +46,28 @@ function Subscriber() {
     // delete user
     function handleDelete() {
         setIsOpen(false)
-        selected?.map((item) =>
-            axiosAPI.delete(`/user/${item}`)
-        ),
+        try {
+            selected?.map((item) =>
+                axiosAPI.delete(`/user/${item}`)
+            )
             setSuccess('User Vanished')
-        setTimeout(() => { setSuccess('') })
+            setTimeout(() => { setSuccess('') })
+        } catch (err: any) {
+            console.log(err)
+        }
     }
 
-    function handleDeleteMe(id: any) {
-        setDetailOpen(false)
-        axiosAPI.delete(`/user/${id}`)
-        setSuccess('User Vanished')
-        setTimeout(() => { setSuccess('') })
+    function sureDelete(id: any) {
+        setIsOpen(true)
+        handleChecked(id)
+
     }
+    // function handleDeleteMe(id: any) {
+    //     setDetailOpen(false)
+    //     axiosAPI.delete(`/user/${id}`)
+    //     setSuccess('User Vanished')
+    //     setTimeout(() => { setSuccess('') })
+    // }
 
     function handleAllChecked(event: any) {
         if (event.target.checked) {
@@ -71,7 +80,7 @@ function Subscriber() {
         setAllSelected(false)
     }
 
-    const handleChecked = (event: any, name: any) => {
+    const handleChecked = (name: any) => {
         const selectedIndex = selected.indexOf(name);
         let newSelected: React.SetStateAction<any[]> = [];
 
@@ -122,13 +131,13 @@ function Subscriber() {
                             <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-semibold leading-6 text-sky-600"
+                                    className="text-lg font-semibold leading-6 text-red-600"
                                 >
-                                    Delete Category
+                                    Delete User
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">
-                                        Are you sure you want to deelte selected category?
+                                        Are you sure you want to deelte?
                                     </p>
                                 </div>
 
@@ -142,7 +151,7 @@ function Subscriber() {
                                     </button>
                                     <button
                                         type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700 hover:bg-sky-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                                        className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                                         onClick={handleDelete}
                                     >
                                         Delete
@@ -264,7 +273,7 @@ function Subscriber() {
                                     <button
                                         type="button"
                                         className="inline-flex justify-center rounded-md border border-transparent bg-sky-100 px-4 py-2 text-sm font-medium text-sky-900 hover:bg-sky-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-                                        onClick={() => handleDeleteMe(me?._id)}
+                                        onClick={() => sureDelete(me?._id)}
                                     >
                                         Delete
                                     </button>
@@ -317,12 +326,10 @@ function Subscriber() {
 
                                         </button>
                                         <button onClick={() => setIsOpen(true)} type='button'>
-                                            <button type='button' onClick={handleDelete}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                                    className='h-5 w-5 text-red-600'>
-                                                    <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clipRule="evenodd" />
-                                                </svg>
-                                            </button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                                className='h-5 w-5 text-red-600'>
+                                                <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clipRule="evenodd" />
+                                            </svg>
                                         </button>
                                     </div>
                                 )}
@@ -338,7 +345,7 @@ function Subscriber() {
                                 <tr key={index} className="bg-white border-b">
                                     <td className="p-4 w-4">
                                         <div className="flex items-center">
-                                            <input onChange={(event) => handleChecked(event, item._id)} checked={isItemSelected} id="checkbox" type="checkbox" className="cursor-pointer w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 focus:ring-2" />
+                                            <input onChange={(event) => handleChecked(item._id)} checked={isItemSelected} id="checkbox" type="checkbox" className="cursor-pointer w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 focus:ring-2" />
                                             <label htmlFor="checkbox" className="sr-only">checkbox</label>
                                         </div>
                                     </td>

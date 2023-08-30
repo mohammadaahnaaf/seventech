@@ -137,7 +137,8 @@ export function CategoryBar(props: Props) {
                             <Popover.Group className="hidden lg:ml-0 md:block lg:self-stretch">
                                 <div className="h-10 flex w-full gap-8">
                                     {sortedCats(categories).map((category: any, index: number) => {
-                                        return !category.show ? (
+                                        // return !category.show ? (
+                                        return (
                                             <Popover key={index} className="flex">
                                                 {({ open }) => (
                                                     <>
@@ -195,7 +196,8 @@ export function CategoryBar(props: Props) {
                                                     </>
                                                 )}
                                             </Popover>
-                                        ) : null
+                                        )
+                                        // ) : null
                                     })}
 
                                 </div>

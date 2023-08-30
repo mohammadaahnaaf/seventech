@@ -22,7 +22,7 @@ export function Banner() {
     }, []);
 
     return (
-        <div className="max-w-full border-b border-pink-900 shadow mx-auto">
+        <div className="max-w-7xl border-b border-pink-900 shadow mx-auto">
             {banners.map((items: { images: any }, index: number) => (
 
                 <Carousel
@@ -41,7 +41,7 @@ export function Banner() {
                     className='z-50'
                 >
                     {items?.images.map((image: string, index: number) => (
-                        <div key={index} className='h-[20vh] md:h-[65vh] w-full'>
+                        <div key={index} className='h-[30vh] lg:h-[65vh] w-full'>
                             <Image
                                 layout='fill'
                                 src={image}
