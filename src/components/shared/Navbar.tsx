@@ -34,7 +34,7 @@ const navigation = [
 ];
 
 const userNavigation = [
-  { name: 'Profile', href: '/profile', state: true },
+  // { name: 'Profile', href: '/profile', state: true },
   { name: 'Admin', href: '/admin', state: true },
 ]
 
@@ -95,7 +95,7 @@ export function BasicNavbar() {
 
                     {/* Login and Signup Button shall show when user != isLoggedIn */}
                     <div className='flex justify-between gap-4'>
-                      <Link href='/signin'
+                      <Link href='/signup'
                         className='bg-sky-500 text-sm hover:bg-white hover:text-black hover:ring-sky-500 ring-white text-white ring-0 w-20 text-center py-1 px-3'>
                         Signup
                       </Link>
@@ -209,6 +209,7 @@ export function NewNavBar(props: IProps) {
 
   const { setSearchTerm, setOpen } = props
   const [useri, setUseri] = React.useState(true);
+  const [me, setMe] = React.useState<any>({});
   const [view, setView] = React.useState(false);
   const { totalUniqueItems } = useCart()
   const router = useRouter()
@@ -223,6 +224,19 @@ export function NewNavBar(props: IProps) {
     setUseri(false);
     router.push('/login')
   }
+
+  React.useEffect(() => {
+    async function getMe() {
+      try {
+        const res = await axiosAPI.get('auth/get-me')
+        setMe(res?.data)
+      } catch (err: any) {
+        setUseri(false)
+        console.log(err)
+      }
+    }
+    getMe()
+  }, [])
 
   React.useEffect(() => {
     setView(true)
@@ -254,22 +268,13 @@ export function NewNavBar(props: IProps) {
                 <div className="hidden md:block">
                   <div className="flex items-center">
 
-                    {!useri && (
-                      <div className='flex justify-between gap-2 ml-3'>
-                        <Link href='/signin' className='bg-red-600 hover:bg-white text-white ring-0 focus:ring-2 ring-white hover:ring-red-600 hover:text-black py-1 px-3 rounded-md'>
-                          Signup
-                        </Link>
-                        <Link href='/login' className='bg-white hover:bg-red-600 ring-0 focus:ring-2 ring-red-600 hover:ring-white hover:text-white py-1 px-3 rounded-md'>
-                          Login
-                        </Link>
-                      </div>
-                    )}
+
                     {/* Cart  */}
                     <div>
                       <button
                         type='button'
                         onClick={() => router.push('/cart')}
-                        className="text-black bg-black bg-opacity-10 flex p-[8px] rounded-full relative hover:text-sky-600 focus:ring-0"
+                        className="text-sky-600 bg-black bg-opacity-10 flex p-[8px] rounded-full relative hover:text-sky-600 focus:ring-0"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
                           className="relative z-10 h-6 w-6">
@@ -283,6 +288,16 @@ export function NewNavBar(props: IProps) {
                       </button>
                     </div>
 
+                    {!useri && (
+                      <div className='flex justify-between gap-2 ml-3'>
+                        <Link href='/signup' className='bg-sky-600 hover:bg-white text-white hover:text-sky-600 ring-1 focus:ring-2 ring-sky-600 py-1 px-3 rounded-sm'>
+                          Signup
+                        </Link>
+                        <Link href='/login' className='bg-white hover:bg-sky-600 ring-sky-600 ring-1 text-sky-600 hover:text-white py-1 px-3 rounded-sm'>
+                          Login
+                        </Link>
+                      </div>
+                    )}
                     {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative">
                       <div>
@@ -304,30 +319,46 @@ export function NewNavBar(props: IProps) {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gradient-to-r from-black to-red-900 ring-1 ring-red-600 ring-opacity-20 focus:outline-none">
-                          {userNavigation.map((item) => (
-                            <Menu.Item key={item.name}>
-                              {({ active }) => (
-                                <Link
-                                  className={classNames(
-                                    active ? 'bg-red-600' : '',
-                                    'block px-4 py-2 text-sm text-gray-100 hover:bg-red-600 hover:text-white'
-                                  )}
-                                  href={item.href}
-                                // onClick={() => setUseri(item.state)}
-                                >
-                                  {item.name}
-                                </Link>
-                              )}
-                            </Menu.Item>
-                          ))}
+                        <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-gray-500 ring-opacity-20 focus:outline-none">
+                          {userNavigation.map((item, index) => {
+                            return me?.isAdmin ? (
+                              <Menu.Item key={index}>
+                                {({ active }) => (
+                                  <Link
+                                    className={classNames(
+                                      active ? 'bg-red-600' : '',
+                                      'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
+                                    )}
+                                    href={item.href}
+                                  // onClick={() => setUseri(item.state)}
+                                  >
+                                    {item.name}
+                                  </Link>
+                                )}
+                              </Menu.Item>
+                            ) : null
+                          })}
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                className={classNames(
+                                  active ? 'bg-red-600' : '',
+                                  'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
+                                )}
+                                href="/profile"
+                              >
+                                Profile
+                              </Link>
+                            )}
+                          </Menu.Item>
+
                           <Menu.Item>
                             {({ active }) => (
                               <button
                                 onClick={handleLogout}
                                 className={classNames(
                                   active ? 'bg-red-600' : '',
-                                  'block w-full text-left px-4 py-2 text-sm text-gray-100 hover:bg-red-600 hover:text-white'
+                                  'block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
                                 )}
                               >
                                 Sign out
@@ -342,7 +373,7 @@ export function NewNavBar(props: IProps) {
                 <div className="-mr-2 flex md:hidden">
 
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="focus:bg-opacity-20 bg-opacity-10 bg-blue-600 inline-flex items-center justify-center p-2 rounded-md text-black">
+                  <Disclosure.Button className="focus:bg-opacity-20 bg-opacity-10 bg-sky-600 inline-flex items-center justify-center p-2 rounded-md text-gray-600">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
@@ -368,26 +399,44 @@ export function NewNavBar(props: IProps) {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Disclosure.Panel className="md:hidden bg-black">
+              <Disclosure.Panel className="md:hidden bg-gray-200">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+
+                  {me?.isAdmin && (
+                    <Disclosure.Button
+                      onClick={() => router.push('/admin')} className={classNames(
+                        pathname === "/admin" ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        'flex items-center text-left w-full px-3 py-2 text-gray-800 rounded-md text-base font-medium'
+                      )}
+                    // aria-current={pathname === item.href ? 'page' : undefined}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                      </svg>
+                      Admin
+                    </Disclosure.Button>
+                  )}
+
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
                       onClick={() => router.push(`/${item.href}`)} className={classNames(
-                        pathname === item.href ? 'bg-red-600 bg-opacity-10 text-white' : '',
-                        'flex items-center text-left w-full px-3 py-2 text-gray-100 rounded-md text-base font-medium'
+                        pathname === item.href ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        'flex items-center text-left w-full px-3 py-2 text-gray-800 rounded-md text-base font-medium'
                       )}
                       aria-current={pathname === item.href ? 'page' : undefined}
                     >
                       {item.icon} {item.name}
                     </Disclosure.Button>
                   ))}
+
+
                   <Disclosure.Button
                     as="button"
                     onClick={() => setOpen(true)}
                     className={classNames(
-                      pathname === null ? 'bg-red-600 bg-opacity-10 text-white' : '',
-                      'flex items-center w-full text-left px-3 py-2 text-gray-100 rounded-md text-base font-medium'
+                      pathname === null ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                      'flex items-center w-full text-left px-3 py-2 text-gray-800 rounded-md text-base font-medium'
                     )}
                     aria-current={pathname === null ? 'page' : undefined}
                   >
@@ -396,12 +445,27 @@ export function NewNavBar(props: IProps) {
                     }
                     Category
                   </Disclosure.Button>
+                  {useri && (
+                    <Disclosure.Button
+                      onClick={() => router.push('/profile')} className={classNames(
+                        pathname === "/profile" ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        'flex items-center text-left w-full px-3 py-2 text-gray-800 rounded-md text-base font-medium'
+                      )}
+                    // aria-current={pathname === item.href ? 'page' : undefined}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                      </svg>
+
+                      Profile
+                    </Disclosure.Button>
+                  )}
                   <Disclosure.Button
                     as="button"
                     onClick={handleLogout}
                     className={classNames(
-                      pathname === null ? 'bg-red-600 bg-opacity-10 text-white' : '',
-                      'flex items-center w-full text-left px-3 py-2 text-gray-100 rounded-md text-base font-medium'
+                      pathname === null ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                      'flex items-center w-full text-left px-3 py-2 text-gray-800 rounded-md text-base font-medium'
                     )}
                     aria-current={pathname === null ? 'page' : undefined}
                   >
