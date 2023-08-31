@@ -192,6 +192,7 @@ function Categories() {
                                 {selected.length !== 0 && (
                                     <>
                                         <button type='button' onClick={() => setIsOpen(true)}>
+                                            Delete
                                             {/* <TrashIcon className='h-5 w-5 text-sky-600' /> */}
                                         </button>
                                     </>

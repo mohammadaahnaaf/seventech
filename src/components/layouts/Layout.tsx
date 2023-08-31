@@ -4,18 +4,19 @@ import { CategoryBar } from '@seventech/client';
 
 type Props = {
     children: any;
+    setOpen: any;
+    open: any;
     setSearchTerm: any
 }
 export function Layout(props: Props) {
-    const { children, setSearchTerm } = props
+    const { children, setSearchTerm, open, setOpen } = props
 
-    const [open, setOpen] = React.useState<boolean>(false)
+    // const [open, setOpen] = React.useState<boolean>(false)
 
     return (
         <>
-            {/* <Navbar setOpen={setOpen} setSearchTerm={setSearchTerm} /> */}
             <NewNavBar setSearchTerm={setSearchTerm} setOpen={setOpen} />
-            <CategoryBar open={open} setOpen={setOpen} />
+            {/* <CategoryBar open={open} setOpen={setOpen} /> */}
             <div>
                 {children}
             </div>

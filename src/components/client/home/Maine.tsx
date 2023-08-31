@@ -3,12 +3,14 @@ import React from 'react'
 import { Banner } from './Banner';
 import { axiosRoot, isServer } from '@seventech/utils';
 import { Shop } from './Shop';
+import { CategoryBar } from '..';
 
 export function Maine() {
 
     const [searchTerm, setSearchTerm] = React.useState('')
     const [home, setHome] = React.useState([]);
     const [view, setView] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
 
     // get featured products data
     React.useEffect(() => {
@@ -31,11 +33,12 @@ export function Maine() {
     return view ? (
         <>
             {home.length === 0 ? (
-                <Layout setSearchTerm={setSearchTerm}>
+                <Layout open setOpen setSearchTerm={setSearchTerm}>
                     <div className='h-screen w-full bg-white' />
                 </Layout>
             ) : (
-                <Layout setSearchTerm={setSearchTerm}>
+                <Layout open={open} setOpen={setOpen} setSearchTerm={setSearchTerm}>
+                    <CategoryBar open={open} setOpen={setOpen} />
                     <Banner />
                     <div className='pb-4 min-h-screen bg-white'>
                         {home?.map((item: any, index: number) => (

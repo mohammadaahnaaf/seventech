@@ -585,7 +585,7 @@ export function ProductDetail() {
     const [searchTerm, setSearchTerm] = React.useState('')
 
     return (
-        <Layout setSearchTerm={setSearchTerm}>
+        <Layout open setOpen setSearchTerm={setSearchTerm}>
             <Details />
         </Layout>
     )

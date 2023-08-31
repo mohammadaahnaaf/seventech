@@ -38,9 +38,9 @@ function Detail() {
       const res = await axiosRoot.get(`/categories/${itemId}`);
       setCategory(res.data)
       setFeatured(res.data.isFeatured)
-      // setActive(res.data.show)
       setIndexing(res.data.index)
       setFormValues(res.data.subCategories)
+      setActive(res.data.show)
     }
     itemId && getCategory()
   }, [success, itemId]);
@@ -59,7 +59,7 @@ function Detail() {
         name: category.name,
         tagline: data.get('tagline'),
         isFeatured: featured,
-        // show: active,
+        show: active,
         index: +indexing
       }
       await axiosAPI.put(`/categories/${itemId}`, reqData)
@@ -94,12 +94,6 @@ function Detail() {
     await axiosAPI.post(`/categories/${itemId}/sub-category`, reqSubData)
     setSuccess('subcategory added')
     setTimeout(() => { setSuccess('') }, 2000)
-
-    // setFormValues([...formValues,
-    // {
-    //   _id: uuidv4(),
-    //   name: ''
-    // }])
   };
 
   // delete subcategory 

@@ -32,10 +32,10 @@ export function CategoryBar(props: Props) {
         })
 
     }
-    function handleClick2(z: any) {
+    function handleClick2(y: any) {
         router.push({
-            pathname: `/category/${z}`,
-            query: { z },
+            pathname: `/category/${y}`,
+            query: { y },
         })
     }
 
@@ -153,10 +153,11 @@ export function CategoryBar(props: Props) {
                             </button> */}
 
                             <Popover.Group className="hidden lg:ml-0 md:block lg:self-stretch">
-                                <div className="h-10 flex w-full gap-8">
+                                <div className="h-10 flex flex-wrap w-full lg:gap-8">
+                               
                                     {sortedCats(categories).map((category: any, index: number) => {
-                                        // return !category.show ? (
-                                        return (
+                                        return category.show ? (
+                                       
                                             <Popover key={index} className="flex">
                                                 {({ open }) => (
                                                     <>
@@ -166,7 +167,7 @@ export function CategoryBar(props: Props) {
                                                                     open
                                                                         ? 'border-b-sky-500 text-white border-b-4'
                                                                         : 'border-transparent text-white hover:border-white border-b-4',
-                                                                    'relative z-10 flex items-center focus:outline-none focus:border-b-4 transition-colors ease-out duration-200 text-sm font-semibold -mb-px pt-px'
+                                                                    'relative z-10 flex items-center focus:outline-none focus:border-b-4 transition-colors ease-out duration-200 text-sm font-semibold'
                                                                 )}
                                                             >
                                                                 {category.name}
@@ -218,8 +219,8 @@ export function CategoryBar(props: Props) {
                                                     </>
                                                 )}
                                             </Popover>
-                                        )
-                                        // ) : null
+                                      
+                                        ) : null
                                     })}
 
                                 </div>

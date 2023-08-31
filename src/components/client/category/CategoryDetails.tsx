@@ -19,7 +19,7 @@ export function CategoryDetails() {
         return null
     }
     return view ? (
-        <Layout setSearchTerm={setSearchTerm}>
+        <Layout open setOpen setSearchTerm={setSearchTerm}>
             <div className='border-t-2 border-red-600'>
                 <Category term={searchTerm} />
             </div>

@@ -8,8 +8,8 @@ import { Switch } from '@headlessui/react';
 
 function Add() {
 
-  const [formValues, setFormValues] = React.useState([{ id: uuidv4(), names: "" }])
-  const [active, setActive] = React.useState(false)
+  const [formValues, setFormValues] = React.useState<any[]>([{ id: uuidv4(), names: "" }])
+  const [active, setActive] = React.useState<boolean>(false)
   const [error, setError] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(false)
   const [indexing, setIndexing] = React.useState(0)
@@ -28,7 +28,7 @@ function Add() {
         name: data.get('categoryName'),
         tagline: data.get('tagline'),
         isFeatured: featured,
-        // show: active,
+        show: active,
         index: +indexing,
         subCategories: formValues.map(value => (
           {

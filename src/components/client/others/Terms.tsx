@@ -18,7 +18,7 @@ export const Terms = (props: Props) => {
     }, []);
 
     return (
-        <Layout setSearchTerm>
+        <Layout open setOpen setSearchTerm>
             <div>
                 <div className='min-h-screen text-black bg-white'>
                     <div className='max-w-7xl mx-auto grid'>

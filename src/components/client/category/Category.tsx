@@ -57,7 +57,7 @@ export function Category(props: Props) {
     // console.log(fcat, fscat)
 
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState<any[]>([])
     const [categories, setCategories] = useState([])
     const [cats, setCats] = useState<string>('')
     const [searchSubCats, setSearchSubCats] = React.useState<string>('')
@@ -78,12 +78,10 @@ export function Category(props: Props) {
     React.useEffect(() => {
         function slugify() {
             if (!fy) {
-                setTimeout(() => { setName(jinish) }, 300)
-            } else {
-                setTimeout(() => {
-                    setSearchSubCats(fz)
-                    setCats(fy)
-                }, 300)
+                setTimeout(() => { setName(jinish) }, 500)
+            } else if(!!fy) {
+                setTimeout(() => { setSearchSubCats(fz) }, 500)
+                setTimeout(() => { setCats(fy) }, 500)
             }
         }
         slugify()
