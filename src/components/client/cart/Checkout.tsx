@@ -34,18 +34,6 @@ export function Checkouts(props: Props) {
     const [error, setError] = React.useState('')
     const [shipment, setShipment] = React.useState(0)
 
-    const paymentWay: any = [
-        { title: "Pending", value: "pending" },
-        { title: "Confirmed", value: "confirmed" },
-        { title: "Unreachable", value: "unreachable" },
-        { title: "On Hold", value: "on-hold" },
-        { title: "Processing", value: "processing" },
-        { title: "Paid", value: "paid" },
-        { title: "Shipped", value: "shiped" },
-        { title: "Canceled", value: "canceled" },
-        { title: "Refund", value: "refund" }
-
-    ]
 
     let { items, cartTotal, removeItem, totalUniqueItems } = useCart()
 

@@ -48,7 +48,7 @@ const Detail = () => {
 
         itemId && getOrder()
 
-    }, [router, success]);
+    }, [router, itemId, success]);
 
     const handleChange = (id: any, event: any) => {
         const newInputFields = formValues.map((i: any) => {
@@ -106,6 +106,10 @@ const Detail = () => {
             value: 'confirmed'
         },
         {
+            name: 'Delivered',
+            value: 'delivered'
+        },
+        {
             name: 'Unreachable',
             value: 'unreachable'
         },
@@ -131,9 +135,21 @@ const Detail = () => {
         },
         {
             name: 'Canceled',
-            value: 'canceled'
+            value: 'cancelled'
         },
     ]
+    // const p =[
+    //     'pending',
+    //     'delivered',
+    //     'cancelled',
+    //     'confirmed',
+    //     'unreachable',
+    //     'hold',
+    //     'paid',
+    //     'processing',
+    //     'shiped',
+    //     'refunded',
+    // ]
 
     return (
 
@@ -189,8 +205,8 @@ const Detail = () => {
                                 {statusOpsn.map((x, index) => (
                                     <option key={index} value={x.value}>{x.name}</option>
                                 ))}
-                                <option value="delivered">Delivered</option>
-                                <option value="cancelled">Cancel</option>
+                                {/* <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancel</option> */}
                             </select>
                         </div>
                         <div>

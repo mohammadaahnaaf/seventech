@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import React, { Fragment } from 'react'
-import { Pagenation, SearchBar, SuccessText } from '@seventech/shared';
+import { ErrorText, Pagenation, SearchBar, SuccessText } from '@seventech/shared';
 import { useDebounce } from 'use-debounce';
 import { axiosAPI } from '@seventech/utils';
 import { AdminLayout } from '@seventech/layouts';
@@ -18,10 +18,17 @@ function Subscriber() {
     const [total, setTotal] = React.useState(0)
     const [pageSize, setPageSize] = React.useState(10)
     const [success, setSuccess] = React.useState('')
+    const [error, setError] = React.useState('')
     const [me, setMe] = React.useState<any>()
+    const [iAdmin, setIAdmin] = React.useState<boolean>(false)
 
     const [searchedName] = useDebounce(searchTerm, 400);
 
+    React.useEffect(() => {
+        if (!!me) {
+            setIAdmin(me.isAdmin)
+        }
+    }, [me])
     //Get Data
     React.useEffect(() => {
         async function getUsers() {
@@ -78,6 +85,28 @@ function Subscriber() {
         }
         setSelected([]);
         setAllSelected(false)
+    }
+
+    async function handleUpdate() {
+        try {
+            const reqData = {
+                isAdmin: iAdmin,
+                fullName: me.fullName,
+                email: me.email,
+                phoneNumber: me.phoneNumber,
+                address: me.address,
+                city: me.city,
+                zone: me.zone
+            }
+            await axiosAPI.put(`/user/make-admin/${me._id}`, reqData);
+            setSuccess('User Updated')
+            setTimeout(() => { setSuccess('') }, 2000)
+            setDetailOpen(false)
+        } catch (err:any) {
+            console.log(err)
+            setError(err.response?.data?.message)
+            setTimeout(() => { setError('') }, 6000)
+        }
     }
 
     const handleChecked = (name: any) => {
@@ -209,20 +238,20 @@ function Subscriber() {
                                         <tbody className='mt-4'>
                                             <tr className='bg-white'>
                                                 <td>Role: </td>
-                                                <td>{me?.isAdmin ? (
-                                                    <p className='flex items-center text-green-500'>
+                                                <td>{iAdmin ? (
+                                                    <button type='button' onClick={() => setIAdmin(!iAdmin)} className='flex w-full items-center text-green-700 hover:text-green-500'>
                                                         <span>Admin</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" className="ml-1 h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
                                                             <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                         </svg>
-                                                    </p>
+                                                    </button>
                                                 ) : (
-                                                    <p className='flex items-center text-sky-500'>
+                                                    <button type='button' onClick={() => setIAdmin(!iAdmin)} className='flex items-center text-blue-600 hover:text-sky-500'>
                                                         <span>Cstomer</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-4 h-4 text-sky-500">
                                                             <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                                                         </svg>
-                                                    </p>
+                                                    </button>
                                                 )}</td>
                                             </tr>
                                             <tr className='border-b bg-gray-100 border-white'>
@@ -262,21 +291,23 @@ function Subscriber() {
                                     </table>
                                 </div>
 
-                                <div className="flex items-center justify-end gap-4 mt-4">
+                                <div className="flex items-center justify-between gap-4 mt-4">
+
                                     <button
                                         type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                        onClick={closeDetail}
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-sky-100 px-4 py-2 text-sm font-medium text-sky-900 hover:bg-sky-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+                                        className="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                                         onClick={() => sureDelete(me?._id)}
                                     >
                                         Delete
                                     </button>
+                                    <button
+                                        type="button"
+                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                        onClick={handleUpdate}
+                                    >
+                                        Done
+                                    </button>
+
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
@@ -289,6 +320,7 @@ function Subscriber() {
     return (
         <>
             {success && (<SuccessText success={success} />)}
+            {error && (<ErrorText error={error} />)}
             <div className="mx-3 mt-3 bg-sky-100 overflow-x-auto relative shadow-md sm:rounded-lg">
                 <div className='flex justify-center w-full py-1 bg-sky-600'>
                     <div className='md:w-1/3 bg-white bg-opacity-50 rounded-full'>

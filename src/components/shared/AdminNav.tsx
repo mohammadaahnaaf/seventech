@@ -152,14 +152,14 @@ export const AdminNav = (props: Props) => {
                                                 leaveFrom="transform opacity-100 scale-100"
                                                 leaveTo="transform opacity-0 scale-95"
                                             >
-                                                <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gradient-to-r from-black to-red-900 ring-1 ring-red-600 ring-opacity-20 focus:outline-none">
+                                                <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-200 ring-1 ring-sky-600 ring-opacity-20 focus:outline-none">
                                                     {userNavigation.map((item) => (
                                                         <Menu.Item key={item.name}>
                                                             {({ active }) => (
                                                                 <Link
                                                                     className={classNames(
-                                                                        active ? 'bg-red-600' : '',
-                                                                        'block px-4 py-2 text-sm text-gray-100 hover:bg-red-600 hover:text-white'
+                                                                        active ? 'bg-sky-600' : '',
+                                                                        'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
                                                                     )}
                                                                     href={item.href}
                                                                 // onClick={() => setUseri(item.state)}
@@ -174,8 +174,8 @@ export const AdminNav = (props: Props) => {
                                                             <button
                                                                 onClick={handleLogout}
                                                                 className={classNames(
-                                                                    active ? 'bg-red-600' : '',
-                                                                    'block w-full text-left px-4 py-2 text-sm text-gray-100 hover:bg-red-600 hover:text-white'
+                                                                    active ? 'bg-sky-600' : '',
+                                                                    'block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
                                                                 )}
                                                             >
                                                                 Sign out
