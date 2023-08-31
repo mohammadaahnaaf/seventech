@@ -43,8 +43,9 @@ export const withAuth = (Component: React.ComponentType<Props>) => {
 };
 
 const Loading = () => {
+  const [searchTerm, setSearchTerm] = React.useState<string>('')
   return (
-    <Layout setSearchTerm>
+    <Layout open setOpen setSearchTerm={setSearchTerm}>
       <div className='h-screen w-full bg-white' />
     </Layout>
   )
