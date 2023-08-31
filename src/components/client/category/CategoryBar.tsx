@@ -1,7 +1,7 @@
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import { axiosRoot, classNames } from "@seventech/utils";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
 
@@ -23,6 +23,21 @@ export function CategoryBar(props: Props) {
         }
         getCategory()
     }, [router, open]);
+
+    function handleClick(y: any, z: any) {
+
+        Router.push({
+            pathname: `/category/${z}`,
+            query: { y, z },
+        })
+
+    }
+    function handleClick2(z: any) {
+        router.push({
+            pathname: `/category/${z}`,
+            query: { z },
+        })
+    }
 
     const sortedCats = (x: any[]) => x.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
 
@@ -100,7 +115,10 @@ export function CategoryBar(props: Props) {
                                                         </li>
                                                         {sortedCats(category?.subCategories).map((item: any, index: number) => (
                                                             <li key={index} className="flow-root px-4">
-                                                                <button type="button" onClick={() => router.push(`/category/${item.name}`)} className="-m-3 p-2 block text-gray-200">
+                                                                <button type="button"
+                                                                    onClick={() => handleClick(category.name, item.name)}
+                                                                    // onClick={() => router.push(`/category/${category.name}/${item.name}`)} 
+                                                                    className="-m-3 p-2 block text-gray-200">
                                                                     {index + 1}. {item.name}
                                                                 </button>
                                                             </li>
@@ -181,7 +199,11 @@ export function CategoryBar(props: Props) {
                                                                                 >
                                                                                     {sortedCats(category?.subCategories).map((x: any, index: number) => (
                                                                                         <li key={index} className="flex w-full">
-                                                                                            <button type="button" onClick={() => router.push(`/category/${x.name}`)} className="text-md w-full font-semibold text-black flex hover:text-sky-500">
+                                                                                            <button type="button" 
+                                                                                            onClick={() => handleClick(category.name, x.name)} 
+                                                                                            // onClick={() => router.push(`/category/${x.name}`)} 
+                                                                                            
+                                                                                            className="text-md w-full font-semibold text-black flex hover:text-sky-500">
                                                                                                 {index + 1}. {x.name}
                                                                                             </button>
                                                                                         </li>

@@ -51,12 +51,16 @@ export function Category(props: Props) {
     const { term } = props
     const router = useRouter()
     let jinish: any = router.query.slug
+    let fy: any = router.query.y
+    let fz: any = router.query.z
+
+    // console.log(fcat, fscat)
 
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
     const [items, setItems] = useState([])
     const [categories, setCategories] = useState([])
-    const [cats, setCats] = useState('')
-    const [searchSubCats, setSearchSubCats] = useState('')
+    const [cats, setCats] = useState<string>('')
+    const [searchSubCats, setSearchSubCats] = React.useState<string>('')
     const [total, setTotal] = React.useState(0)
     const [pageSize, setPageSize] = React.useState(8)
     const [page, setPage] = React.useState(0)
@@ -73,10 +77,17 @@ export function Category(props: Props) {
 
     React.useEffect(() => {
         function slugify() {
-            setTimeout(() => { setName(jinish) }, 500)
+            if (!fy) {
+                setTimeout(() => { setName(jinish) }, 300)
+            } else {
+                setTimeout(() => {
+                    setSearchSubCats(fz)
+                    setCats(fy)
+                }, 300)
+            }
         }
         slugify()
-    }, [jinish]);
+    }, [jinish, fz, fy]);
 
     //get Data
     React.useEffect(() => {
