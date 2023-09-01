@@ -40,7 +40,7 @@ export function Cart() {
         return null
     }
     return view ? (
-        <Layout open setOpen setSearchTerm={setSearchTerm}>
+        <Layout setSearchTerm={setSearchTerm}>
             <div className="min-h-screen py-6 sm:px-6 lg:px-8">
                 {/* container begains from here */}
                 <div className="max-w-5xl bg-gray-300 bg-opacity-20 mx-auto mt-5 flex max-h-screen flex-col overflow-y-auto rounded-lg shadow-xl">

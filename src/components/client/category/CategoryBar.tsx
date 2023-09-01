@@ -76,7 +76,11 @@ export function CategoryBar(props: Props) {
                                         onClick={() => setOpen(false)}
                                     >
                                         <span className="sr-only">Close menu</span>
-                                        {/* <XIcon className="h-6 w-6" aria-hidden="true" /> */}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
+                                        className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+
                                     </button>
                                 </div>
 
@@ -153,11 +157,11 @@ export function CategoryBar(props: Props) {
                             </button> */}
 
                             <Popover.Group className="hidden lg:ml-0 md:block lg:self-stretch">
-                                <div className="h-10 flex flex-wrap w-full lg:gap-8">
-                               
+                                <div className="h-10 flex flex-wrap w-full gap-4 lg:gap-8">
+
                                     {sortedCats(categories).map((category: any, index: number) => {
                                         return category.show ? (
-                                       
+
                                             <Popover key={index} className="flex">
                                                 {({ open }) => (
                                                     <>
@@ -200,11 +204,11 @@ export function CategoryBar(props: Props) {
                                                                                 >
                                                                                     {sortedCats(category?.subCategories).map((x: any, index: number) => (
                                                                                         <li key={index} className="flex w-full">
-                                                                                            <button type="button" 
-                                                                                            onClick={() => handleClick(category.name, x.name)} 
-                                                                                            // onClick={() => router.push(`/category/${x.name}`)} 
-                                                                                            
-                                                                                            className="text-md w-full font-semibold text-black flex hover:text-sky-500">
+                                                                                            <button type="button"
+                                                                                                onClick={() => handleClick(category.name, x.name)}
+                                                                                                // onClick={() => router.push(`/category/${x.name}`)} 
+
+                                                                                                className="text-md w-full font-semibold text-black flex hover:text-sky-500">
                                                                                                 {index + 1}. {x.name}
                                                                                             </button>
                                                                                         </li>
@@ -219,7 +223,7 @@ export function CategoryBar(props: Props) {
                                                     </>
                                                 )}
                                             </Popover>
-                                      
+
                                         ) : null
                                     })}
 

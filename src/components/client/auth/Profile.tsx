@@ -295,7 +295,7 @@ export function Profile() {
     const [searchTerm, setSearchTerm] = React.useState('')
 
     return (
-        <Layout open setOpen setSearchTerm={setSearchTerm}>
+        <Layout setSearchTerm={setSearchTerm}>
             <Setting />
         </Layout>
     )

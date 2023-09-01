@@ -189,9 +189,9 @@ export function Details() {
     return ok ? (
         <>
             {overview}
-            <div className='md:p-8 grid w-full md:max-w-7xl mx-auto gap-4'>
+            <div className='p-4 md:p-8 grid w-full md:max-w-7xl mx-auto gap-4'>
                 <div className='grid grid-cols-5 gap-4 w-full'>
-
+                    <h2 className='col-span-5 text-xl font-semibold lg:hidden flex'>{product?.name}</h2>
                     {/* Images  */}
                     <div className='col-span-5 lg:col-span-2'>
 
@@ -585,7 +585,7 @@ export function ProductDetail() {
     const [searchTerm, setSearchTerm] = React.useState('')
 
     return (
-        <Layout open setOpen setSearchTerm={setSearchTerm}>
+        <Layout setSearchTerm={setSearchTerm}>
             <Details />
         </Layout>
     )

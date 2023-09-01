@@ -10,7 +10,6 @@ export function Maine() {
     const [searchTerm, setSearchTerm] = React.useState('')
     const [home, setHome] = React.useState([]);
     const [view, setView] = React.useState(false);
-    const [open, setOpen] = React.useState(false);
 
     // get featured products data
     React.useEffect(() => {
@@ -33,12 +32,11 @@ export function Maine() {
     return view ? (
         <>
             {home.length === 0 ? (
-                <Layout open setOpen setSearchTerm={setSearchTerm}>
+                <Layout setSearchTerm={setSearchTerm}>
                     <div className='h-screen w-full bg-white' />
                 </Layout>
             ) : (
-                <Layout open={open} setOpen={setOpen} setSearchTerm={setSearchTerm}>
-                    <CategoryBar open={open} setOpen={setOpen} />
+                <Layout setSearchTerm={setSearchTerm}>
                     <Banner />
                     <div className='pb-4 min-h-screen bg-white'>
                         {home?.map((item: any, index: number) => (
