@@ -86,15 +86,15 @@ export function CategoryBar(props: Props) {
 
                                 {/* Links */}
                                 <Tab.Group as="div" className="mt-2">
-                                    <div className="border-y-2 border-sky-600">
+                                    <div className="bg-gray-100 border-t border-b border-gray-300">
                                         <Tab.List className="grid p-4">
                                             {sortedCats(categories).map((category: any, index: number) => (
                                                 <Tab
                                                     key={index}
                                                     className={({ selected }) =>
                                                         classNames(
-                                                            selected ? 'bg-sky-600 text-white' : 'text-black border-transparent',
-                                                            'flex-1 text-left whitespace-nowrap rounded-md p-2 text-base font-medium'
+                                                            selected ? 'bg-sky-600 bg-opacity-20' : 'border-transparent',
+                                                            'flex-1 text-left whitespace-nowrap rounded-md text-black p-2 text-base font-medium'
                                                         )
                                                     }
                                                 >
@@ -122,7 +122,7 @@ export function CategoryBar(props: Props) {
                                                                 <button type="button"
                                                                     onClick={() => handleClick(category.name, item.name)}
                                                                     // onClick={() => router.push(`/category/${category.name}/${item.name}`)} 
-                                                                    className="-m-3 p-2 block text-gray-200">
+                                                                    className="-m-3 p-2 block text-gray-800">
                                                                     {index + 1}. {item.name}
                                                                 </button>
                                                             </li>
@@ -188,7 +188,7 @@ export function CategoryBar(props: Props) {
                                                             leaveTo="opacity-0"
                                                         >
                                                             <Popover.Panel className="absolute top-full z-40 bg-white backdrop-blur-lg bg-opacity-80 border-b border-black inset-x-0 text-sm text-gray-500">
-                                                                {/* <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" /> */}
+                                                                <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
 
                                                                 <div className="relative min-h-[55vh] max-w-7xl mx-auto grid">
                                                                     <div className="w-full">
