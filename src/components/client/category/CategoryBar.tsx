@@ -4,7 +4,6 @@ import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import React, { Fragment, useState } from "react";
 
-
 type Props = {
     open: boolean;
     setOpen: any
@@ -18,8 +17,12 @@ export function CategoryBar(props: Props) {
     // Get Data
     React.useEffect(() => {
         async function getCategory() {
-            const res = await axiosRoot.get('/categories');
-            setCategories(res.data.categories)
+            try {
+                const res = await axiosRoot.get('/categories');
+                setCategories(res.data.categories)
+            } catch (err: any) {
+                console.log(err)
+            }
         }
         getCategory()
     }, [router, open]);
@@ -32,12 +35,12 @@ export function CategoryBar(props: Props) {
         })
 
     }
-    function handleClick2(y: any) {
-        router.push({
-            pathname: `/category/${y}`,
-            query: { y },
-        })
-    }
+    // function handleClick2(y: any) {
+    //     router.push({
+    //         pathname: `/category/${y}`,
+    //         query: { y },
+    //     })
+    // }
 
     const sortedCats = (x: any[]) => x.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
 
@@ -76,8 +79,8 @@ export function CategoryBar(props: Props) {
                                         onClick={() => setOpen(false)}
                                     >
                                         <span className="sr-only">Close menu</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
-                                        className="w-6 h-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                                            className="w-6 h-6">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
 

@@ -40,6 +40,9 @@ const userNavigation = [
 
 
 export function BasicNavbar() {
+  
+  const { pathname } = useRouter();
+  const router = useRouter();
 
   const basicNavigation = [
     {
@@ -53,8 +56,7 @@ export function BasicNavbar() {
       state: true
     },
   ]
-  const { pathname } = useRouter();
-  const router = useRouter();
+
   const navigation = [
     {
       name: 'Home', href: '/',
