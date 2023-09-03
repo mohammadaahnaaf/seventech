@@ -57,7 +57,7 @@ function Detail() {
         // subCategories: JSON.stringify(formValues),
         // name: data.get('categoryName'),
         name: category.name,
-        tagline: data.get('tagline'),
+        tagline: data.get('tagline') || "SevenTech",
         isFeatured: featured,
         show: active,
         index: +indexing
@@ -72,6 +72,7 @@ function Detail() {
     } catch (error: any) {
       console.log(error)
       setError(error.response?.data?.message)
+      setTimeout(() => { setError('') }, 2000)
     }
   }
 
@@ -91,9 +92,19 @@ function Detail() {
     const reqSubData = {
       name: sub.name,
     }
-    await axiosAPI.post(`/categories/${itemId}/sub-category`, reqSubData)
-    setSuccess('subcategory added')
-    setTimeout(() => { setSuccess('') }, 2000)
+    try {
+      await axiosAPI.post(`/categories/${itemId}/sub-category`, reqSubData)
+      setSuccess('subcategory added')
+      setTimeout(() => { setSuccess('') }, 2000)
+      setSub({
+        _id: '',
+        name: ''
+      })
+    } catch (err: any) {
+      console.log(err)
+      setError(`Subcategory: ${err.response?.data?.message}`)
+      setTimeout(() => { setError('') }, 2000)
+    }
   };
 
   // delete subcategory 
@@ -204,20 +215,20 @@ function Detail() {
                   type="text" name="name" id="name"
                   value={sub.name || ""}
                   onChange={(e) => setSub({ name: e.target.value })}
-                  className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5" placeholder="Enter a subcategory" />
+                  className="bg-gray-50 w-full border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-sky-500 focus:border-sky-500 block p-2.5" placeholder="Enter a subcategory" />
               </div>
             </div>
             <div>
-              <button className="w-auto text-white bg-black hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xs sm:w-auto px-4 py-2 text-center" type="button" onClick={addFormFields}>Add Child</button>
+              <button className="w-auto text-white bg-black hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xs sm:w-auto px-4 py-2 text-center" type="button" onClick={addFormFields}>Add Child</button>
             </div>
           </div>
 
           <div className='py-2 px-4 border-t-2 border-t-gray-300 rounded-b-lg mt-2 bg-gray-300 flex justify-end'>
-            <div className='w-full'>
-              <input id="bordered-checkbox-1" type="checkbox" onClick={() => setFeatured(!featured)} checked={featured} name="bordered-checkbox" className="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-600" />
-              <label htmlFor="bordered-checkbox-1" className="py-2.5 ml-2 w-full text-sm font-medium text-gray-900">Featured on home</label>
+            <div className='w-full flex items-center'>
+              <input id="checkbox" type="checkbox" onClick={() => setFeatured(!featured)} checked={featured} name="checkbox" className="w-4 h-4 text-sky-600 bg-gray-100 border-gray-300 rounded focus:ring-sky-600" />
+              <label htmlFor="checkbox" className="py-2 ml-2 w-full text-sm font-medium text-gray-900">Featured on home</label>
             </div>
-            <button type='submit' className='rounded-lg hover:bg-red-600 bg-black text-xs text-white px-4 py-2'>Done</button>
+            <button type='submit' className='rounded-lg hover:bg-sky-600 bg-black text-xs text-white px-4 py-2'>Done</button>
 
           </div>
         </div>
