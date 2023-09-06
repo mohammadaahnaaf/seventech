@@ -168,6 +168,11 @@ function Detail() {
                   <option value='3'>3rd</option>
                   <option value='4'>4th</option>
                   <option value='5'>5th</option>
+                  <option value='6'>6th</option>
+                  <option value='7'>7th</option>
+                  <option value='8'>8th</option>
+                  <option value='9'>9th</option>
+                  <option value='10'>10th</option>
                 </select>
               </div>
             </>

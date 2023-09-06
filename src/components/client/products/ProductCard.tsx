@@ -54,14 +54,14 @@ export function ProductCards(props: Props) {
                             width={512}
                             src={item}
                             alt='product-images'
-                            className="mx-auto w-full h-full rounded-md"
+                            className="mx-auto w-full h-full"
                         />
                     </div>
                 ))}
             </div>
             <div className="grid w-full p-2 border-t-2 border-gray-400">
                 <div className='h-20 hidden md:grid content-between'>
-                    <Link href={`/product/${product?._id}`} className="w-full font-normal text-sm text-black">
+                    <Link href={`/product/${product?._id}`} className="w-full font-normal truncate text-sm text-black">
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product?.name}
                     </Link>
@@ -70,7 +70,7 @@ export function ProductCards(props: Props) {
                     </p>
                 </div>
                 <div className='h-20 grid md:hidden content-between'>
-                    <Link href={`/product/${product?._id}`} className="text-xs w-full font-normal text-black">
+                    <Link href={`/product/${product?._id}`} className="text-xs w-full truncate font-normal text-black">
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product?.name}
                     </Link>

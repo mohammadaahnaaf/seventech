@@ -21,18 +21,20 @@ export function Shop(props: Props) {
 
         <div className='bg-white grid gap-4 px-2 pt-4'>
             {/* Title  */}
-            <div className='max-w-7xl ring-2 ring-gray-400 w-full flex items-center px-5 justify-between hover:cursor-pointer duration-300 mx-auto py-2 md:py-8 hover:bg-opacity-90 bg-gray-300'>
-                <h2 className="text-sm sm:text-md md:text-xl font-medium tracking-tight text-black">{title}</h2>
-                <Link href={`/category/${slug?.category}`}
-                    className='bg-white ring-2 ring-gray-400 hover:text-black text-gray-600 hover:bg-gray-200 hover:ring-white px-4 py-1 md:py-1 text-xs sm:text-sm md:text-md font-medium'>
-                    Explore more
-                </Link>
+            <div className='max-w-7xl relative ring-2 ring-gray-400 w-full flex items-center justify-between hover:cursor-pointer duration-300 mx-auto py-5 md:py-8 hover:bg-opacity-90 bg-gray-300'>
+                <h2 className="text-sm pl-2 md:pl-5 sm:text-md md:text-xl font-medium tracking-tight text-black">{title}</h2>
+                <div className='absolute w-full h-full flex justify-end items-center pr-2 md:pr-5'>
+                    <Link href={`/category/${slug?.category}`}
+                        className='hover:text-gray-400 md:ring-2 ring-black text-black md:px-4 py-1 md:py-1 text-xs sm:text-sm md:text-md font-medium'>
+                        Explore more
+                    </Link>
+                </div>
             </div>
 
             <div>
                 <div className="mx-auto max-w-7xl">
                     {/* <Products /> */}
-                    <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:grid-cols-4">
                         {items?.map((product: any, index: number) => {
                             return (
                                 <ProductCards key={index} product={product} />

@@ -27,7 +27,7 @@ export function Details() {
     const [ok, setOk] = useState(false)
     const [viewImage, setViewImage] = useState()
     const [isUser, setIsUser] = useState(false)
-    const [relatedProductsId, setRelatedProductsId] = useState([])
+    const [relatedProductsId, setRelatedProductsId] = useState<any[]>([])
 
     // const total = (items) => items.reduce((acc, curr) => acc + curr.rating, 0);
 
@@ -44,7 +44,7 @@ export function Details() {
         }
         itemId && getProduct()
 
-    }, [router, success]);
+    }, [itemId, router, success]);
 
     // submit review data
     const handleSubmit = async (event: any) => {
@@ -96,14 +96,20 @@ export function Details() {
         images.map((item, index) => {
             if (item === viewImage && 1 + index !== images.length) {
                 setViewImage(images[index + 1])
+            } else if (item === viewImage && 1 + index === images.length) {
+                setViewImage(images[0])
             }
         })
     }
 
     function prevImage() {
+
+        let last = images.length - 1
         images.map((item, index) => {
             if (item === viewImage && index !== 0) {
                 setViewImage(images[index - 1])
+            } else if (item === viewImage && index === 0) {
+                setViewImage(images[last])
             }
         })
     }
@@ -120,7 +126,7 @@ export function Details() {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-black bg-opacity-25" />
+                    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -134,41 +140,37 @@ export function Details() {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-center align-middle shadow-xl transition-all">
-                                <Dialog.Title
-                                    as="h3"
-                                    className="text-lg font-medium leading-6 text-gray-900"
-                                >
-                                    Image Preview
-                                </Dialog.Title>
-                                <div className="mt-2 mx-auto">
-                                    <div className='mx-auto cursor-pointer '>
+                            <Dialog.Panel className="w-full max-w-xl transform overflow-hidden bg-white p-6 text-center align-middle shadow-xl transition-all">
+
+                                <div className="flex relative gap-4 items-center justify-between mt-2 mx-auto">
+                                    <button
+                                        type="button"
+                                        className="inline-flex absolute z-20 left-2 justify-center rounded-full border border-transparent bg-blue-100 p-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005DAB] focus-visible:ring-offset-2"
+                                        onClick={prevImage}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                        </svg>
+
+                                    </button>
+                                    <div className='mx-auto cursor-pointer relative h-[50vh] w-full'>
                                         {viewImage && (
                                             <Image
-                                                height={640}
-                                                width={640}
+                                                fill
                                                 src={`${viewImage}`}
-                                                alt='product-images'
-                                                className="mx-auto w-[40vh] rounded-lg h-[40vh]"
+                                                alt='preview-images'
+                                                className="mx-auto w-full h-full"
                                             />
                                         )}
                                     </div>
-                                </div>
-
-                                <div className="mt-2 flex justify-between ">
                                     <button
                                         type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005DAB] focus-visible:ring-offset-2"
-                                        onClick={prevImage}
-                                    >
-                                        Back
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005DAB] focus-visible:ring-offset-2"
+                                        className="inline-flex absolute right-2 justify-center rounded-full border border-transparent bg-blue-100 p-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#005DAB] focus-visible:ring-offset-2"
                                         onClick={nextImage}
                                     >
-                                        Next
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                        </svg>
                                     </button>
                                 </div>
                             </Dialog.Panel>
@@ -197,33 +199,32 @@ export function Details() {
 
                         <div className='grid gap-4 items-center content-between'>
                             {images?.slice(view - 1, view).map((item, index) => (
-                                <div className='relative ring-2 ring-gray-200 hover:ring-0 h-[50vh] w-full hover:scale-105 rounded-md duration-300 cursor-pointer flex items-center mx-auto' key={index}>
+                                <div className='relative ring-2 ring-gray-200 hover:ring-0 h-[30vh] md:h-[50vh] w-full hover:scale-95 rounded-md duration-300 cursor-pointer flex items-center mx-auto' key={index}>
                                     <Image
                                         fill
-                                        // height={512}
-                                        // width={512}
                                         src={item}
                                         alt='product-images'
                                         className="mx-auto w-full h-full rounded-md"
                                     />
-                                    <div className='absolute backdrop-blur-sm inset-0 z-10 opacity-0 hover:opacity-100 duration-300 flex justify-center items-center'>
-                                        <button onClick={() => handleViewImage(item)} className="text-white bg-[#005DAB] p-1 hover:bg-black text-lg font-semibold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <div className='absolute backdrop-blur-sm inset-0 z-10 rounded-md opacity-0 hover:opacity-100 duration-300 flex justify-center items-center'>
+                                        <button onClick={() => handleViewImage(item)} className="bg-white text-[#005DAB] rounded-full p-4 hover:bg-black hover:text-white text-lg font-semibold">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                                             </svg>
+
                                         </button>
                                     </div>
                                 </div>
                             ))}
-                            <div className='grid grid-cols-4 gap-4 items-center justify-between'>
+                            <div className='grid grid-cols-4 gap-2 md:gap-4 items-center justify-between'>
                                 {images?.map((item, index) => (
-                                    <button key={index} type='button' className='ring-2 justify-center hover:scale-95 duration-300 hover:ring-black items-center flex ring-gray-200 rounded-sm w-full' onClick={() => setView(index + 1)}>
+                                    <button key={index} type='button' className='ring-2 justify-center hover:scale-95 duration-300 hover:ring-black items-center flex ring-gray-200 rounded-md w-full' onClick={() => setView(index + 1)}>
                                         <Image
                                             height={120}
                                             width={120}
                                             src={`${item}`}
                                             alt='product-images'
-                                            className="min-w-full h-[15vh] rounded-sm"
+                                            className="min-w-full h-[15vh] rounded-md"
                                         />
                                     </button>
                                 ))}
@@ -363,7 +364,7 @@ export function Details() {
                         <>
                             <div className="sm:hidden">
                                 <label htmlFor="tabs" className="sr-only">More Information</label>
-                                <select value={show || ''} onChange={(e) => setShow(e.target.value)} id="tabs" className="bg-blue-50 border border-blue-300 text-gray-700 sm:text-sm rounded-lg focus:ring-[#005DAB] focus:border-[#005DAB] block w-full">
+                                <select value={show || ''} onChange={(e) => setShow(e.target.value)} id="tabs" className="bg-[#005DAB] outline-none border-0 p-2 border-blue-300 text-white my-4 sm:text-sm focus:border-0 block w-full">
                                     <option value='details'>
                                         Specifications
                                     </option>
