@@ -20,7 +20,7 @@ export function ProductCards(props: Props) {
         id: product?._id,
         imageSrc: product.images[0],
         name: product.name,
-        price: product.onlinePrice,
+        price: product.offerPrice || product.onlinePrice,
         category: product.category,
         stock: product.quantity,
         quantity: 1
@@ -66,7 +66,7 @@ export function ProductCards(props: Props) {
                         {product?.name}
                     </Link>
                     <p className="mt-1 w-full flex justify-end items-center text-end text-sm gap-2 text-green-800">
-                        <span className='text-red-500 line-through'> ৳ {product.regularPrice}</span> ৳ {product.onlinePrice}
+                        <span className='text-red-500 line-through'> ৳ {product.regularPrice}</span> ৳ {product.offerPrice || product.onlinePrice}
                     </p>
                 </div>
                 <div className='h-20 grid md:hidden content-between'>

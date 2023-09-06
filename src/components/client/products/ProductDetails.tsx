@@ -81,7 +81,7 @@ export function Details() {
         id: product?._id,
         imageSrc: images[0],
         name: product?.name,
-        price: product?.onlinePrice,
+        price: product.offerPrice || product.onlinePrice,
         category: product?.category,
         stock: product?.quantity,
         quantity: 1

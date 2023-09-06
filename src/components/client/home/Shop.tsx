@@ -55,7 +55,7 @@ export function ProductCard(product: any) {
         id: product._id,
         imageSrc: product.images[0],
         name: product.name,
-        price: product.onlinePrice,
+        price: product.offerPrice || product.onlinePrice,
         category: product.category,
         quantity: 1
     }
@@ -91,8 +91,8 @@ export function ProductCard(product: any) {
                         </Link>
                     </h3>
                     <div className='flex gap-2 justify-end'>
-                        <p className="mt-1 text-end line-through text-sm text-red-500">৳ {product.regularPrice}</p>
-                        <p className="mt-1 text-end text-sm text-green-500">৳ {product.onlinePrice}</p>
+                        <p className="mt-1 text-end line-through text-sm text-[red]">৳ {product.regularPrice}</p>
+                        <p className="mt-1 text-end text-sm text-[green]">৳ {product.offerPrice || product.onlinePrice}</p>
                     </div>
                 </div>
             </div>
