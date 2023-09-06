@@ -19,10 +19,10 @@ export function ProductCards(props: Props) {
     const cartProduct = {
         id: product?._id,
         imageSrc: product.images[0],
-        name: product.name,
-        price: product.offerPrice || product.onlinePrice,
-        category: product.category,
-        stock: product.quantity,
+        name: product?.name,
+        price: product?.offerPrice || product?.onlinePrice,
+        category: product?.category,
+        stock: product?.quantity,
         quantity: 1
     }
 
@@ -65,8 +65,8 @@ export function ProductCards(props: Props) {
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product?.name}
                     </Link>
-                    <p className="mt-1 w-full flex justify-end items-center text-end text-sm gap-2 text-green-800">
-                        <span className='text-red-500 line-through'> ৳ {product.regularPrice}</span> ৳ {product.offerPrice || product.onlinePrice}
+                    <p className="mt-1 w-full flex justify-end items-center text-end text-sm gap-2 text-[green]">
+                        <span className='text-[red] line-through'> ৳ {product.regularPrice}</span> ৳ {product?.offerPrice || product?.onlinePrice}
                     </p>
                 </div>
                 <div className='h-20 grid md:hidden content-between'>
@@ -91,7 +91,7 @@ export function ProductCards(props: Props) {
                         </button>
 
                         <p className="mt-1 w-full flex justify-end items-center text-end text-xs gap-2 text-green-500">
-                            <span className='text-gray-500 line-through'> ৳ {product.regularPrice}</span> ৳ {product.offerPrice || product.onlinePrice}
+                            <span className='text-gray-500 line-through'> ৳ {product?.regularPrice}</span> ৳ {product?.offerPrice || product?.onlinePrice}
                         </p>
                     </div>
                 </div>

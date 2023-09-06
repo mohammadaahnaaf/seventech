@@ -19,6 +19,7 @@ const Detail = () => {
             _id: '',
             name: '',
             onlinePrice: '',
+            offerPrice: '',
             productId: '',
             quantity: ''
         },
@@ -205,8 +206,6 @@ const Detail = () => {
                                 {statusOpsn.map((x, index) => (
                                     <option key={index} value={x.value}>{x.name}</option>
                                 ))}
-                                {/* <option value="delivered">Delivered</option>
-                                <option value="cancelled">Cancel</option> */}
                             </select>
                         </div>
                         <div>
@@ -219,13 +218,12 @@ const Detail = () => {
                     </div>
                 </div>
 
-                {/* Dynamic Input  */}
                 {/* Products  */}
                 <div className='grid w-full items-start gap-2'>
                     <h1 className='text-start px-4 py-3 mb-5 rounded-lg bg-gray-200 text-xl'>Ordered Products List</h1>
                     <div className='grid w-full items-end gap-2'>
 
-                        {products?.map((element, index) => (
+                        {products?.map((element: any, index: number) => (
                             <div className="grid gap-2 grid-cols-10 w-full items-center" key={index}>
                                 <div className='col-span-4'>
                                     <label htmlFor="name" className="block mb-2 text-xs font-medium text-gray-900">Product Name</label>
@@ -237,7 +235,7 @@ const Detail = () => {
                                 </div>
                                 <div className='col-span-3'>
                                     <label htmlFor="onlinePrice" className="w-full mb-2 text-xs font-medium text-gray-900">Price</label>
-                                    <input type="number" name="onlinePrice" id="onlinePrice" value={element.onlinePrice || ""} onChange={(e) => handleChange(element._id, e)} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5" placeholder="Price" />
+                                    <input type="number" name="onlinePrice" id="onlinePrice" value={element?.offerPrice || element.onlinePrice} onChange={(e) => handleChange(element._id, e)} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5" placeholder="Price" />
                                 </div>
                                 {/* <div className='flex'>
 
