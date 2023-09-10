@@ -1,9 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
+import { classNames } from '..';
 
 type Props = {
     setSearchTerm: any;

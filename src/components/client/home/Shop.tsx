@@ -3,10 +3,7 @@ import { useCart } from 'react-use-cart'
 import Link from 'next/link';
 import { ProductCards } from '../products';
 import Image from 'next/image';
-
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
+import { classNames } from '@seventech/utils';
 
 interface Props {
     items: any;
@@ -70,8 +67,10 @@ export function ProductCard(product: any) {
                         !product.inStock ? "cursor-not-allowed" : ""
                     )}
                 >
-                    {/* <ShoppingCartIcon className='h-7 w-7' /> */}
-                </button>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                        className='lg:h-7 lg:w-7 h-5 w-5' >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                    </svg>                </button>
             </div>
             {product?.images?.slice(0, 1).map((item: any, index: number) => (
                 <div key={index} className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden group-hover:opacity-75 lg:aspect-none lg:h-80">
@@ -84,12 +83,12 @@ export function ProductCard(product: any) {
             ))}
             <div className="flex w-full p-2 justify-between border-t-2 border-red-600 bg-red-600 bg-opacity-10">
                 <div className='w-full grid justify-between items-center min-h-44'>
-                    <h3 className="text-sm text-gray-200">
-                        <Link href={`/product/${product?._id}`}>
+                    <>
+                        <Link className="text-sm text-gray-200 truncate" href={`/product/${product?._id}`}>
                             <span aria-hidden="true" className="absolute inset-0" />
-                            {product.name.substring(0, 53)}
+                            {product.name}
                         </Link>
-                    </h3>
+                    </>
                     <div className='flex gap-2 justify-end'>
                         <p className="mt-1 text-end line-through text-sm text-[red]">৳ {product.regularPrice}</p>
                         <p className="mt-1 text-end text-sm text-[green]">৳ {product?.offerPrice || product?.onlinePrice}</p>

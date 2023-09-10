@@ -4,12 +4,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCart } from 'react-use-cart';
-import { axiosAPI, isServer } from '..';
+import { axiosAPI, classNames, isServer } from '..';
 import Image from 'next/image';
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 const navigation = [
   {
@@ -40,7 +36,7 @@ const userNavigation = [
 
 
 export function BasicNavbar() {
-  
+
   const { pathname } = useRouter();
   const router = useRouter();
 
@@ -372,10 +368,10 @@ export function NewNavBar(props: IProps) {
                     </Menu>
                   </div>
                 </div>
-                <div className="-mr-2 flex md:hidden">
+                <div className="flex md:hidden">
 
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="focus:bg-opacity-20 bg-opacity-10 bg-sky-600 inline-flex items-center justify-center p-2 rounded-md text-gray-600">
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-800">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
@@ -401,13 +397,15 @@ export function NewNavBar(props: IProps) {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Disclosure.Panel className="md:hidden bg-gray-200">
+              <Disclosure.Panel className="md:hidden bg-gray-50">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-
+                  <div className='bg-sky-200 rounded-lg'>
+                    <SearchBar setSearchTerm={setSearchTerm} searchButton={false}/>
+                  </div>
                   {me?.isAdmin && (
                     <Disclosure.Button
                       onClick={() => router.push('/admin')} className={classNames(
-                        pathname === "/admin" ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        pathname === "/admin" ? 'bg-sky-200 text-gray-500' : '',
                         'flex items-center text-left w-full px-3 py-2 text-gray-800 rounded-md text-base font-medium'
                       )}
                     // aria-current={pathname === item.href ? 'page' : undefined}
@@ -423,7 +421,7 @@ export function NewNavBar(props: IProps) {
                     <Disclosure.Button
                       key={item.name}
                       onClick={() => router.push(`/${item.href}`)} className={classNames(
-                        pathname === item.href ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        pathname === item.href ? 'bg-sky-200 text-gray-500' : '',
                         'flex items-center text-left w-full px-3 py-2 text-gray-800 rounded-md text-base font-medium'
                       )}
                       aria-current={pathname === item.href ? 'page' : undefined}

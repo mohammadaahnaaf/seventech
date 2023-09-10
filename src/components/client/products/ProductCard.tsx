@@ -1,11 +1,9 @@
+import { classNames } from '@seventech/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { useCart } from 'react-use-cart';
 
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
 
 interface Props {
     product: any
