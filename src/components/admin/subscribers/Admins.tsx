@@ -6,7 +6,7 @@ import { useDebounce } from 'use-debounce';
 import { axiosAPI } from '@seventech/utils';
 import { AdminLayout } from '@seventech/layouts';
 
-function Subscriber() {
+function Admin() {
 
     const [searchTerm, setSearchTerm] = React.useState('')
     const [selected, setSelected] = React.useState<any[]>([]);
@@ -231,7 +231,7 @@ function Subscriber() {
                                     <table className='table-auto w-full'>
                                         <thead className='border-b bg-gray-100 border-white'>
                                             <tr>
-                                                <th>Customer Info</th>
+                                                <th>Admins Info</th>
                                                 <th>Details</th>
                                             </tr>
                                         </thead>
@@ -373,7 +373,7 @@ function Subscriber() {
                             const isItemSelected = isSelected(item._id);
 
                             {/* .slice(0, n) is used to get a range of items from Array[] */ }
-                            return !item.isAdmin ? (
+                            return item.isAdmin ? (
                                 <tr key={index} className="bg-white border-b">
                                     <td className="p-4 w-4">
                                         <div className="flex items-center">
@@ -422,10 +422,10 @@ function Subscriber() {
     )
 }
 
-export function Subscribers() {
+export function Admins() {
     return (
         <AdminLayout>
-            <Subscriber />
+            <Admin />
         </AdminLayout>
     )
 }

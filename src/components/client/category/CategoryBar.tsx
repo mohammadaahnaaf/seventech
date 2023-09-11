@@ -101,7 +101,7 @@ export function CategoryBar(props: Props) {
                                                         )
                                                     }
                                                 >
-                                                    {index + 1}. {category.name}
+                                                    {category.name}
                                                 </Tab>
                                             ))}
                                         </Tab.List>
@@ -117,7 +117,7 @@ export function CategoryBar(props: Props) {
                                                     >
                                                         <li className="flow-root">
                                                             <button type="button" onClick={() => router.push(`/category/${category.name}`)} className="-m-3 p-2 block text-md font-semibold text-black">
-                                                                {index + 1}. {category.name}
+                                                                {category.name}
                                                             </button>
                                                         </li>
                                                         {sortedCats(category?.subCategories).map((item: any, index: number) => (
@@ -126,7 +126,7 @@ export function CategoryBar(props: Props) {
                                                                     onClick={() => handleClick(category.name, item.name)}
                                                                     // onClick={() => router.push(`/category/${category.name}/${item.name}`)} 
                                                                     className="-m-3 p-2 block text-gray-800">
-                                                                    {index + 1}. {item.name}
+                                                                    {item.name}
                                                                 </button>
                                                             </li>
                                                         ))}
@@ -209,10 +209,9 @@ export function CategoryBar(props: Props) {
                                                                                         <li key={index} className="flex w-full">
                                                                                             <button type="button"
                                                                                                 onClick={() => handleClick(category.name, x.name)}
-                                                                                                // onClick={() => router.push(`/category/${x.name}`)} 
-
-                                                                                                className="text-md w-full font-semibold text-black flex hover:text-sky-500">
-                                                                                                {index + 1}. {x.name}
+                                                                                                className="text-md w-full font-semibold text-black flex hover:text-sky-500"
+                                                                                            >
+                                                                                                {x.name}
                                                                                             </button>
                                                                                         </li>
                                                                                     ))}

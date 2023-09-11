@@ -4,9 +4,9 @@ import React from 'react'
 
 export function Footer() {
   return (
-    <footer className='flex gap-2 align-bottom justify-center text-lg bg-gray-200 py-2'>
+    <footer className='flex gap-2 align-bottom justify-center text-lg bg-gray-100 py-2'>
       <div className='flex text-sm gap-2 justify-center'>
-        <h1 className='text-blue-600'>
+        <h1 className='text-blue-600 text-center w-full'>
           Copyright © SevenTech 2022.
         </h1>
       </div>
@@ -18,28 +18,33 @@ export function Footers() {
   return (
 
     <footer className="bg-gray-200 w-full flex justify-center font-normal bg-center bg-cover">
-      <div className='p-6 max-w-7xl max-auto w-full'>
-        <div className="md:flex md:justify-between">
+      <div className='px-4 py-6 max-w-7xl max-auto w-full'>
+        <div className="md:flex gap-6 md:justify-between">
+         
           <div className="md:hidden block mb-6">
             <Link href="/" className="grid gap-2 items-center justify-items-center">
-              <Image height={90} width={100} src="/logo.png" alt="Logo" />
-              <span className="self-center text-lg font-medium whitespace-nowrap text-black hover:text-red-600">SevenTech Engineering LTD.</span>
-
+              <Image height={70} width={90} src="/logo.png" alt="Logo" />
+              <span className="self-center text-md font-medium whitespace-nowrap text-black hover:text-sky-600">
+                Seventech & Engineering Ltd.
+              </span>
             </Link>
           </div>
+
           <div className="hidden md:grid items-center">
             <Link href="/" className="grid gap-2 items-center justify-items-center">
-              <Image height={100} width={150} src="/logo.png" alt="Logo" />
-              <span className="self-center text-lg font-medium whitespace-nowrap text-black hover:text-red-600">SevenTech Engineering Ltd.</span>
-
+              <Image height={90} width={100} src="/logo.png" alt="Logo" />
+              <span className="self-center text-lg font-medium whitespace-nowrap text-black hover:text-sky-600">
+                Seventech & Engineering Ltd.
+              </span>
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+          <div className="grid gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <div>
 
-              <h2 className="mb-3 text-sm font-semibold uppercase text-black">Call Us</h2>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-sky-700">Call Us</h2>
               <ul className="text-black">
-                <li className="mb-2 hover:text-red-600 flex items-center">
+                <li className="mb-2 hover:text-sky-600 flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
@@ -47,7 +52,7 @@ export function Footers() {
                     +8801911444466
                   </Link>
                 </li>
-                <li className="flex hover:text-red-600 items-center">
+                <li className="flex hover:text-sky-600 items-center">
                   <svg
                     className="h-4 w-4 mr-1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -64,30 +69,31 @@ export function Footers() {
             </div>
 
             <div>
-              <h2 className="mb-3 text-sm font-semibold uppercase text-black">About</h2>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-sky-700">About</h2>
               <ul className="text-black">
                 <li className="mb-2">
-                  <Link href="/about" className="hover:text-red-600">
+                  <Link href="/about" className="hover:text-sky-600">
                     About us
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="/about/terms" className="hover:text-red-600">
+                  <Link href="/about/terms" className="hover:text-sky-600">
                     Terms &amp; Conditions
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="/about/privacy" className="hover:text-red-600">
+                  <Link href="/about/privacy" className="hover:text-sky-600">
                     Privacy Policy
                   </Link>
                 </li>
               </ul>
             </div>
+
             <div>
-              <h2 className="mb-3 text-sm font-semibold uppercase text-black">Follow Us</h2>
+              <h2 className="mb-3 text-sm font-semibold uppercase text-sky-700">Follow Us</h2>
               <ul className="text-black">
                 <li className="mb-2">
-                  <Link href="https://www.facebook.com/rdragonbd/" className="flex items-center hover:text-red-600">
+                  <Link href="https://www.facebook.com/rdragonbd/" className="flex items-center hover:text-sky-600">
 
                     <svg version="1.1" height="24" width="20" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2"
                       viewBox="0 0 256 256" >
@@ -100,8 +106,8 @@ export function Footers() {
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="https://twitter.com/redragonusa" className="hover:text-red-600 flex items-center">
-                    <svg viewBox="0 0 1200 1227" height="20" width="20" fill="currentColor" className="hover:text-red-600 flex items-center mr-2"
+                  <Link href="https://twitter.com/redragonusa" className="hover:text-sky-600 flex items-center">
+                    <svg viewBox="0 0 1200 1227" height="20" width="20" fill="currentColor" className="hover:text-sky-600 flex items-center mr-2"
                       xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"
@@ -112,7 +118,7 @@ export function Footers() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://www.instagram.com/redragon_usa" className="hover:text-red-600 flex items-center">
+                  <Link href="https://www.instagram.com/redragon_usa" className="hover:text-sky-600 flex items-center">
 
                     <svg
                       className="h-5 w-5 mr-2"
@@ -129,19 +135,18 @@ export function Footers() {
                 </li>
               </ul>
             </div>
+
             <div>
-              <h2 className="mb-3 text-sm font-semibold text-black uppercase">Find us</h2>
+              <h2 className="mb-3 text-sm font-semibold text-sky-700 uppercase">Find us</h2>
               <ul className="text-black">
                 <li className="mb-2">
-                  <Link href='https://goo.gl/maps/7nBfZRWCmJXRNqdX8' className='cursor-pointer hover:text-red-600'>
-                    <p className='flex items-center mb-2'>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                      </svg>
-                      Level-5/39, Kazi Bhaban,
-                    </p>
-                    <p className='mb-2 ml-5'>New Elephant Road,</p>
-                    <p className='ml-5'>Dhaka-1205, Bangladesh.</p>
+                  <Link href='https://goo.gl/maps/7nBfZRWCmJXRNqdX8' className='cursor-pointer hover:text-sky-600 flex'>
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg> */}
+                    <span className='flex items-center'>
+                      Level-5/39, Kazi Bhaban, New Elephant Road, Dhaka-1205, Bangladesh.
+                    </span>
                   </Link>
                 </li>
                 <li>
@@ -151,11 +156,14 @@ export function Footers() {
           </div>
         </div>
         <hr className="my-3 border-white sm:mx-auto lg:my-6" />
-        <div className="sm:flex sm:items-center sm:justify-center">
-          <span className="text-sm text-gray-600 text-center">© 2023{' '}
-            <Link href="https://www.seventech.com.bd" className="hover:text-sky-600">
-              SevenTech™{' '}
-            </Link>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-sm text-gray-600 text-center">
+            © 2023{' '}
+          </span>
+          <Link href="https://www.seventech.com.bd" className="hover:text-sky-600">
+            SevenTech™{' '}
+          </Link>
+          <span>
             All rights reserved.
           </span>
         </div>

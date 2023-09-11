@@ -621,18 +621,18 @@ function Add() {
                             </div>
                         ))}
                         <div>
-                            <button className="w-auto px-4 py-2 text-xs text-center text-white bg-black rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type="button" onClick={addMoreinfo}>Add</button>
+                            <button className="w-auto px-4 py-2 text-xs text-center text-white bg-black rounded-lg hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type="button" onClick={addMoreinfo}>Add</button>
                         </div>
                     </div>
 
                 </div>
                 <div className='flex items-center justify-between gap-2 p-4 mt-2 bg-gray-200 rounded-lg'>
                     <div className='flex items-center justify-self-end gap-2'>
-                        <button onClick={() => setEnabled(!enabled)} className="w-auto px-4 py-2 text-xs text-center bg-white text-black ring-2 ring-black hover:ring-red-600 rounded-lg hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type='button'>Add Related Products</button>
+                        <button onClick={() => setEnabled(!enabled)} className="w-auto px-4 py-2 text-xs text-center bg-white text-black ring-2 ring-black hover:ring-sky-600 rounded-lg hover:bg-sky-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-sky-300 sm:w-auto" type='button'>Add Related Products</button>
                     </div>
                     <div className='flex items-center justify-self-end gap-2'>
-                        <button className="w-auto px-4 py-2 text-xs text-center text-white bg-red-600 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type='button'>Cancel</button>
-                        <button className="w-auto px-4 py-2 text-xs text-center text-white bg-black rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type='submit'>Submit</button>
+                        <button onClick={() => router.back()} className="w-auto px-4 py-2 text-xs text-center text-white bg-red-600 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type='button'>Cancel</button>
+                        <button className="w-auto px-4 py-2 text-xs text-center text-white bg-black rounded-lg hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-gray-300 sm:w-auto" type='submit'>Submit</button>
                     </div>
                 </div>
             </form>
@@ -652,6 +652,7 @@ type PProps = {
     add: any;
     isItemSelected: boolean;
 }
+
 export function ProductCard(props: PProps) {
 
     const { product, add, isItemSelected } = props
@@ -668,8 +669,8 @@ export function ProductCard(props: PProps) {
             </button>
             <div className="h-[15vh] grid grid-cols-1 gap-2 content-between">
                 <div className='p-2'>
-                    <Link href={`/product/${product._id}`}
-                        className="text-gray-900 font-semibold text-xs tracking-tight">{product.name.substring(0, 40)}...
+                    <Link href={`/product/${product._id}`} className="text-gray-900 font-semibold text-xs tracking-tight truncate">
+                        {product.name}...
                     </Link>
                 </div>
                 <div className={classNames(

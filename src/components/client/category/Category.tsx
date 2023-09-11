@@ -79,7 +79,7 @@ export function Category(props: Props) {
         function slugify() {
             if (!fy) {
                 setTimeout(() => { setName(jinish) }, 500)
-            } else if(!!fy) {
+            } else if (!!fy) {
                 setTimeout(() => { setSearchSubCats(fz) }, 500)
                 setTimeout(() => { setCats(fy) }, 500)
             }
@@ -169,23 +169,27 @@ export function Category(props: Props) {
                             leaveFrom="translate-x-0"
                             leaveTo="translate-x-full"
                         >
-                            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-sm flex-col overflow-y-auto bg-black shadow-xl">
-                                <div className="flex items-center py-4 justify-between px-4">
-                                    <h2 className="text-lg font-semibold text-red-600">Categories</h2>
+                            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-sm flex-col overflow-y-auto bg-white shadow-xl">
+                                <div className="flex items-center py-4 justify-between px-4 bg-sky-600">
+                                    <h2 className="text-lg font-semibold text-black">Categories</h2>
                                     <button
                                         type="button"
-                                        className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md p-2 text-red-600"
+                                        className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md p-2 text-black"
                                         onClick={() => setMobileFiltersOpen(false)}
                                     >
                                         <span className="sr-only">Close menu</span>
-                                        {/* <XIcon className="h-6 w-6" aria-hidden="true" /> */}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                                            className="h-6 w-6" >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+
                                     </button>
                                 </div>
 
                                 {/* Category List */}
-                                <div className="border-t-2 border-red-600">
+                                <div>
                                     <h3 className="sr-only">Categories</h3>
-                                    <ul role="list" className="px-4 text-md grid gap-2 py-3 font-semibold text-red-600">
+                                    <ul role="list" className="px-4 text-md grid gap-2 py-3 font-semibold text-black">
                                         {sortedCategories?.map((category: any, index: number) => (
                                             <li key={index}>
                                                 <button type='button' onClick={() => handleTo(category.name)}>
@@ -194,8 +198,8 @@ export function Category(props: Props) {
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className='border-t-2 p-4 border-red-600'>
-                                        <div className='w-full bg-opacity-10 px-4 bg-red-600 rounded-lg '>
+                                    <div className='p-4'>
+                                        <div className='w-full bg-opacity-10 px-4 bg-sky-600 rounded-lg '>
                                             <RangeSlider
                                                 minValue={minValue}
                                                 setMinValue={setMinValue}
@@ -208,57 +212,6 @@ export function Category(props: Props) {
                                             />
                                         </div>
                                     </div>
-                                    <div className='hidden'>
-                                        {filters.map((section) => (
-                                            <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
-                                                {({ open }) => (
-                                                    <>
-                                                        <h3 className="-mx-2 -my-3 flow-root">
-                                                            <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-300">
-                                                                <span className="font-medium text-gray-900">{section.name}</span>
-                                                                <span className="ml-6 flex items-center">
-                                                                    {open ? (
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                                                            className="h-5 w-5">
-                                                                            <path fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
-                                                                        </svg>
-
-                                                                    ) : (
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                                                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                                        </svg>
-                                                                    )}
-                                                                </span>
-                                                            </Disclosure.Button>
-                                                        </h3>
-                                                        <Disclosure.Panel className="pt-6">
-                                                            <div className="space-y-6">
-                                                                {section.options.map((option, optionIdx) => (
-                                                                    <div key={option.value} className="flex items-center">
-                                                                        <input
-                                                                            id={`filter-mobile-${section.id}-${optionIdx}`}
-                                                                            name={`${section.id}[]`}
-                                                                            defaultValue={option.value}
-                                                                            type="checkbox"
-                                                                            defaultChecked={option.checked}
-                                                                            className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
-                                                                        />
-                                                                        <label
-                                                                            htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                                                            className="ml-3 min-w-0 flex-1 text-gray-300"
-                                                                        >
-                                                                            {option.label}
-                                                                        </label>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        </Disclosure.Panel>
-                                                    </>
-                                                )}
-                                            </Disclosure>
-                                        ))}
-                                    </div>
-
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
@@ -268,17 +221,18 @@ export function Category(props: Props) {
 
             {/* PC view */}
             <main className="mx-auto">
-                <div className='bg-gradient-to-r from-blue-500 via-pink-600 to-green-500'>
-                    <div className="flex items-baseline px-4 sm:px-6 lg:px-8 justify-between py-6">
+                <div className='bg-gradient-to-r from-blue-600 to-sky-500'>
+                    <div className="flex items-baseline px-4 sm:px-6 lg:px-8 justify-between py-3 lg:py-6">
                         {/* Upper Top section */}
-                        <h1 className="text-xl md:text-2xl font-normal tracking-tight text-gray-200">Categories</h1>
-                        <div className="flex items-center">
+                        <h1 className="text-lg md:text-2xl hidden lg:block font-normal tracking-tight text-white">Categories</h1>
+                        <div className="flex items-center justify-between w-full flex-row-reverse lg:w-auto">
+
                             <Menu as="div" className="relative inline-block text-left">
                                 <div>
-                                    <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-300 hover:text-gray-300">
+                                    <Menu.Button className="group inline-flex items-end justify-center text-sm md:text-md font-medium hover:text-white text-black">
                                         Sort by
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-200 group-hover:text-gray-300">
+                                            className="-mr-1 ml-1 h-4 w-4 flex-shrink-0 group-hover:text-white text-black">
                                             <path fillRule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clipRule="evenodd" />
                                         </svg>
 
@@ -294,19 +248,18 @@ export function Category(props: Props) {
                                     leaveFrom="transform opacity-100 scale-100"
                                     leaveTo="transform opacity-0 scale-95"
                                 >
-                                    <Menu.Items className="absolute right-0 z-40 mt-2 w-40 origin-top-right rounded-md bg-black ring-white shadow-2xl ring-1 ring-opacity-20 focus:outline-none">
+                                    <Menu.Items className="absolute right-0 z-40 mt-2 w-40 origin-top-right rounded-md bg-white ring-black shadow-2xl ring-1 ring-opacity-20 focus:outline-none">
                                         <div className="py-1">
-                                            {sortOptions.map((option) => (
+                                            {sortOptions.map((option:any) => (
                                                 <Menu.Item key={option.name}>
                                                     {({ active }) => (
-
                                                         <button
                                                             type='button'
                                                             onClick={() => hadlePrice(option.bol)}
                                                             className={classNames(
-                                                                option.current ? 'font-medium text-gray-300' : 'text-gray-300',
-                                                                active ? 'bg-red-500' : '',
-                                                                'block px-4 py-2 text-sm w-full text-left'
+                                                                option.bol === priceHL ? 'font-medium text-white bg-sky-500' : 'text-black',
+                                                                active ? 'bg-black text-white' : '',
+                                                                'block px-4 py-2 font-semibold text-sm w-full text-left'
                                                             )}
                                                         >
                                                             {option.name}
@@ -319,9 +272,10 @@ export function Category(props: Props) {
                                 </Transition>
                             </Menu>
 
+                            {/* Mobile filter button  */}
                             <button
                                 type="button"
-                                className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-300 sm:ml-6 lg:hidden"
+                                className="-m-2 ml-4 p-2 flex text-white hover:text-sky-300 sm:ml-6 lg:hidden"
                                 onClick={() => handleFilterOpen()}
                             >
                                 <span className="sr-only">Filters</span>
@@ -488,7 +442,9 @@ export function Category(props: Props) {
                                     )
                                 })}
                             </div>
-                            <NextPage total={total} page={page} setPage={setPage} pageSize={pageSize} setPageSize={setPageSize} />
+                            {total / pageSize > 1 && (
+                                <NextPage total={total} page={page} setPage={setPage} pageSize={pageSize} setPageSize={setPageSize} />
+                            )}
                         </div>
                     </div>
                 </section>

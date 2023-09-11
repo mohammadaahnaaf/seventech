@@ -139,18 +139,6 @@ const Detail = () => {
             value: 'cancelled'
         },
     ]
-    // const p =[
-    //     'pending',
-    //     'delivered',
-    //     'cancelled',
-    //     'confirmed',
-    //     'unreachable',
-    //     'hold',
-    //     'paid',
-    //     'processing',
-    //     'shiped',
-    //     'refunded',
-    // ]
 
     return (
 
