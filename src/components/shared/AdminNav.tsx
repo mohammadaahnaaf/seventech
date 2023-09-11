@@ -4,8 +4,6 @@ import Image from 'next/image'
 import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
 import { axiosAPI, classNames, isServer } from '../utils'
-import { SearchBar } from '.'
-import { useCart } from 'react-use-cart'
 
 
 const navigation = [
@@ -162,7 +160,6 @@ export const AdminNav = (props: Props) => {
                                                                         'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
                                                                     )}
                                                                     href={item.href}
-                                                                // onClick={() => setUseri(item.state)}
                                                                 >
                                                                     {item.name}
                                                                 </Link>

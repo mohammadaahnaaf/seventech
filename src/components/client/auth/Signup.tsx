@@ -55,16 +55,17 @@ export function Signup() {
             <BasicNavbar />
 
             <div className="grid grid-cols-3 h-[100vh] w-full">
-                <div className='col-span-3 lg:col-span-2 xl:col-span-1 h-full w-full content-center bg-white p-6'>
+                <div className='col-span-3 lg:col-span-2 xl:col-span-1 h-full w-full content-center bg-white p-3 md:p-6'>
                     <form onSubmit={handleSubmit} className='grid gap-4 h-full content-center'>
 
-                        <h1 className='text-center text-3xl pb-4 font-semibold'>Create an account</h1>
-                        <h1 className='text-center text-md pb-4'>Already have an account?{' '}
-                            <span className='hover:text-sky-500'>
-                                <Link href='/login'>
-                                    Login
-                                </Link>
+                        <h1 className='text-center text-2xl md:text-3xl pb-4 font-semibold'>Create an account</h1>
+                        <h1 className='text-center text-md pb-4'>
+                            <span>
+                                Already have an account?{' '}
                             </span>
+                            <Link className='hover:text-sky-500 text-blue-600' href='/login'>
+                                Login
+                            </Link>
                         </h1>
 
                         <div className="relative">

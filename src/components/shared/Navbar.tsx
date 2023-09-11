@@ -80,13 +80,11 @@ export function BasicNavbar() {
             <div className="max-w-7xl mx-auto px-4 lg:px-0">
               <div className="flex items-center justify-between h-16">
 
-                <div className="flex items-center">
                   <div className="hidden md:flex items-center h-16">
                     <button onClick={() => router.push('/')}>
-                      <Image src="/logo.png" alt="Home" layout="fixed" width={80} height={40} />
+                      <Image src="/logo.png" alt="Home" width={80} height={40} />
                     </button>
                   </div>
-                </div>
 
                 <div className="hidden md:block">
                   <div className="flex items-center">
@@ -142,10 +140,14 @@ export function BasicNavbar() {
                   </div>
                 </div>
 
-                <div className="-mr-2 flex md:hidden">
+                <div className="-mr-2 flex md:hidden justify-between w-full">
+                  {/* Logo  */}
+                  <button onClick={() => router.push('/')}>
+                    <Image src="/logo.png" alt="Home" width={80} height={40} />
+                  </button>
 
                   {/* Mobile menu button */}
-                  <Disclosure.Button className=" inline-flex items-center justify-center p-2 rounded-md text-black focus:ring-2 focus:ring-black">
+                  <Disclosure.Button className=" inline-flex items-center justify-center p-2 rounded-md text-black focus:ring-0 focus:ring-black">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
@@ -173,15 +175,15 @@ export function BasicNavbar() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Disclosure.Panel className="md:hidden relative rounded-b-lg bg-gradient-to-b border-t-2 border-black from-black to-red-900">
+              <Disclosure.Panel className="md:hidden relative bg-gradient-to-b  from-blue-600 to-sky-500">
                 <div className="px-2 w-full pt-2 pb-3 space-y-1 sm:px-3">
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
                       onClick={() => router.push(`/${item.href}`)}
                       className={classNames(
-                        pathname === item.href ? 'text-white bg-red-800' : '',
-                        'flex px-3 w-full text-gray-200 py-2 rounded-md text-base font-medium'
+                        pathname === item.href ? 'text-white bg-black' : '',
+                        'flex px-3 w-full text-gray-200 py-2 text-base font-medium'
                       )}
                     // aria-current={item.current ? 'page' : undefined}
                     >
@@ -227,7 +229,7 @@ export function NewNavBar(props: IProps) {
     async function getMe() {
       try {
         const res = await axiosAPI.get('auth/get-me')
-        setMe(res?.data)
+        setMe(!!res?.data)
       } catch (err: any) {
         setUseri(false)
         console.log(err)
@@ -245,18 +247,18 @@ export function NewNavBar(props: IProps) {
   }
   return view ? (
     <div className="min-h-full">
-      <Disclosure as="nav" className="bg-white">
+      <Disclosure as="nav" className="bg-sky-200 md:bg-white">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 w-full lg:px-0">
               <div className="flex items-center justify-between gap-4 h-16">
-                <div className="flex items-center">
+                
                   <div className="hidden md:block h-8">
                     <Link href='/' className='h-20 w-full'>
                       <Image src="/logo.png" alt="Home" width={80} height={40} />
                     </Link>
                   </div>
-                </div>
+             
 
                 {/* Search Bar  */}
                 <div className='hidden md:block w-full lg:w-1/3 justify-center rounded-full bg-gray-200'>
@@ -264,8 +266,7 @@ export function NewNavBar(props: IProps) {
                 </div>
 
                 <div className="hidden md:block">
-                  <div className="flex items-center">
-
+                  <div className="flex items-center justify-between gap-3">
 
                     {/* Cart  */}
                     <div>
@@ -287,7 +288,7 @@ export function NewNavBar(props: IProps) {
                     </div>
 
                     {!useri && (
-                      <div className='flex justify-between gap-2 ml-3'>
+                      <div className='flex justify-between gap-3 w-full h-full'>
                         <Link href='/signup' className='bg-sky-600 hover:bg-white text-white hover:text-sky-600 ring-1 focus:ring-2 ring-sky-600 py-1 px-3 rounded-sm'>
                           Signup
                         </Link>
@@ -296,79 +297,85 @@ export function NewNavBar(props: IProps) {
                         </Link>
                       </div>
                     )}
-                    {/* Profile dropdown */}
-                    <Menu as="div" className="ml-3 relative">
-                      <div>
-                        {useri && (
-                          <Menu.Button className="text-sky-600 hover:bg-red-600 hover:bg-opacity-25 bg-sky-600 focus:bg-opacity-25 bg-opacity-30 flex p-[8px] rounded-full relative hover:text-red-600">
-                            <span className="sr-only">Open user menu</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                          </Menu.Button>
-                        )}
-                      </div>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-gray-500 ring-opacity-20 focus:outline-none">
-                          {userNavigation.map((item, index) => {
-                            return me?.isAdmin ? (
-                              <Menu.Item key={index}>
-                                {({ active }) => (
-                                  <Link
-                                    className={classNames(
-                                      active ? 'bg-red-600' : '',
-                                      'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
-                                    )}
-                                    href={item.href}
-                                  // onClick={() => setUseri(item.state)}
-                                  >
-                                    {item.name}
-                                  </Link>
-                                )}
-                              </Menu.Item>
-                            ) : null
-                          })}
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                className={classNames(
-                                  active ? 'bg-red-600' : '',
-                                  'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
-                                )}
-                                href="/profile"
-                              >
-                                Profile
-                              </Link>
-                            )}
-                          </Menu.Item>
 
-                          <Menu.Item>
-                            {({ active }) => (
-                              <button
-                                onClick={handleLogout}
-                                className={classNames(
-                                  active ? 'bg-red-600' : '',
-                                  'block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
-                                )}
-                              >
-                                Sign out
-                              </button>
-                            )}
-                          </Menu.Item>
-                        </Menu.Items>
-                      </Transition>
-                    </Menu>
+                    {/* Profile dropdown */}
+                    {useri && (
+                      <Menu as="div" className="relative">
+
+                        <Menu.Button className="text-sky-600 hover:bg-red-600 hover:bg-opacity-25 bg-sky-600 focus:bg-opacity-25 bg-opacity-30 flex p-[8px] rounded-full relative hover:text-red-600">
+                          <span className="sr-only">Open user menu</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                        </Menu.Button>
+
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="origin-top-right absolute z-40 right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-100 ring-1 ring-gray-500 ring-opacity-20 focus:outline-none">
+                            {userNavigation.map((item, index) => {
+                              return me?.isAdmin ? (
+                                <Menu.Item key={index}>
+                                  {({ active }) => (
+                                    <Link
+                                      className={classNames(
+                                        active ? 'bg-red-600' : '',
+                                        'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
+                                      )}
+                                      href={item.href}
+                                    // onClick={() => setUseri(item.state)}
+                                    >
+                                      {item.name}
+                                    </Link>
+                                  )}
+                                </Menu.Item>
+                              ) : null
+                            })}
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  className={classNames(
+                                    active ? 'bg-red-600' : '',
+                                    'block px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
+                                  )}
+                                  href="/profile"
+                                >
+                                  Profile
+                                </Link>
+                              )}
+                            </Menu.Item>
+
+                            <Menu.Item>
+                              {({ active }) => (
+                                <button
+                                  onClick={handleLogout}
+                                  className={classNames(
+                                    active ? 'bg-red-600' : '',
+                                    'block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-sky-600 hover:text-white'
+                                  )}
+                                >
+                                  Sign out
+                                </button>
+                              )}
+                            </Menu.Item>
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    )}
                   </div>
                 </div>
-                <div className="flex md:hidden">
+                <div className="flex justify-between w-full md:hidden">
+
+                  {/* Logo  */}
+                  <button onClick={() => router.push('/')}>
+                    <Image src="/logo.png" alt="Home" width={80} height={40} />
+                  </button>
 
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-800">
@@ -400,7 +407,7 @@ export function NewNavBar(props: IProps) {
               <Disclosure.Panel className="md:hidden bg-gray-50">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                   <div className='bg-sky-200 rounded-lg'>
-                    <SearchBar setSearchTerm={setSearchTerm} searchButton={false}/>
+                    <SearchBar setSearchTerm={setSearchTerm} searchButton={false} />
                   </div>
                   {me?.isAdmin && (
                     <Disclosure.Button
@@ -408,7 +415,6 @@ export function NewNavBar(props: IProps) {
                         pathname === "/admin" ? 'bg-sky-200 text-gray-500' : '',
                         'flex items-center text-left w-full px-3 py-2 text-gray-800 rounded-md text-base font-medium'
                       )}
-                    // aria-current={pathname === item.href ? 'page' : undefined}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-1">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -460,20 +466,33 @@ export function NewNavBar(props: IProps) {
                       Profile
                     </Disclosure.Button>
                   )}
-                  <Disclosure.Button
-                    as="button"
-                    onClick={handleLogout}
-                    className={classNames(
-                      pathname === null ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
-                      'flex items-center w-full text-left px-3 py-2 text-gray-800 rounded-md text-base font-medium'
-                    )}
-                    aria-current={pathname === null ? 'page' : undefined}
-                  >
-                    {
+                  {useri ? (
+                    <Disclosure.Button
+                      as="button"
+                      onClick={handleLogout}
+                      className={classNames(
+                        pathname === null ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        'flex items-center w-full text-left px-3 py-2 text-gray-800 rounded-md text-base font-medium'
+                      )}
+                    >
                       <svg aria-hidden="true" className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd"></path></svg>
-                    }
-                    Sign out
-                  </Disclosure.Button>
+
+                      Sign out
+                    </Disclosure.Button>
+                  ) : (
+                    <Disclosure.Button
+                      as="button"
+                      onClick={() => router.push('/login')}
+                      className={classNames(
+                        pathname === null ? 'bg-sky-600 bg-opacity-10 text-gray-500' : '',
+                        'flex items-center w-full text-left px-3 py-2 text-gray-800 rounded-md text-base font-medium'
+                      )}
+                    >
+                      <svg aria-hidden="true" className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd"></path></svg>
+
+                      Login
+                    </Disclosure.Button>
+                  )}
                 </div>
               </Disclosure.Panel>
             </Transition.Child>
