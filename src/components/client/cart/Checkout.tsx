@@ -334,7 +334,7 @@ export function Checkout() {
     }
     return view ? (
         <>
-            {success ?
+            {!success ?
                 <Layout setSearchTerm={setSearchTerm}>
                     <Checkouts setOrder={setOrder} setSuccess={setSuccess} />
                 </Layout>
