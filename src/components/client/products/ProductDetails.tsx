@@ -19,7 +19,7 @@ export function Details() {
     const [qty, setQty] = useState(1)
     const [star, setStar] = useState(0)
     const [show, setShow] = useState('details');
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState<any[]>([])
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
     const [view, setView] = useState(1)
@@ -359,9 +359,9 @@ export function Details() {
                 </div>
 
                 {/* Specifications More info Reviews  */}
-                <div ref={myRef} className='rounded-sm w-full'>
+                <div className='rounded-sm w-full'>
                     <div className='w-auto col-span-12 rounded-sm'>
-                        <>
+                        {/* <>
                             <div className="sm:hidden">
                                 <label htmlFor="tabs" className="sr-only">More Information</label>
                                 <select value={show || ''} onChange={(e) => setShow(e.target.value)} id="tabs" className="bg-[#005DAB] outline-none border-0 p-2 border-blue-300 text-white my-4 sm:text-sm focus:border-0 block w-full">
@@ -417,155 +417,163 @@ export function Details() {
                                     </button>
                                 </li>
                             </ul>
-                        </>
-
-                        {/* More Info */}
-                        {(show === 'info') && (
-                            <>
-                                <div className='md:p-5'>
-                                    {/* <h2 className='text-xl mb-3 font-medium'>More Informations</h2> */}
-                                    {product?.details?.map((detail: any, index: number) => (
-                                        <div className='my-2' key={index}>
-                                            <h2 className='pl-10 text-md font-bold text-gray-700'>{detail.title}</h2>
-                                            <p className='py-1 px-16 text-sm font-normal text-gray-600'> {detail.description}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </>
-                        )}
+                        </> */}
 
                         {/* Specifications  */}
-                        {(show === 'details') && (
-                            <div className='md:p-5'>
-                                <h2 className='text-xl mb-3 font-medium'>Specifications</h2>
+                        {/* {(show === 'details') && ( */}
+                        <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-sky-600'>
+                            <h1 className='text-center bg-sky-600 px-4 py-2 font-medium text-md text-gray-50'>Specifications</h1>
+                            <div className='w-full bg-gradient-to-r from-sky-600 to-white' />
+                        </div>
+                        <div className='md:p-5'>
+                            <table className="w-full text-sm text-left p-3">
+                                <tbody>
+                                    {product?.information?.map((info: any, index: number) => (
 
-                                <table className="w-full text-sm text-left p-3">
-                                    <tbody>
-                                        {product?.information?.map((info: any, index: number) => (
+                                        <tr key={index} className="w-1/2 md:w-1/3 border-gray-100 border-b">
+                                            <th scope="row" className="w-1/4 pl-4 font-medium text-gray-900 whitespace-nowrap">
+                                                {info.title} :
+                                            </th>
+                                            <td className=" py-2">
+                                                {info.description}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        {/* )} */}
 
-                                            <tr key={index} className="w-1/2 md:w-1/3 border-gray-100 border-b">
-                                                <th scope="row" className="w-1/4 pl-4 font-medium text-gray-900 whitespace-nowrap">
-                                                    {info.title} :
-                                                </th>
-                                                <td className=" py-2">
-                                                    {info.description}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
+                        {/* More Info */}
+                        {/* {(show === 'info') && ( */}
+                        <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-black'>
+                            <h1 className='text-center bg-black px-4 py-2 font-medium text-md text-gray-50'>More Informations</h1>
+                            <div className='w-full bg-gradient-to-r from-black to-white' />
+                        </div>
+                        <div className='md:p-5'>
+                            {/* <h2 className='text-xl mb-3 font-medium'>More Informations</h2> */}
+                            {product?.details?.map((detail: any, index: number) => (
+                                <div className='my-2' key={index}>
+                                    <h2 className='pl-10 text-md font-bold text-gray-700'>{detail.title}</h2>
+                                    <p className='py-1 px-16 text-sm font-normal text-gray-600'> {detail.description}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* )} */}
 
                         {/* Reviews  */}
-                        {(show === 'reviews') && (
-                            <div className='md:p-5'>
-                                <h2 className='text-xl p-2 font-medium'>Average Review</h2>
-                                <div className='grid gap-5'>
-                                    <div className='flex px-2'>
-                                        <h1 className='text-7xl text-gray-600'>{product?.averageRating?.toFixed(1) || '0.0'}</h1>
-                                        <div className='grid'>
-                                            <div className="flex items-center">
-                                                {[0, 1, 2, 3, 4].map((rating) => (
+                        {/* {(show === 'reviews') && ( */}
+                        <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-sky-600'>
+                            <h1 className='text-center bg-sky-600 px-4 py-2 font-medium text-md text-gray-50'>Reviews</h1>
+                            <div className='w-full bg-gradient-to-r from-sky-600 to-white' />
+                        </div>
+                        <div className='md:p-5'>
+                            <h2 className='text-xl p-2 font-medium'>Average Review</h2>
+                            <div className='grid gap-5'>
+                                <div className='flex px-2'>
+                                    <h1 className='text-7xl text-gray-600'>{product?.averageRating?.toFixed(1) || '0.0'}</h1>
+                                    <div className='grid'>
+                                        <div className="flex items-center">
+                                            {[0, 1, 2, 3, 4].map((rating) => (
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                                    key={rating}
+                                                    className={classNames(
+                                                        product?.averageRating > rating ? 'text-[#005DAB]' : 'text-gray-300',
+                                                        'h-8 w-8 flex-shrink-0'
+                                                    )}>
+                                                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
+                                                </svg>
+
+                                            ))}
+                                        </div>
+                                        <h2 className='px-2 py-1 text-gray-600'>{product?.reviewCount || '0'}
+                                            <span>{product?.reviewCount === 1 ? " Review" : " Reviews"}</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div className='px-2 grid gap-3'>
+                                    {product?.reviews?.map((review: any, index: number) => {
+                                        return (
+                                            <div key={index} className='border-b md:mx-5 border-gray-200 items-center pb-2 grid justify-between col-span-1 gap-3 md:flex'>
+                                                <div className='grid w-1/4 gap-0'>
+                                                    <p className='text-sm'>{review.name}</p>
+                                                    <p className='text-xs text-gray-500'>@ {fDateTime(+review.date)}</p>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    {[0, 1, 2, 3, 4].map((rating) => (
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                                            key={rating}
+                                                            className={classNames(
+                                                                review.rating > rating ? 'text-blue-400' : 'text-gray-300',
+                                                                'h-6 w-6 flex-shrink-0'
+                                                            )}>
+                                                            <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
+                                                        </svg>
+                                                    ))}
+                                                </div>
+                                                <p className='flex items-center w-1/3 text-sm text-gray-500'>{review.comment}</p>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+
+                                {/* white a review  */}
+                                {success && <SuccessText success={success} />}
+                                {error && <ErrorText error={error} />}
+
+                                <form onSubmit={handleSubmit}>
+                                    <div ref={myRef} className='px-2 md:px-5'>
+                                        <label htmlFor="comment" className="block text-xl font-medium text-gray-700">
+                                            Write a Review
+                                        </label>
+                                        <div className="mt-3">
+                                            <textarea
+                                                id="comment"
+                                                name="comment"
+                                                // type='string'
+                                                rows={3}
+                                                className="block p-2 w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-[#005DAB] focus:border-[#005DAB] sm:text-sm"
+                                                placeholder="Write your review"
+                                                defaultValue={''}
+                                            />
+                                        </div>
+                                        <div className="flex text-gray-800 hover:text-blue-800 items-center p-3 mt-3 hover:bg-blue-100 bg-gray-200 rounded-md">
+                                            <p className='mr-3'>Do You Like It?</p>
+                                            {[0, 1, 2, 3, 4].map((rating, index) => (
+                                                <button key={index} type='button' onClick={() => setStar(index + 1)}>
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                                         key={rating}
                                                         className={classNames(
-                                                            product?.averageRating > rating ? 'text-[#005DAB]' : 'text-gray-300',
-                                                            'h-8 w-8 flex-shrink-0'
+                                                            star > rating ? 'text-[#005DAB]' : 'text-blue-200',
+                                                            'h-6 w-6 flex-shrink-0 ring-2 hover:text-[#005DAB] ring-blue-200 rounded bg-white mx-1'
                                                         )}>
                                                         <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
                                                     </svg>
 
-                                                ))}
-                                            </div>
-                                            <h2 className='px-2 py-1 text-gray-600'>{product?.reviewCount || '0'}
-                                                <span>{product?.reviewCount === 1 ? " Review" : " Reviews"}</span>
-                                            </h2>
+                                                </button>
+                                            ))}
                                         </div>
+                                        <button type='submit' className="flex items-center justify-center px-4 py-1 mt-3 text-base font-medium text-white bg-[#005DAB] border border-transparent rounded-md min-w-15 hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#005DAB]">
+                                            Comment
+                                        </button>
                                     </div>
-                                    <div className='px-2 grid gap-3'>
-                                        {product?.reviews?.map((review: any, index: number) => {
-                                            return (
-                                                <div key={index} className='border-b md:mx-5 border-gray-200 items-center pb-2 grid justify-between col-span-1 gap-3 md:flex'>
-                                                    <div className='grid w-1/4 gap-0'>
-                                                        <p className='text-sm'>{review.name}</p>
-                                                        <p className='text-xs text-gray-500'>@ {fDateTime(+review.date)}</p>
-                                                    </div>
-                                                    <div className="flex items-center">
-                                                        {[0, 1, 2, 3, 4].map((rating) => (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                                                key={rating}
-                                                                className={classNames(
-                                                                    review.rating > rating ? 'text-blue-400' : 'text-gray-300',
-                                                                    'h-6 w-6 flex-shrink-0'
-                                                                )}>
-                                                                <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-                                                            </svg>
-                                                        ))}
-                                                    </div>
-                                                    <p className='flex items-center w-1/3 text-sm text-gray-500'>{review.comment}</p>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
+                                </form>
 
-                                    {/* white a review  */}
-                                    {success && <SuccessText success={success} />
-                                    }
-                                    {error && <ErrorText error={error} />}
-
-                                    <form onSubmit={handleSubmit}>
-                                        <div className='px-2 md:px-5'>
-                                            <label htmlFor="comment" className="block text-xl font-medium text-gray-700">
-                                                Write a Review
-                                            </label>
-                                            <div className="mt-3">
-                                                <textarea
-                                                    id="comment"
-                                                    name="comment"
-                                                    // type='string'
-                                                    rows={3}
-                                                    className="block p-2 w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-[#005DAB] focus:border-[#005DAB] sm:text-sm"
-                                                    placeholder="Write your review"
-                                                    defaultValue={''}
-                                                />
-                                            </div>
-                                            <div className="flex text-gray-800 hover:text-blue-800 items-center p-3 mt-3 hover:bg-blue-100 bg-gray-200 rounded-md">
-                                                <p className='mr-3'>Do You Like It?</p>
-                                                {[0, 1, 2, 3, 4].map((rating, index) => (
-                                                    <button key={index} type='button' onClick={() => setStar(index + 1)}>
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                                            key={rating}
-                                                            className={classNames(
-                                                                star > rating ? 'text-[#005DAB]' : 'text-blue-200',
-                                                                'h-6 w-6 flex-shrink-0 ring-2 hover:text-[#005DAB] ring-blue-200 rounded bg-white mx-1'
-                                                            )}>
-                                                            <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-                                                        </svg>
-
-                                                    </button>
-                                                ))}
-                                            </div>
-                                            <button type='submit' className="flex items-center justify-center px-4 py-1 mt-3 text-base font-medium text-white bg-[#005DAB] border border-transparent rounded-md min-w-15 hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#005DAB]">
-                                                Comment
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                </div>
                             </div>
-                        )}
+                        </div>
+                        {/* )} */}
                     </div>
                 </div>
 
                 {/* Realted Products  */}
                 {relatedProductsId.length > 0 && (
                     <div className='bg-white mt-4 md:max-w-7xl mx-auto w-full'>
-                        <div className='grid grid-cols-3 border-b-2 border-black'>
-                            <h1 className='text-center bg-black px-4 py-2 font-medium text-sm text-gray-50'>Related Products</h1>
-                            <div className='w-full bg-gradient-to-r from-black to-white ' />
+                        <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-black'>
+                            <h1 className='text-center bg-black px-4 py-2 font-medium text-md text-gray-50'>Related Products</h1>
+                            <div className='w-full bg-gradient-to-r from-black to-white' />
                         </div>
                         <div className='grid grid-cols-12 w-full gap-2 rounded-b-md py-3'>
                             {relatedProductsId?.slice(0, 6).map((item: any, index: number) =>
