@@ -143,6 +143,7 @@ export function Order() {
           <tbody>
             {orders.map((order: any, index: number) => {
               const isItemSelected = isSelected(order._id);
+
               return (
                 <tr key={index} className="bg-white border-b hover:bg-gray-50">
                   <td className="p-4 w-4">
@@ -152,7 +153,7 @@ export function Order() {
                     </div>
                   </td>
                   <td scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                    #STE{fDnT(order.createdAt)}
+                    #STE-{order?._id}
                   </td>
                   <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                     {order.customer_name}

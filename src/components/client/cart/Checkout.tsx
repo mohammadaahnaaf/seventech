@@ -93,9 +93,9 @@ export function Checkouts(props: Props) {
                     }
                 ))
             }
-            const order = await axiosRoot.post('/orders', reqData);
+            const res = await axiosRoot.post('/orders', reqData);
             setSuccess(true)
-            setOrder(order.data)
+            setOrder(res.data)
 
         } catch (error: any) {
             console.log(error)
@@ -334,7 +334,7 @@ export function Checkout() {
     }
     return view ? (
         <>
-            {!success ?
+            {success ?
                 <Layout setSearchTerm={setSearchTerm}>
                     <Checkouts setOrder={setOrder} setSuccess={setSuccess} />
                 </Layout>

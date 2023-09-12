@@ -14,25 +14,25 @@ export function fDateTimeSuffix(date: any) {
 }
 
 export function fToNow(date: any) {
-    return formatDistanceToNow(new Date(date), {
+    return date ? formatDistanceToNow(new Date(date), {
         addSuffix: true
-    });
+    }) : null
 }
 
 export const fDnT = (timestamp: string) => {
     const date = new Date(timestamp);
-    
+
     const year = date.getUTCFullYear().toString().slice(-2);
     const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
     const day = date.getUTCDate().toString().padStart(2, '0');
-    
+
     const hours = date.getUTCHours().toString().padStart(2, '0');
     const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-    
-    return `${year}${month}${day}${hours}${minutes}`;
-  };
 
-  export const fDnTnow = () => {
+    return `${year}${month}${day}${hours}${minutes}`;
+};
+
+export const fDnTnow = () => {
     const now = new Date();
     return fDnT(now.toISOString());
-  };
+};
