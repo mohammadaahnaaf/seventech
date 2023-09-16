@@ -29,10 +29,6 @@ export function Details() {
     const [isUser, setIsUser] = useState(false)
     const [relatedProductsId, setRelatedProductsId] = useState<any[]>([])
 
-    // const total = (items) => items.reduce((acc, curr) => acc + curr.rating, 0);
-
-    // const ratings = product?.reviews?.reduce((acc, curr) => acc + curr.rating, 0) / product?.reviewCount
-
     useEffect(() => {
         async function getProduct() {
             let token = localStorage.getItem("access_token");
@@ -361,66 +357,8 @@ export function Details() {
                 {/* Specifications More info Reviews  */}
                 <div className='rounded-sm w-full'>
                     <div className='w-auto col-span-12 rounded-sm'>
-                        {/* <>
-                            <div className="sm:hidden">
-                                <label htmlFor="tabs" className="sr-only">More Information</label>
-                                <select value={show || ''} onChange={(e) => setShow(e.target.value)} id="tabs" className="bg-[#005DAB] outline-none border-0 p-2 border-blue-300 text-white my-4 sm:text-sm focus:border-0 block w-full">
-                                    <option value='details'>
-                                        Specifications
-                                    </option>
-                                    <option value='info'>
-                                        More Information
-                                    </option>
-                                    <option value='reviews'>
-                                        Reviews
-                                    </option>
-                                </select>
-                            </div>
-                            <ul className="hidden text-sm font-medium text-center text-gray-700 divide-x-2 divide-[#005DAB] border-b-[#005DAB] border-b-2 focus:divide-[#005DAB] shadow sm:flex ">
-                                <li className="w-full">
-                                    <button
-                                        onClick={() => setShow('details')}
-                                        type='button'
-                                        className={classNames(show === 'details' ? "!bg-[#005DAB] text-white" : "text-gray-900",
-                                            "inline-block w-full py-2 bg-white active focus:outline-none text-gray-900",
-                                            show === 'info' ? 'bg-gradient-to-l from-[#005DAB] to-white' : ''
-
-                                        )}
-                                    >
-                                        Specifications
-                                    </button>
-                                </li>
-                                <li className="w-full">
-                                    <button
-                                        onClick={() => setShow('info')}
-                                        type='button'
-                                        className={classNames(show === 'info' ? "!bg-[#005DAB] text-white" : "text-gray-900",
-                                            "inline-block w-full py-2 text-gray-900 bg-white active focus:outline-none",
-                                            show === 'reviews' ? 'bg-gradient-to-l from-[#005DAB] to-white' : '',
-                                            show === 'details' ? 'bg-gradient-to-r from-[#005DAB] to-white' : '',
-
-                                        )}
-                                    >
-                                        More Information
-                                    </button>
-                                </li>
-                                <li className="w-full">
-                                    <button
-                                        onClick={() => setShow('reviews')}
-                                        type='button'
-                                        className={classNames(show === 'reviews' ? "!bg-[#005DAB] text-white" : "text-gray-900",
-                                            "inline-block w-full py-2 bg-white text-gray-900 active focus:outline-none",
-                                            show === 'info' ? 'bg-gradient-to-r from-[#005DAB] to-white' : ''
-                                        )}
-                                    >
-                                        Reviews
-                                    </button>
-                                </li>
-                            </ul>
-                        </> */}
-
-                        {/* Specifications  */}
-                        {/* {(show === 'details') && ( */}
+                    
+                        {/* Specifications  */}  
                         <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-sky-600'>
                             <h1 className='text-center bg-sky-600 px-4 py-2 font-medium text-md text-gray-50'>Specifications</h1>
                             <div className='w-full bg-gradient-to-r from-sky-600 to-white' />
@@ -442,10 +380,8 @@ export function Details() {
                                 </tbody>
                             </table>
                         </div>
-                        {/* )} */}
 
                         {/* More Info */}
-                        {/* {(show === 'info') && ( */}
                         <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-black'>
                             <h1 className='text-center bg-black px-4 py-2 font-medium text-md text-gray-50'>More Informations</h1>
                             <div className='w-full bg-gradient-to-r from-black to-white' />
@@ -463,7 +399,6 @@ export function Details() {
                         {/* )} */}
 
                         {/* Reviews  */}
-                        {/* {(show === 'reviews') && ( */}
                         <div className='grid grid-cols-2 md:grid-cols-3 border-b-2 border-sky-600'>
                             <h1 className='text-center bg-sky-600 px-4 py-2 font-medium text-md text-gray-50'>Reviews</h1>
                             <div className='w-full bg-gradient-to-r from-sky-600 to-white' />
@@ -564,7 +499,6 @@ export function Details() {
 
                             </div>
                         </div>
-                        {/* )} */}
                     </div>
                 </div>
 

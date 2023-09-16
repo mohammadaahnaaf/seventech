@@ -26,7 +26,7 @@ export function ProductCards(props: Props) {
 
     return (
         <div className="group ring-gray-400 ring-2 hover:scale-95 duration-300 bg-white relative">
-            <div className="absolute z-40 grid items-center justify-items-center top-0 right-0 p-1 text-white hover:bg-gray-600 bg-gray-400">
+            <div className="absolute hidden group-hover:grid z-10 items-center justify-items-center top-0 right-0 p-1 text-white hover:bg-gray-600 bg-gray-400">
                 <button
                     type='button'
                     disabled={!product.inStock || product.quantity === 0}
