@@ -1,7 +1,7 @@
-import { withAuth } from '@seventech-root/hoc'
-import { CategoryDetaili } from '@seventech/admin/categories'
 import Head from 'next/head'
 import React from 'react'
+import { withAuth } from '@seventech-root/hoc'
+import { CategoryDetaili } from '@seventech/admin'
 
 type Props = {}
 

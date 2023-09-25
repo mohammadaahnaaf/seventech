@@ -2,15 +2,12 @@ import { useState } from 'react';
 import Router from 'next/router'
 import Link from 'next/link';
 import { axiosAPI, axiosRoot } from '@seventech/utils';
-import Image from 'next/image';
 import { BasicNavbar, ErrorText, Footer } from '@seventech/shared';
 
 export function Logins() {
 
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [showPass, setShowPass] = useState("password")
     const [isAdmin, setIsAdmin] = useState(false)
 
@@ -64,6 +61,8 @@ export function Logins() {
         <div className="grid grid-cols-3 h-[100vh] w-full">
             <div className='col-span-3 lg:col-span-2 xl:col-span-1 h-full w-full content-center bg-white p-3 md:p-6'>
                 <form onSubmit={handleSubmit} className='grid gap-4 h-full content-center'>
+                    
+                    {error && (<ErrorText error={error} />)}
 
                     <h1 className='text-center text-2xl md:text-3xl pb-4 font-semibold'>Login Here</h1>
                     <h1 className='text-center text-md pb-4'>Don&apos;t have an account?{' '}

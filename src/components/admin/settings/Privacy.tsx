@@ -3,7 +3,7 @@ import { ErrorText, SuccessText } from '@seventech/shared';
 import { axiosAPI, axiosRoot } from '@seventech/utils';
 import React, { Fragment } from 'react'
 
-function Privacy() {
+export function Privacy() {
 
   const [enabled, setEnabled] = React.useState(false)
   const [success, setSuccess] = React.useState('')
@@ -180,5 +180,3 @@ function Privacy() {
     </div>
   )
 }
-
-export default Privacy

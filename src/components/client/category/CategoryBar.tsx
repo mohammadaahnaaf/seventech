@@ -19,7 +19,7 @@ export function CategoryBar(props: Props) {
         async function getCategory() {
             try {
                 const res = await axiosRoot.get('/categories');
-                setCategories(res.data.categories)
+                setCategories(res?.data.categories)
             } catch (err: any) {
                 console.log(err)
             }
@@ -35,12 +35,7 @@ export function CategoryBar(props: Props) {
         })
 
     }
-    // function handleClick2(y: any) {
-    //     router.push({
-    //         pathname: `/category/${y}`,
-    //         query: { y },
-    //     })
-    // }
+
 
     const sortedCats = (x: any[]) => x.slice().sort((a: any, b: any) => a.name.localeCompare(b.name));
 

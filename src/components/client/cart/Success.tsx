@@ -117,9 +117,6 @@ function ProductsViews(props: Props) {
         }
     }, [order])
 
-    // let shipping = items.length * ship
-    // let total = (shipping + cartTotal)
-
     return (
         <div className="overflow-y-auto relative p-4">
             <table className="w-full text-sm text-left text-black">

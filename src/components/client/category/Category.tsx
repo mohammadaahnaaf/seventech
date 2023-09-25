@@ -87,7 +87,7 @@ export function Category(props: Props) {
         slugify()
     }, [jinish, fz, fy]);
 
-    //get Data
+    //get categories
     React.useEffect(() => {
         async function getCategory() {
             try {
@@ -100,7 +100,7 @@ export function Category(props: Props) {
         getCategory()
     }, [jinish, term]);
 
-    // getProduct
+    // get products
     React.useEffect(() => {
         async function getProducts() {
             try {
@@ -304,10 +304,10 @@ export function Category(props: Props) {
                                         <Disclosure>
                                             {({ open }) => (
                                                 <>
-                                                    <Disclosure.Button className="flex hover:text-gray-500 focus:text-gray-400 w-full justify-between text-left text-md font-medium text-black focus:outline-none focus:ring-0">
-                                                        <button onClick={() => handleCategoryFilter(category.name)} type='button'>
+                                                    <Disclosure.Button onClick={() => handleCategoryFilter(category.name)} type='button' className="flex hover:text-gray-500 focus:text-gray-400 w-full justify-between text-left text-md font-medium text-black focus:outline-none focus:ring-0">
+                                                        <span>
                                                             {category.name}
-                                                        </button>
+                                                        </span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                                             className={`${!open ? 'rotate-180 transform' : 'text-gray-700'} h-5 w-5 text-black`}>
                                                             <path fillRule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clipRule="evenodd" />
@@ -316,7 +316,7 @@ export function Category(props: Props) {
                                                     </Disclosure.Button>
                                                     <Disclosure.Panel className="p-2 gap-2 grid text-md text-gray-700">
                                                         {sortedSubCats(category?.subCategories).map((sub: any, index: number) => (
-                                                            <button key={index} className='flex w-full items-center hover:text-green-600' type='button' onClick={() => setSearchSubCats(sub.name)}>{index + 1}. {sub.name}</button>
+                                                            <Disclosure.Button key={index} className='flex w-full items-center hover:text-green-600' type='button' onClick={() => setSearchSubCats(sub.name)}>{index + 1}. {sub.name}</Disclosure.Button>
                                                         ))}
                                                     </Disclosure.Panel>
                                                 </>
@@ -335,9 +335,9 @@ export function Category(props: Props) {
                                         {({ open }) => (
                                             <>
                                                 <Disclosure.Button className="flex py-2 hover:text-gray-500 focus:text-gray-400 w-full justify-between text-left text-md font-medium text-black focus:outline-none focus:ring-0">
-                                                    <button type='button'>
+                                                    <span>
                                                         Brands
-                                                    </button>
+                                                    </span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                                         className={`${!open ? 'rotate-180 transform' : 'text-gray-700'} h-5 w-5 text-black`}>
                                                         <path fillRule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clipRule="evenodd" />
@@ -346,9 +346,9 @@ export function Category(props: Props) {
                                                 <div className='grid gap-1'>
                                                     {brands?.map((brand, index) => (
                                                         <Disclosure.Panel key={index} className="flex hover:text-gray-500 focus:text-gray-400 w-full justify-between text-left text-md font-medium text-black focus:outline-none focus:ring-0">
-                                                            <button onClick={() => router.push(`/category/${brand}`)} type='button'>
+                                                            <Disclosure.Button onClick={() => router.push(`/category/${brand}`)} type='button'>
                                                                 {brand}
-                                                            </button>
+                                                            </Disclosure.Button>
                                                         </Disclosure.Panel>
                                                     ))}
                                                 </div>

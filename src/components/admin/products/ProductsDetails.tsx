@@ -86,7 +86,7 @@ const Detail = () => {
     }
     getCategory()
     details && setSubCategory()
-  }, [details]);
+  }, [cats, details]);
 
 
   // get data 
@@ -128,16 +128,6 @@ const Detail = () => {
       data.set('relatedProducts', JSON.stringify(relatedProducts))
       data.set('isFeatured', String(isFeatured))
       data.set('inStock', String(active))
-
-      // data.set('details', JSON.stringify(formValues.map(value => (
-      //   { title: value.title }
-      // ))))
-      // data.set('information', JSON.stringify(moreInfos.map(info => (
-      //   {
-      //     title: info.title,
-      //     description: info.description
-      //   }
-      // ))))
 
       Array.from(files).forEach(file => {
         data.append('images', file)
@@ -240,14 +230,6 @@ const Detail = () => {
 
     setReviews(newInputFields);
   };
-
-  // const addReview = () => {
-  //   setReviews([...reviews,
-  //   {
-  //     id: uuidv4(),
-  //     review: ''
-  //   }])
-  // };
 
   function removeReview(id: any) {
     axiosAPI.delete(`/products/${itemId}/review/${id}`);
@@ -358,13 +340,6 @@ const Detail = () => {
   }
 
   const isSelected = (name: any) => relatedProducts.indexOf(name) !== -1
-
-  // const slugs = ['code', 'name', 'category']
-  // const search = (data) => {
-  //   return data.filter((item) =>
-  //     slugs.some((key) => (typeof item[key] === 'string' ? item[key].toLowerCase() : '').includes(searchTerm))
-  //   )
-  // }
 
   const related = (
     <Transition appear show={enabled} as={Fragment}>

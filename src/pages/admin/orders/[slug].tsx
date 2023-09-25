@@ -1,7 +1,7 @@
+import React from 'react'
+import Head from 'next/head'
 import { withAuth } from '@seventech-root/hoc'
 import { OrderDetails } from '@seventech/admin'
-import Head from 'next/head'
-import React from 'react'
 
 type Props = {}
 

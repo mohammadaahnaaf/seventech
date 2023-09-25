@@ -41,9 +41,9 @@ export function Banner() {
                     className='z-50'
                 >
                     {items?.images.map((image: string, index: number) => (
-                        <div key={index} className='h-[30vh] lg:h-[65vh] w-full'>
+                        <div key={index} className='h-[30vh] lg:h-[65vh] w-full relative'>
                             <Image
-                                layout='fill'
+                                fill
                                 src={image}
                                 alt={`banner-image-${1 + index}`}
                                 className='z-50 object-cover h-[20vh] md:h-[65vh] select-none cursor-pointer'

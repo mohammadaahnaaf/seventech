@@ -4,7 +4,7 @@ import { axiosAPI, axiosRoot } from '@seventech/utils';
 import React, { Fragment } from 'react'
 // import { terms } from 'src/data'
 
-function Terms() {
+export function Terms() {
 
   const [enabled, setEnabled] = React.useState(false)
   const [success, setSuccess] = React.useState('')
@@ -182,5 +182,3 @@ function Terms() {
     </div>
   )
 }
-
-export default Terms

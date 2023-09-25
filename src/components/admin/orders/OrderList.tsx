@@ -1,9 +1,9 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Pagenation, SearchBar, SuccessText } from '@seventech/shared';
+import { ErrorText, Pagenation, SearchBar, SuccessText } from '@seventech/shared';
 import { useDebounce } from 'use-debounce';
-import { axiosAPI, fDate, fDnT, useUniqueId } from '@seventech/utils';
+import { axiosAPI, fDate } from '@seventech/utils';
 import { AdminLayout } from '@seventech/layouts';
 
 export function Order() {
@@ -78,22 +78,10 @@ export function Order() {
     setTimeout(() => { setSuccess('') }, 2000)
   }
 
-  // const slugs = ['customer_name', 'customer_number', 'createdAt', 'total', '_id', 'status']
-
-  // const search = (data) => {
-  //   return data.filter((item) =>
-  //     slugs.some((key) => (typeof item[key] === 'string' ? item[key].toLowerCase() : '').includes(searchTerm))
-  //   )
-  // }
-
-  const digify = useUniqueId();
-
   return (
     <>
-      {success && (
-        <SuccessText success={success} />
-      )}
-      {/* <ErrorText error={error} /> */}
+      {success && (<SuccessText success={success} />)}
+
       <div className="mx-3 mt-3 bg-gray-100 overflow-x-auto relative shadow-md sm:rounded-lg">
         <div className='flex justify-center w-full py-1 bg-sky-600'>
           <div className='md:w-1/3 bg-white bg-opacity-50 rounded-full'>

@@ -67,7 +67,6 @@ export const withMeAuth = (Component: React.ComponentType<Props>) => {
 
     useEffect(() => {
       if (!isLoggedIn) {
-
         axiosAPI
           .get('/auth/get-me')
           .then((res: any) => {

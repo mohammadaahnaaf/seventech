@@ -114,10 +114,6 @@ export function Checkouts(props: Props) {
         }
     }
 
-    // const countSubtotal = (items) => items.reduce((acc, curr) => acc + curr.quantity * curr.price, 0);
-    // const subtotal = countSubtotal(items)
-    // const cartTotal = countSubtotal(products)
-
     React.useEffect(() => {
         setView(true)
     }, [])

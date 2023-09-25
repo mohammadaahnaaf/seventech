@@ -73,8 +73,9 @@ export function ProductCard(product: any) {
                     </svg>                </button>
             </div>
             {product?.images?.slice(0, 1).map((item: any, index: number) => (
-                <div key={index} className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden group-hover:opacity-75 lg:aspect-none lg:h-80">
+                <div key={index} className="min-h-80 relative aspect-w-1 aspect-h-1 w-full overflow-hidden group-hover:opacity-75 lg:aspect-none lg:h-80">
                     <Image
+                        fill
                         src={item}
                         alt='product image'
                         className="h-full w-full z-10 object-cover object-center lg:h-full lg:w-full"

@@ -1,4 +1,4 @@
-import { Checkout } from '@seventech/client/cart/Checkout'
+import { Checkout } from '@seventech/client'
 import Head from 'next/head'
 import React from 'react'
 

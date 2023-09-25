@@ -174,30 +174,20 @@ function Add() {
     // get category
     React.useEffect(() => {
         async function getCategory() {
-            const res = await axiosRoot.get('/categories');
-            setCats(res.data.categories)
-            setCategory(res?.data.categories[0].name)
-
+            try {
+                const res = await axiosRoot.get('/categories');
+                let isOk = res?.data?.categories.length
+                if (isOk > 0) {
+                    setCats(res.data.categories)
+                    setCategory(res?.data.categories[0].name)
+                }
+            } catch (err: any) {
+                console.error(err)
+            }
         }
         getCategory()
 
     }, []);
-
-    // preview images 
-    // const onChanges = (e) => {
-
-    //     for (const file of e.target.files) {
-    //         const save = new FileReader();
-    //         save.readAsDataURL(file);
-    //         save.onload = () => {
-    //             setImgSrc((files) => [...files, save.result]);
-    //         };
-    //         save.onerror = () => {
-    //             console.log(save.error);
-    //         };
-    //     }
-    // };
-
 
     function closeModal() {
         setEnabled(false)
@@ -206,9 +196,13 @@ function Add() {
     // get product data 
     React.useEffect(() => {
         async function getProducts() {
-            const res = await axiosRoot.get(`/products?page=${page + 1}&size=${pageSize}&searchQuery=${searchedName}`);
-            setProducts(res.data.products)
-            setTotal(res.data.count)
+            try {
+                const res = await axiosRoot.get(`/products?page=${page + 1}&size=${pageSize}&searchQuery=${searchedName}`);
+                setProducts(res.data.products)
+                setTotal(res.data.count)
+            } catch (err: any) {
+                console.error(err)
+            }
         }
         getProducts()
     }, [router, searchedName, page, pageSize]);
@@ -236,13 +230,6 @@ function Add() {
     }
 
     const isSelected = (name: any) => relatedProducts.indexOf(name) !== -1
-
-    // const slugs = ['code', 'name', 'category']
-    // const search = (data) => {
-    //     return data.filter((item) =>
-    //         slugs.some((key) => (typeof item[key] === 'string' ? item[key].toLowerCase() : '').includes(searchTerm))
-    //     )
-    // }
 
     const related = (
         <Transition appear show={enabled} as={Fragment}>
@@ -319,22 +306,6 @@ function Add() {
             </Dialog>
         </Transition>
     );
-
-    // const [userInfo, setuserInfo] = useState({
-    //     file: [],
-    //     filepreview: null,
-    // });
-
-    // const handleSelectImage = async (e) => {
-
-    //     setSelectedFiles(e.target.files);
-    //     setuserInfo({
-    //         ...userInfo,
-    //         file: e.target.files,
-    //         filepreview: URL.createObjectURL(e.target.files[0]),
-    //         // filepreview2: URL.createObjectURL(e.target.files[1]),
-    //     })
-    // }
 
     return (
 
@@ -489,13 +460,6 @@ function Add() {
                             </div>
                         </div>
 
-                        {/* <div>
-                            <input onChange={onChanges} type="file" className='hidden' name="file" multiple />
-                            {imgSrc.map((link) => (
-                                <img src={link} />
-                            ))}
-                        </div> */}
-
                         {/* Preview Images  */}
                         <div className='grid grid-cols-2 gap-2 mt-5'>
                             {files.map((file, index) =>
@@ -527,8 +491,6 @@ function Add() {
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-20 h-20 mx-auto text-gray-200">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                                         </svg>
-
-                                        {/* <img alt='product image' src={URL.createObjectURL(file)} className='mx-auto h-36' /> */}
                                     </div>
                                 ))}
                             </div>

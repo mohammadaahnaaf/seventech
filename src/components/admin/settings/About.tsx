@@ -5,7 +5,7 @@ import { axiosAPI, axiosRoot } from '@seventech/utils';
 // import { about } from 'src/data'
 
 
-function About() {
+export function About() {
 
   const [enabled, setEnabled] = React.useState(false)
   const [success, setSuccess] = React.useState('')
@@ -170,17 +170,12 @@ function About() {
             </div>
           )
         })}
+
         <div className='flex items-center bg-green-600 bg-opacity-20 hover:bg-opacity-10 py-2 rounded-md text-green-800 hover:text-green-500 justify-center my-4 text-xl'>
           <button type='button' onClick={() => setEnabled(true)}>Add New</button>
         </div>
-        {/* <div className='py-3 flex justify-end gap-2 px-4 bg-opacity-20 bg-black rounded-md mt-3'>
-          <button className='bg-red-600 text-white px-4 py-1 rounded-md' type='button'>Cancel</button>
-          <button className='bg-white px-4 py-1 rounded-md' type='submit'>Done</button>
-        </div> */}
       </div>
       {modal}
     </div>
   )
 }
-
-export default About

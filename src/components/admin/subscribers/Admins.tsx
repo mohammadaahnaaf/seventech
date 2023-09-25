@@ -69,12 +69,6 @@ function Admin() {
         handleChecked(id)
 
     }
-    // function handleDeleteMe(id: any) {
-    //     setDetailOpen(false)
-    //     axiosAPI.delete(`/user/${id}`)
-    //     setSuccess('User Vanished')
-    //     setTimeout(() => { setSuccess('') })
-    // }
 
     function handleAllChecked(event: any) {
         if (event.target.checked) {

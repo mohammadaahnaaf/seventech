@@ -1,5 +1,5 @@
 import { withAuth } from '@seventech-root/hoc'
-import { Admins } from '@seventech/admin/subscribers'
+import { Admins } from '@seventech/admin'
 import Head from 'next/head'
 import React from 'react'
 
@@ -13,7 +13,7 @@ const AdminListPage = (props: Props) => {
         <meta name="seventech" content="Admin page" />
         <link rel="icon" href="/admin.ico" />
       </Head>
-      <Admins />
+      <Admins/>
     </>
   )
 }

@@ -61,26 +61,11 @@ const Detail = () => {
         setFormValues(newInputFields);
     };
 
-    // const addFormFields = () => {
-    //     setFormValues([...formValues,
-    //     {
-    //         id: uuidv4(),
-    //         detail: ''
-    //     }])
-    // };
-
-    // const removeFormFields = id => {
-    //     const values = [...formValues];
-    //     values.splice(values.findIndex(value => value.id === id), 1);
-    //     setFormValues(values);
-    // }
-
     async function handleSubmit(event: any) {
         // submit edited data
         try {
             event.preventDefault()
             // const data = new FormData(event.currentTarget);
-
             const reqData = {
                 status: status
             }
@@ -225,21 +210,8 @@ const Detail = () => {
                                     <label htmlFor="onlinePrice" className="w-full mb-2 text-xs font-medium text-gray-900">Price</label>
                                     <input type="number" name="onlinePrice" id="onlinePrice" value={element?.offerPrice || element.onlinePrice} onChange={(e) => handleChange(element._id, e)} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5" placeholder="Price" />
                                 </div>
-                                {/* <div className='flex'>
-
-                                    {formValues.length != 1 && (
-                                        <button type="button" className="items-end flex" onClick={() => removeFormFields(element._id)}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-2 mb-2 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </button>
-                                    )}
-                                </div> */}
                             </div>
                         ))}
-                        {/* <div>
-                            <button className="hidden w-auto text-white bg-black hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-xs sm:w-auto px-4 py-2 text-center" type="button" onClick={addFormFields}>Add</button>
-                        </div> */}
                     </div>
                 </div>
                 <div className='flex items-end justify-end gap-2 p-2 mt-5 bg-gray-200 rounded-lg'>

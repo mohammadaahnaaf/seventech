@@ -18,14 +18,12 @@ export function Cart() {
 
     function handleIncrement(id: any, count: any) {
         let qty = count + 1
-        // setQty(count => count + 1)
         updateItem(id, {
             quantity: qty,
         });
     }
     function handleDecrement(id: any, count: any) {
         let qty = count - 1
-        // setQty(count => count - 1)
         updateItem(id, {
             quantity: qty,
         });
@@ -95,8 +93,6 @@ export function Cart() {
                                                             </button>
                                                         </div>
                                                     </div>
-
-                                                    {/* <p className="text-red-500">Qty {product.quantity}</p> */}
 
                                                     <div className="flex">
                                                         <button

@@ -1,4 +1,4 @@
-import { Login } from '@seventech/client/auth/Login'
+import { Login } from '@seventech/client'
 import Head from 'next/head'
 import React from 'react'
 
