@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.seventech.com.bd" target="blank"><img src="https://www.seventech.com.bd/_next/image?url=%2Flogo.png" width="320" alt="Nest Logo" /></a>
+  <a href="https://www.seventech.com.bd" target="blank"><img src="public/logo.png" width="320" alt="SevenTech Logo" /></a>
 </p>
 
 # Welcome to SevenTech GitHub - Your Ultimate Destination for ReDragon Computers and Electronics Parts
