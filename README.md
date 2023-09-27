@@ -1,38 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <a href="https://www.seventech.com.bd" target="blank"><img src="public/logo.png" width="320" alt="SevenTech Logo" /></a>
+</p>
+<h2 align="center">
+Welcome to SevenTech GitHub
+</h2>
+<h3 align="center">
+  Your Ultimate Destination for ReDragon Computers and Electronics Parts.
+</h3>
 
-## Getting Started
+Welcome to SevenTech - your one-stop ecommerce platform for all your ReDragon computers and electronics parts needs. At SevenTech, we strive to provide our customers with the latest and top-of-the-line ReDragon products and a wide range of electronics parts, ensuring a seamless shopping experience.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- [About Us](https://www.seventech.com.bd/about)
+- [Privacy Policy](https://www.seventech.com.bd/about/privacy)
+- [Installation](https://nextjs.org/docs/getting-started/installation)
+- [Usage](https://www.seventech.com.bd)
+- [Contact Us](https://www.facebook.com/rdragonbd)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Other Repos
+- [Backend](https://github.com/HelloTanvir/7-tech-backend)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## About Us
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+SevenTech is a dedicated ecommerce platform focusing on providing high-quality ReDragon computers and a variety of electronics parts. We are committed to delivering top-notch products to our customers and ensuring a seamless and enjoyable shopping experience.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Visit our website: [www.seventech.com.bd](https://www.seventech.com.bd)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Services
 
-## Learn More
+At SevenTech, we offer a range of services to meet your technology needs:
 
-To learn more about Next.js, take a look at the following resources:
+- **ReDragon Computers**: Explore our wide selection of ReDragon computers, known for their performance and durability.
+- **Electronics Parts**: Find a diverse range of electronics parts to suit your projects and requirements.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+As an ecommerce platform, SevenTech doesn't require any installation. Simply visit our website [www.seventech.com.bd](https://www.seventech.com.bd) and start browsing and shopping!
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Browsing Products**:
+   - Visit our website [www.seventech.com.bd](https://www.seventech.com.bd).
+   - Browse through our extensive collection of ReDragon computers and electronics parts.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. **Making a Purchase**:
+   - Select the products you wish to purchase.
+   - Add them to your cart and proceed to checkout.
+   - Provide the necessary information and complete the purchase securely.
+
+3. **Contacting Us**:
+   - If you have any questions, concerns, or inquiries, feel free to reach out to us through our [Contact Us](#contact-us) section.
+
+## Developers
+- [Mohammed | Frontend](https://github.com/mohammadaahnaaf)
+- [Tanvir | Backend](https://github.com/HelloTanvir)
+
+## Contact Us
+
+If you have any questions, concerns, or need assistance, you can reach out to us:
+
+- **Email**: info@seventech.com.bd
+- **Phone**: +8801911444466
+- **Address**: Level-5/39, Kazi Bhaban, New Elephant Road, Dhaka-1205, Bangladesh.
+
+We value your feedback and are here to assist you in any way we can. Your satisfaction is our priority.
+
+Thank you for choosing SevenTech! Happy shopping!
