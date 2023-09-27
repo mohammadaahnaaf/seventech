@@ -29,7 +29,7 @@ export function Setting() {
         setIsOpen(true)
     }
 
-    // get me
+    // get-me
     React.useEffect(() => {
         async function getProfile() {
             try {
@@ -43,18 +43,8 @@ export function Setting() {
     }, [success]);
 
     //submit edit data
-    async function handleSubmit(e: any) {
-        e.preventDefault()
+    async function handleSubmit() {
         try {
-            // const reqData = {
-            //     isAdmin: true,
-            //     fullName: "string",
-            //     email: "string",
-            //     phoneNumber: "string",
-            //     address: "string",
-            //     city: "string",
-            //     zone: "string"
-            // }
             await axiosAPI.put(`/user/${me._id}`, me)
             setSuccess('Profile Edited')
             setTimeout(() => { setSuccess('') }, 2000)
@@ -151,7 +141,7 @@ export function Setting() {
             )}
             <div className="max-w-5xl mx-auto bg-gray-100 rounded-lg md:grid md:grid-cols-1 md:gap-6">
                 {sureDelete}
-                <form onSubmit={e => handleSubmit(e)}>
+                <form onSubmit={handleSubmit}>
                     <div className="shadow overflow-hidden rounded-b-lg">
                         <div className="px-4 py-5 sm:p-6 border-b border-gray-300">
                             <div className="grid grid-cols-6 gap-6">

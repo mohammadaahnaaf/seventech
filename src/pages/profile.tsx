@@ -19,3 +19,4 @@ const ProfilePage = (props: Props) => {
 }
 
 export default withMeAuth(ProfilePage)
+// export default ProfilePage
