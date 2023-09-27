@@ -61,26 +61,31 @@ const Loading2 = () => {
 export const withMeAuth = (Component: React.ComponentType<Props>) => {
 
   const AuthMeComponent: React.FC<Props> = ({ pageProps }) => {
-
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const router = useRouter()
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     useEffect(() => {
       if (!isLoggedIn) {
         axiosAPI
           .get('/auth/get-me')
           .then((res: any) => {
+            let topG = !!res.data.email
             setIsLoggedIn(!!res.data.email);
+            setTimeout(() => {
+              if (!topG) {
+                Router.push('/login')
+              }
+            }, 200)
           })
           .catch((error: any) => {
             console.log(error);
-            Router.push('/login')
+            Router.push('/login');
           });
       }
     }, [isLoggedIn, router]);
 
-    return isLoggedIn ? <Component {...pageProps} /> : <Loading />
-  }
+    return isLoggedIn ? <Component {...pageProps} /> : <Loading />;
+  };
 
   return AuthMeComponent;
 }

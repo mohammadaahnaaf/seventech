@@ -8,9 +8,9 @@ import { Layout } from '@seventech/layouts';
 export function Setting() {
 
     const router = useRouter()
-    const [success, setSuccess] = React.useState("")
-    let [isOpen, setIsOpen] = React.useState(false)
-    const [me, setMe] = React.useState({
+    const [success, setSuccess] = React.useState<string>("")
+    const [isOpen, setIsOpen] = React.useState<boolean>(false)
+    const [me, setMe] = React.useState<any>({
         _id: '',
         isAdmin: null,
         fullName: "",
@@ -46,15 +46,15 @@ export function Setting() {
     async function handleSubmit(e: any) {
         e.preventDefault()
         try {
-            const reqData = {
-                isAdmin: true,
-                fullName: "string",
-                email: "string",
-                phoneNumber: "string",
-                address: "string",
-                city: "string",
-                zone: "string"
-            }
+            // const reqData = {
+            //     isAdmin: true,
+            //     fullName: "string",
+            //     email: "string",
+            //     phoneNumber: "string",
+            //     address: "string",
+            //     city: "string",
+            //     zone: "string"
+            // }
             await axiosAPI.put(`/user/${me._id}`, me)
             setSuccess('Profile Edited')
             setTimeout(() => { setSuccess('') }, 2000)
@@ -67,7 +67,7 @@ export function Setting() {
     // edit profile 
     function handleChange(event: any) {
         const { name, value } = event.target;
-        setMe((prevState) => {
+        setMe((prevState: any) => {
             return {
                 ...prevState,
                 [name]: value,
