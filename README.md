@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://www.seventech.com.bd" target="blank"><img src="public/logo.png" width="320" alt="SevenTech Logo" /></a>
 </p>
-<h1 align="center">
+<h2 align="center">
 # Welcome to SevenTech GitHub - Your Ultimate Destination for ReDragon Computers and Electronics Parts
-</p>
+</h2>
 
 Welcome to SevenTech - your one-stop ecommerce platform for all your ReDragon computers and electronics parts needs. At SevenTech, we strive to provide our customers with the latest and top-of-the-line ReDragon products and a wide range of electronics parts, ensuring a seamless shopping experience.
 
