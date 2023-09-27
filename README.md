@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://www.seventech.com.bd" target="blank"><img src="public/logo.png" width="320" alt="SevenTech Logo" /></a>
 </p>
-<p align="center">
+<h1 align="center">
 # Welcome to SevenTech GitHub - Your Ultimate Destination for ReDragon Computers and Electronics Parts
 </p>
 
