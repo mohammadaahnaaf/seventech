@@ -630,8 +630,8 @@ export function ProductCard(props: PProps) {
                 />
             </button>
             <div className="h-[15vh] grid grid-cols-1 gap-2 content-between">
-                <div className='p-2'>
-                    <Link href={`/product/${product._id}`} className="text-gray-900 font-semibold text-xs tracking-tight truncate">
+                <div className='p-2 overflow-hidden'>
+                    <Link href={`/product/${product._id}`} className="text-gray-900 overflow-hidden font-semibold text-xs truncate">
                         {product.name}...
                     </Link>
                 </div>
