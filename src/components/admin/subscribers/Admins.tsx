@@ -24,11 +24,11 @@ function Admin() {
 
     const [searchedName] = useDebounce(searchTerm, 400);
 
-    React.useEffect(() => {
-        if (!!me) {
-            setIAdmin(me.isAdmin)
-        }
-    }, [me])
+    // React.useEffect(() => {
+    //     if (!!me) {
+    //         setIAdmin(me.isAdmin)
+    //     }
+    // }, [me])
     //Get Data
     React.useEffect(() => {
         async function getUsers() {
@@ -48,6 +48,7 @@ function Admin() {
     function viewMe(data: any) {
         setDetailOpen(true)
         setMe(data)
+        setIAdmin(data.isAdmin)
     }
 
     // delete user
@@ -233,14 +234,14 @@ function Admin() {
                                             <tr className='bg-white'>
                                                 <td>Role: </td>
                                                 <td>{iAdmin ? (
-                                                    <button type='button' onClick={() => setIAdmin(!iAdmin)} className='flex w-full items-center text-green-700 hover:text-green-500'>
+                                                    <button type='button' onClick={() => setIAdmin(false)} className='flex w-full items-center text-green-700 hover:text-green-500'>
                                                         <span>Admin</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" className="ml-1 h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
                                                             <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                                         </svg>
                                                     </button>
                                                 ) : (
-                                                    <button type='button' onClick={() => setIAdmin(!iAdmin)} className='flex items-center text-blue-600 hover:text-sky-500'>
+                                                    <button type='button' onClick={() => setIAdmin(true)} className='flex items-center text-blue-600 hover:text-sky-500'>
                                                         <span>Customer</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="ml-1 w-4 h-4 text-sky-500">
                                                             <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
