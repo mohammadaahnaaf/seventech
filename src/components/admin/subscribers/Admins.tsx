@@ -84,16 +84,16 @@ function Admin() {
 
     async function handleUpdate() {
         try {
-            const reqData = {
-                isAdmin: iAdmin,
-                fullName: me.fullName,
-                email: me.email,
-                phoneNumber: me.phoneNumber,
-                address: me.address,
-                city: me.city,
-                zone: me.zone
-            }
-            await axiosAPI.put(`/user/make-admin/${me._id}`, reqData);
+            // const reqData = {
+            //     isAdmin: false,
+            //     fullName: me.fullName,
+            //     email: me.email,
+            //     phoneNumber: me.phoneNumber,
+            //     address: me.address,
+            //     city: me.city,
+            //     zone: me.zone
+            // }
+            await axiosAPI.put(`/user/remove-admin/${me._id}`);
             setSuccess('User Updated')
             setTimeout(() => { setSuccess('') }, 2000)
             setDetailOpen(false)
