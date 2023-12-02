@@ -6,7 +6,24 @@ import { axiosRoot } from '@seventech/utils';
 
 export function Banner() {
 
-    const [banners, setBanners] = React.useState<any>([])
+    const [banners, setBanners] = React.useState<any>([
+        {
+            _id: "64d6d561996934bfea92c009",
+            images: [
+                "https://seventech-images.s3.ap-southeast-1.amazonaws.com/banner-1691800929711.jpg",
+                "https://seventech-images.s3.ap-southeast-1.amazonaws.com/banner2-1691800929787.png",
+                "https://seventech-images.s3.ap-southeast-1.amazonaws.com/banner3-1691800929855.jpg"
+            ],
+            keys: [
+                "banner-1691800929711.jpg",
+                "banner2-1691800929787.png",
+                "banner3-1691800929855.jpg"
+            ],
+            createdAt: "2023-08-12T00:42:09.999Z",
+            updatedAt: "2023-08-12T00:42:09.999Z",
+            __v: 0
+        }
+    ])
 
     // get images data 
     React.useEffect(() => {

@@ -1,4 +1,3 @@
-// import { AdminLayout } from '@seventech/layouts';
 import { AdminLayout, Layout } from '@seventech/layouts';
 import { axiosAPI } from '@seventech/utils';
 import Router, { useRouter } from 'next/router';
